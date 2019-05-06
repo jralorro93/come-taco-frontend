@@ -7,6 +7,7 @@ import "./App.css";
 import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
 import Contact from './components/Contact'
+import Login from './components/Login'
 
 export default class App extends React.Component {
 
@@ -41,10 +42,12 @@ export default class App extends React.Component {
             }
           }
           />
-        {/* Route to About page */}
-        <Route exact path='/about' render={About}/>
-        {/* Route to Contact page */}
-        <Route exact path='/contact' render={Contact}/>
+          {/* Route to About page */}
+          <Route exact path='/about' render={About}/>
+          {/* Route to Contact page */}
+          <Route exact path='/contact' render={Contact}/>
+          {/* Route to Login page */}
+          <Route exact path='/login' render={Login} />
         </div>
       </Router>
     );
