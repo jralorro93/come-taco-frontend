@@ -12,8 +12,10 @@ const link = {
 
 const NavBar = () => {
   return (
-    <div>
-      
+    <div className="navbar">
+      {/* <NavLink to="/menu"/>
+      <NavLink to="/about"/>
+      <NavLink to="/contact"/> */}
     </div>
   )
 }

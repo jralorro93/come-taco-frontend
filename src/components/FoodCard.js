@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Food = (props) => {
+const FoodCard = (props) => {
   return (
-    <div>
+    <div className="FoodCard">
       <h1>{props.food.name}</h1>
       <img src={props.food.imgURL} alt={props.food.name} />
       <h3>{props.food.description} </h3>
@@ -10,4 +10,4 @@ const Food = (props) => {
     </div>
   )
 }
-export default Food
+export default FoodCard

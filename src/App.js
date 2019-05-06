@@ -1,32 +1,35 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import CategoryList from './containers/CategoryList'
-import NavBar from './components/NavBar'
-import MainFoods from './components/MainFoods'
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import CategoryList from "./containers/CategoryList";
+import NavBar from "./components/NavBar";
 
-import './App.css';
+import "./App.css";
+import FoodContainer from './containers/FoodContainer'
+import About from './components/About'
 
 export default class App extends React.Component {
 
+  // we need this to filter by categoryChoice
+  // send this to FoodContainer
   state = {
-    foodsList: []
+    categoryChoice: ""
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api/v1/items')
-      .then(res => res.json())
-      .then(foods => {
-        this.setState({
-          foodsList: foods
-        })
-      })
+  // handles click to change categoryChoice by sending this function
+  // down to CategoryList and down to a specific Category
+  handleCategoryClick = (event) => {
+    this.setState({
+      categoryChoice: event.target.innerText.toLowerCase()
+    })
   }
+
   render() {
     return (
-      <div>
-        <CategoryList foods={this.state.foodsList} />
-        <MainFoods foods={this.state.foodsList} />
-      </div>
-    )
+        <div>
+          <NavBar />
+          <CategoryList handleCategoryClick={this.handleCategoryClick}/>
+          <FoodContainer categoryChoice={this.state.categoryChoice}/>
+        </div>
+    );
   }
 }
