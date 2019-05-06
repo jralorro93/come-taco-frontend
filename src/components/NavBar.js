@@ -13,9 +13,9 @@ const link = {
 const NavBar = () => {
   return (
     <div className="navbar">
-      {/* <NavLink to="/menu"/>
-      <NavLink to="/about"/>
-      <NavLink to="/contact"/> */}
+      <p>About</p>
+      <p>Contact Us</p>
+      <p>Login</p>
     </div>
   )
 }
