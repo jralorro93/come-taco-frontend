@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const link = {
   width: "100px",
@@ -8,7 +8,7 @@ const link = {
   background: "blue",
   textDecoration: "none",
   color: "white"
-}
+};
 
 const NavBar = () => {
   return (
@@ -17,6 +17,7 @@ const NavBar = () => {
       <p>Contact Us</p>
       <p>Login</p>
     </div>
-  )
-}
-export default NavBar
+  );
+};
+export default NavBar;
+
