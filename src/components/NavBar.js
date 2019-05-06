@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <div className="navbar">
+    <div id="navbar">
     {/*Drop down options*/}
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!">one</a></li>
@@ -11,9 +11,9 @@ const NavBar = () => {
         <li class="divider"></li>
         <li><a href="#!">three</a></li>
       </ul>
-        <nav>
+        <nav className="blue-grey lighten-4">
         {/*Nav Bar*/}
-          <div class="nav-wrapper">
+          <div id="nav-wrapper">
             <NavLink to='/' className="brand-logo center">Come Taco</NavLink>
             <ul class="right hide-on-med-and-down">
               <li><NavLink to='/about'>About</NavLink></li>
