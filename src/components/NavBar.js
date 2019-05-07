@@ -13,6 +13,8 @@ const styles = {
 };
 
 class NavBar extends React.Component {
+
+//Moves blue bar is NavBar depending on which tab is clicked
   state = {
     value: 0
   };
@@ -44,6 +46,11 @@ class NavBar extends React.Component {
           {this.props.currentUser ? (
             <Tab component={Link} to="/shoppingcart" label={<i class="material-icons">shopping_cart</i>} />
           ) : null}
+          {this.props.currentUser ? (
+            null
+          ) : (
+            <Tab component={Link} to="/signup" label="Sign Up"/>
+          )}
         </Tabs>
       </Paper>
     );
