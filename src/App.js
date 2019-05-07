@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
 
 import CategoryList from "./containers/CategoryList";
 import NavBar from "./components/NavBar";
@@ -10,7 +10,7 @@ import Contact from './components/Contact'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   // we need this to filter by categoryChoice
   // send this to FoodContainer
@@ -59,18 +59,40 @@ export default class App extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(user => console.log(user))
+      .then(user => {
+        console.log()
+        localStorage.setItem('token', user.jwt)
+        this.setState({
+          currentUser: user.user
+        }, () => this.props.history.push('/about'))
+      })
+  }
+
+  componentDidMount() {
+    if (this.state.currentUser === null && localStorage.getItem('token') !== null) {
+      fetch('http://localhost:3000/api/v1/profile', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      }).then(res => res.json())
+        .then(user => {
+          this.setState({
+            currentUser: user
+          })
+        })
+    }
   }
 
 
 
   render() {
     return (
-      <Router>
+      <Switch>
         <div className="App">
           <NavBar />
           {/* Route to Menu page */}
-          <Route path='/' exact render={
+          <Route exact path='/' render={
             () => {
               return(
                 <div className="menu">
@@ -102,12 +124,12 @@ export default class App extends React.Component {
             }
           } />
         </div>
-      </Router>
+      </Switch>
     );
   }
 }
 
-
+export default withRouter(App);
 
 
 
