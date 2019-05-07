@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class CenteredTabs extends React.Component {
+class NavBar extends React.Component {
   state = {
     value: 0,
   };
@@ -43,8 +43,8 @@ class CenteredTabs extends React.Component {
   }
 }
 
-CenteredTabs.propTypes = {
+NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CenteredTabs);
+export default withStyles(styles)(NavBar);

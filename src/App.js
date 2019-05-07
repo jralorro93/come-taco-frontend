@@ -8,6 +8,7 @@ import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login'
+import SignupForm from './components/SignupForm'
 
 export default class App extends React.Component {
 
@@ -48,6 +49,14 @@ export default class App extends React.Component {
           <Route exact path='/contact' render={Contact}/>
           {/* Route to Login page */}
           <Route exact path='/login' render={Login} />
+          {/* Route to Signup page */}
+          <Route exact path='/signup' render={
+            () => {
+              return(
+                <SignupForm />
+              )
+            }
+          } />
         </div>
       </Router>
     );
