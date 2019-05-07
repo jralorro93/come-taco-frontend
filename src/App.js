@@ -9,6 +9,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
+import ShoppingCart from './components/ShoppingCart'
 
 class App extends React.Component {
 
@@ -16,7 +17,8 @@ class App extends React.Component {
   // send this to FoodContainer
   state = {
     categoryChoice: "",
-    currentUser: null
+    currentUser: null,
+    shoppingCart: []
   }
 
   // handles click to change categoryChoice by sending this function
@@ -68,6 +70,13 @@ class App extends React.Component {
       })
   }
 
+  handleLogout = () => {
+    localStorage.removeItem('token')
+    this.setState({
+      currentUser: null
+    })
+  }
+
   componentDidMount() {
     if (this.state.currentUser === null && localStorage.getItem('token') !== null) {
       fetch('http://localhost:3000/api/v1/profile', {
@@ -84,31 +93,36 @@ class App extends React.Component {
     }
   }
 
-
+  handleAddToCart = (event, foodObj) => {
+    console.log(event, foodObj)
+    this.setState({
+      shoppingCart: [...this.state.shoppingCart, foodObj]
+    })
+  }
 
   render() {
     return (
       <Switch>
         <div className="App">
-          <NavBar />
+          <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
           {/* Route to Menu page */}
           <Route exact path='/' render={
             () => {
               return(
                 <div className="menu">
                   <CategoryList handleCategoryClick={this.handleCategoryClick}/>
-                  <FoodContainer categoryChoice={this.state.categoryChoice}/>
+                  <FoodContainer handleAddToCart={this.handleAddToCart} categoryChoice={this.state.categoryChoice}/>
                 </div>
               )
             }
           }
           />
           {/* Route to About page */}
-          <Route exact path='/about' render={About}/>
+          <Route path='/about' render={About}/>
           {/* Route to Contact page */}
-          <Route exact path='/contact' render={Contact}/>
+          <Route path='/contact' render={Contact}/>
           {/* Route to Login page */}
-          <Route exact path='/login' render={
+          <Route path='/login' render={
             () => {
               return (
                 <Login handleLogin={this.handleLogin}/>
@@ -116,10 +130,18 @@ class App extends React.Component {
             }
               } />
           {/* Route to Signup page */}
-          <Route exact path='/signup' render={
+          <Route path='/signup' render={
             () => {
               return(
                 <SignupForm handleSignup={this.handleSignup}/>
+              )
+            }
+          } />
+          {/* Route to ShoppingCart page */}
+          <Route path='/shoppingcart' render={
+            () => {
+              return (
+                <ShoppingCart shoppingCart={this.state.shoppingCart} />
               )
             }
           } />
