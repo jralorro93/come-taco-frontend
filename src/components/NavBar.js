@@ -1,30 +1,50 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-const NavBar = () => {
-  return (
-    <div className="navbar">
-    {/*Drop down options*/}
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
-      </ul>
-        <nav>
-        {/*Nav Bar*/}
-          <div class="nav-wrapper">
-            <NavLink to='/' className="brand-logo center">Come Taco</NavLink>
-            <ul class="right hide-on-med-and-down">
-              <li><NavLink to='/about'>About</NavLink></li>
-              <li><NavLink to='/contact'>Contact Us</NavLink></li>
-              <li><NavLink to='/login'>Login</NavLink></li>
-            {/*<!-- Dropdown Trigger -->*/}
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-  );
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
 };
-export default NavBar;
+
+class CenteredTabs extends React.Component {
+  state = {
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Paper className={classes.root}>
+        <Tabs
+          value={this.state.value}
+          onChange={this.handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          centered
+        >
+          <Tab component={Link} to='/' label="Menu" />
+          <Tab component={Link} to='/about' label="Our Story" />
+          <Tab component={Link} to= '/contact' label="Contact Us" />
+          <Tab component={Link} to='/login' label="Login" />
+        </Tabs>
+      </Paper>
+    );
+  }
+}
+
+CenteredTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(CenteredTabs);

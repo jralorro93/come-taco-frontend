@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import CategoryList from "./containers/CategoryList";
 import NavBar from "./components/NavBar";
-
 import "./App.css";
 import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
