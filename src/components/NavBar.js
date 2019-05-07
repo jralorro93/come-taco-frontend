@@ -1,20 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const styles = {
   root: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 };
 
 class NavBar extends React.Component {
   state = {
-    value: 0,
+    value: 0
   };
 
   handleChange = (event, value) => {
@@ -33,10 +33,17 @@ class NavBar extends React.Component {
           textColor="primary"
           centered
         >
-          <Tab component={Link} to='/' label="Menu" />
-          <Tab component={Link} to='/about' label="Our Story" />
-          <Tab component={Link} to= '/contact' label="Contact Us" />
-          <Tab component={Link} to='/login' label="Login" />
+          <Tab component={Link} to="/" label="Menu" />
+          <Tab component={Link} to="/about" label="Our Story" />
+          <Tab component={Link} to="/contact" label="Contact Us" />
+          {this.props.currentUser ? (
+            <Tab onClick={this.props.handleLogout} label="Logout" />
+          ) : (
+            <Tab component={Link} to="/login" label="Login" />
+          )}
+          {this.props.currentUser ? (
+            <Tab component={Link} to="/shoppingcart" label={<i class="material-icons">shopping_cart</i>} />
+          ) : null}
         </Tabs>
       </Paper>
     );
@@ -44,7 +51,7 @@ class NavBar extends React.Component {
 }
 
 NavBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(NavBar);

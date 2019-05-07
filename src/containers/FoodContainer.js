@@ -24,7 +24,7 @@ export default class FoodContainer extends React.Component {
     <div id="FoodContainer">
       <ul>
         {/* filters food that includes that categoryChoice then map to to FoodCard */}
-        {this.state.foodsList.filter(food => food.category.includes(this.props.categoryChoice)).map(food => <FoodCard food={food}/>)}
+        {this.state.foodsList.filter(food => food.category.includes(this.props.categoryChoice)).map(food => <FoodCard handleAddToCart={this.props.handleAddToCart} food={food}/>)}
       </ul>
     </div>
     );
