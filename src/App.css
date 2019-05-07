@@ -24,7 +24,7 @@
 }
 
 body {
-  background-image: url("images/background.jpg");
+  background-image: url("./Images/background.jpg");
   background-color: #cccccc;
 }
 
@@ -44,7 +44,7 @@ div#CategoryList {
   z-index: 1;
   top: 25%;
   left: 0;
-  background-image: url("images/side-panel.jpg");
+  background-image: url("./Images/side-panel.jpg");
   overflow-x: hidden;
   padding-top: 20px;
 }

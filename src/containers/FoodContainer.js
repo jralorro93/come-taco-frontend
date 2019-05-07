@@ -1,5 +1,4 @@
 import React from "react";
-
 import FoodCard from '../components/FoodCard'
 
 export default class FoodContainer extends React.Component {
