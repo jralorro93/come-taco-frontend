@@ -48,6 +48,33 @@ div#CategoryList {
   padding-top: 20px;
 }
 
+div#contactPage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -211px;
+  margin-left: -320px;
+  width: 640px;
+  height: 423px;
+  background-image: url("./Images/cutting-board.jpg")
+}
+
+#signupForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -84px;
+  margin-left: -107px;
+}
+
+#loginDiv {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -102px;
+  margin-top: -70px;
+
+}
 
 @keyframes App-logo-spin {
   from {
