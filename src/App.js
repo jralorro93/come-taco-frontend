@@ -18,7 +18,6 @@ class App extends React.Component {
   state = {
     categoryChoice: "",
     currentUser: null,
-    shoppingCart: []
   }
 
   // handles click to change categoryChoice by sending this function
@@ -62,7 +61,6 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(user => {
-        console.log()
         localStorage.setItem('token', user.jwt)
         this.setState({
           currentUser: user.user
@@ -94,9 +92,17 @@ class App extends React.Component {
   }
 
   handleAddToCart = (event, foodObj) => {
-    console.log(event, foodObj)
-    this.setState({
-      shoppingCart: [...this.state.shoppingCart, foodObj]
+    // console.log(this.state.currentUser.user.id, foodObj.id)
+    fetch("http://localhost:3000/api/v1/orders", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }, 
+      body: JSON.stringify({
+        user_id: this.state.currentUser.user.id,
+        item_id: foodObj.id
+      })
     })
   }
 
@@ -141,7 +147,7 @@ class App extends React.Component {
           <Route path='/shoppingcart' render={
             () => {
               return (
-                <ShoppingCart shoppingCart={this.state.shoppingCart} />
+                <ShoppingCart />
               )
             }
           } />

@@ -5,9 +5,9 @@ const ReceiptContainer = (props) => {
   return (
     <div>
       <h1>Your Wishlist</h1>
-      <ol>
+      <ul>
         {props.shoppingCart.map(food => <ItemCard food={food}/>)}
-      </ol>
+      </ul>
     </div>
   )
 }
