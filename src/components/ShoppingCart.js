@@ -21,11 +21,31 @@ export default class ShoppingCart extends React.Component {
         })
       })
   }
-  
+
+  handleDelete = (foodObj) => {
+    fetch('http://localhost:3000/api/v1/orders', {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `BEARER ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUser.id,
+        food_id: foodObj.id
+      })
+    })
+    let newShoppingCart = [...this.state.shoppingCart]
+    let index = newShoppingCart.indexOf(foodObj)
+    newShoppingCart.splice(index, 1)
+    this.setState({
+      shoppingCart: newShoppingCart
+    })
+  }
+
   render() {
     return(
       <div>
-        <ReceiptContainer shoppingCart={this.state.shoppingCart}/>
+        <ReceiptContainer shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete}/>
       </div>
     )
   }

@@ -98,7 +98,7 @@ class App extends React.Component {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-      }, 
+      },
       body: JSON.stringify({
         user_id: this.state.currentUser.user.id,
         item_id: foodObj.id
@@ -147,7 +147,7 @@ class App extends React.Component {
           <Route path='/shoppingcart' render={
             () => {
               return (
-                <ShoppingCart />
+                <ShoppingCart currentUser={this.state.currentUser}/>
               )
             }
           } />
