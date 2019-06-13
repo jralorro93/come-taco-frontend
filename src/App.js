@@ -44,6 +44,12 @@ class App extends React.Component {
         last_name: userObj.lastName
       })
     })
+      .then(res => res.json())
+      .then(user => {
+        this.setState({
+          currentUser: user.user
+        }, () => this.props.history.push('/about'))
+      })
   }
 
   handleLogin = (e, userObj) => {

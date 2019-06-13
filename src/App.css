@@ -76,6 +76,15 @@ div#contactPage {
 
 }
 
+p.price {
+  font-weight: bold;
+}
+
+div.userCart {
+  text-align: center;
+  display: inline-block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

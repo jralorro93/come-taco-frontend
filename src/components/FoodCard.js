@@ -25,8 +25,11 @@ const styles = theme => ({
   }
 });
 
+
+
 class FoodCard extends React.Component {
   render() {
+    const foodPrice = "$" + this.props.food.price
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
@@ -38,7 +41,8 @@ class FoodCard extends React.Component {
         />
         <CardContent>
           <Typography component="p">
-            {this.props.food.description}
+            {this.props.food.description}<br/>
+          <p className="price" >{foodPrice}</p>
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
