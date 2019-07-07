@@ -10,6 +10,8 @@ import Contact from './components/Contact'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
+import Checkout from './components/Checkout'
+
 
 class App extends React.Component {
 
@@ -48,7 +50,7 @@ class App extends React.Component {
       .then(user => {
         this.setState({
           currentUser: user.user
-        }, () => this.props.history.push('/about'))
+        }, () => this.props.history.push('/'))
       })
   }
 
@@ -70,7 +72,7 @@ class App extends React.Component {
         localStorage.setItem('token', user.jwt)
         this.setState({
           currentUser: user.user
-        }, () => this.props.history.push('/about'))
+        }, () => this.props.history.push('/'))
       })
   }
 
@@ -112,7 +114,13 @@ class App extends React.Component {
     })
   }
 
+  handleCheckout = () => {
+   this.props.history.push('/checkout')
+  }
+
+
   render() {
+    console.log('this is currentUser: ', this.state.currentUser)
     return (
       <Switch>
         <div className="App">
@@ -153,10 +161,12 @@ class App extends React.Component {
           <Route path='/shoppingcart' render={
             () => {
               return (
-                <ShoppingCart currentUser={this.state.currentUser}/>
+                <ShoppingCart currentUser={this.state.currentUser} handleCheckout={this.handleCheckout}/>
               )
             }
           } />
+        {/* Route to Checkout page*/}
+          <Route path='/checkout' component={Checkout}/>
         </div>
       </Switch>
     );
@@ -164,7 +174,3 @@ class App extends React.Component {
 }
 
 export default withRouter(App);
-
-
-
-// Notes

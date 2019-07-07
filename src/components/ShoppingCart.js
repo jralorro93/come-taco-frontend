@@ -43,9 +43,10 @@ export default class ShoppingCart extends React.Component {
   }
 
   render() {
+    console.log('this is shoppingCart: ', this.state)
     return(
       <div>
-        <ReceiptContainer shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete}/>
+        <ReceiptContainer shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} handleCheckout={this.props.handleCheckout}/>
       </div>
     )
   }

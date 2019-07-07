@@ -85,6 +85,11 @@ div.userCart {
   display: inline-block;
 }
 
+div#FoodContainer {
+  text-align: center;
+  display: inline-block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -92,4 +97,13 @@ div.userCart {
   to {
     transform: rotate(360deg);
   }
+}
+
+div.totalBox {
+  background-color: white;
+  width: 30%;
+  height: 150px;
+  border: 4px solid black;
+  text-align: center;
+  display: inline-block;
 }

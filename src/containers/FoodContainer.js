@@ -31,3 +31,6 @@ export default class FoodContainer extends React.Component {
     );
   }
 }
+
+
+        // {this.state.foodsList.filter(food => food.category.includes(this.props.categoryChoice)).map(food => <FoodCard handleAddToCart={this.props.handleAddToCart} food={food}/>)}
