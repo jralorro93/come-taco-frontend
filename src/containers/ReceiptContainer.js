@@ -16,13 +16,12 @@ class ReceiptContainer extends Component {
 
 
   render() {
-    console.log('this is props from RC: ', this.props)
     return (
       <div>
         <div className='userCart'>
           <h1>Your Cart</h1>
           <ul>
-            {this.props.shoppingCart.map(food => <ItemCard food={food} handleDelete={this.props.handleDelete}/>)}
+            {this.props.shoppingCart.map(food => <ItemCard food={food} user={this.props.user} handlePickedItem={this.props.handlePickedItem} currentFood={this.props.currentFood}handleDelete={this.props.handleDelete}/>)}
           </ul>
         </div>
         <div className='totalBox'>

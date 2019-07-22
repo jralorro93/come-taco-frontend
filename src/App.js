@@ -48,6 +48,7 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(user => {
+        localStorage.setItem('token', user.jwt)
         this.setState({
           currentUser: user.user
         }, () => this.props.history.push('/'))
@@ -100,7 +101,6 @@ class App extends React.Component {
   }
 
   handleAddToCart = (event, foodObj) => {
-    // console.log(this.state.currentUser.user.id, foodObj.id)
     fetch("http://localhost:3000/api/v1/orders", {
       method: "POST",
       headers: {
@@ -120,7 +120,6 @@ class App extends React.Component {
 
 
   render() {
-    console.log('this is currentUser: ', this.state.currentUser)
     return (
       <Switch>
         <div className="App">

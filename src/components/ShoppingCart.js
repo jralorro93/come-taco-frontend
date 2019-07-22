@@ -6,6 +6,7 @@ export default class ShoppingCart extends React.Component {
 
   state = {
     shoppingCart: []
+
   }
 
   componentDidMount() {
@@ -22,8 +23,8 @@ export default class ShoppingCart extends React.Component {
       })
   }
 
-  handleDelete = (foodObj) => {
-    fetch('http://localhost:3000/api/v1/orders', {
+  handleDelete = (id, foodObj) => {
+    fetch(`http://localhost:3000/api/v1/orders/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
@@ -43,10 +44,9 @@ export default class ShoppingCart extends React.Component {
   }
 
   render() {
-    console.log('this is shoppingCart: ', this.state)
     return(
-      <div>
-        <ReceiptContainer shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} handleCheckout={this.props.handleCheckout}/>
+      <div className='ShoppingCardPage'>
+        <ReceiptContainer shoppingCart={this.state.shoppingCart} user={this.props.currentUser} handlePickedItem={this.handlePickedItem} currentFood={this.state.currentFood} handleDelete={this.handleDelete} handleCheckout={this.props.handleCheckout}/>
       </div>
     )
   }
