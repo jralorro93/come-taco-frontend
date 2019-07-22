@@ -20,6 +20,7 @@ export default class FoodContainer extends React.Component {
   }
 
   render() {
+    console.log('this is state: ', this.state)
     return (
     <div id="FoodContainer">
       <h1>¡Come Taco!</h1>

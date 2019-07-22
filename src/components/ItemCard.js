@@ -27,6 +27,34 @@ const styles = theme => ({
 
 //The Current User's cart
  class ItemCard extends Component {
+
+   state = {
+     orders: {},
+     currentFoodID: ''
+   }
+
+   componentDidMount() {
+    let userOrders = this.props.user.user.orders.find(order => order.item_id === this.props.food.id)
+
+    console.log('this is userOrders: ', userOrders)
+     this.setState({
+       orders: this.props.orders,
+       currentFoodID: userOrders.id
+     })
+   }
+   //
+   // componentDidMount() {
+   //   fetch('http://localhost:3000/api/v1/orders')
+   //    .then(r => r.json())
+   //    .then(data => {
+   //      let itemList = data.filter(item => item.user_id === this.props.user.user.id)
+   //      this.setState({
+   //        orders: itemList
+   //      })
+   //    })
+   // }
+
+
   render() {
     const foodPrice = "$" + this.props.food.price
     const { classes } = this.props
@@ -45,7 +73,7 @@ const styles = theme => ({
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Delete" onClick={(event) => this.props.handleDelete(this.props.food)}>
+          <IconButton aria-label="Delete" onClick={(event) => this.props.handleDelete(this.state.currentFoodID, this.props.user.user.id, this.props.food)}>
             <i class="material-icons">remove_shopping_cart</i>
           </IconButton>
         </CardActions>
