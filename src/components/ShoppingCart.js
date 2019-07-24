@@ -2,52 +2,13 @@ import React from 'react';
 
 import ReceiptContainer from '../containers/ReceiptContainer'
 
-export default class ShoppingCart extends React.Component {
-
-  state = {
-    shoppingCart: []
-
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:3000/api/v1/get_items", {
-      headers: {
-        'Authorization': `BEARER ${localStorage.getItem('token')}`
-      }
-    })
-      .then(res => res.json())
-      .then(parsedJSON => {
-        this.setState({
-          shoppingCart: parsedJSON.user.items
-        })
-      })
-  }
-
-  handleDelete = (id, foodObj) => {
-    fetch(`http://localhost:3000/api/v1/orders/${id}`, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `BEARER ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify({
-        user_id: this.props.currentUser.id,
-        food_id: foodObj.id
-      })
-    })
-    let newShoppingCart = [...this.state.shoppingCart]
-    let index = newShoppingCart.indexOf(foodObj)
-    newShoppingCart.splice(index, 1)
-    this.setState({
-      shoppingCart: newShoppingCart
-    })
-  }
-
-  render() {
-    return(
+const ShoppingCart = (props) => {
+  console.log('this is props from SC: ', props)
+    return (
       <div className='ShoppingCardPage'>
-        <ReceiptContainer shoppingCart={this.state.shoppingCart} user={this.props.currentUser} handlePickedItem={this.handlePickedItem} currentFood={this.state.currentFood} handleDelete={this.handleDelete} handleCheckout={this.props.handleCheckout}/>
+        <ReceiptContainer shoppingCart={props.shoppingCart} user={props.currentUser}  handleDelete={props.handleDelete} handleCheckout={props.handleCheckout}/>
       </div>
     )
-  }
 }
+
+export default ShoppingCart

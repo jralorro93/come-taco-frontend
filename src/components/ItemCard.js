@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -25,8 +25,7 @@ const styles = theme => ({
   }
 });
 
-//The Current User's cart
- class ItemCard extends Component {
+ class ItemCard extends React.PureComponent {
 
    state = {
      orders: {},
@@ -36,28 +35,16 @@ const styles = theme => ({
    componentDidMount() {
     let userOrders = this.props.user.user.orders.find(order => order.item_id === this.props.food.id)
 
-    console.log('this is userOrders: ', userOrders)
      this.setState({
        orders: this.props.orders,
        currentFoodID: userOrders.id
      })
    }
-   //
-   // componentDidMount() {
-   //   fetch('http://localhost:3000/api/v1/orders')
-   //    .then(r => r.json())
-   //    .then(data => {
-   //      let itemList = data.filter(item => item.user_id === this.props.user.user.id)
-   //      this.setState({
-   //        orders: itemList
-   //      })
-   //    })
-   // }
-
 
   render() {
     const foodPrice = "$" + this.props.food.price
     const { classes } = this.props
+    console.log('this is food: ', this.state.currentFoodID)
     return(
       <Card className={classes.card}>
         <CardHeader title={this.props.food.name} />
@@ -73,7 +60,7 @@ const styles = theme => ({
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Delete" onClick={(event) => this.props.handleDelete(this.state.currentFoodID, this.props.user.user.id, this.props.food)}>
+          <IconButton aria-label="Delete" onClick={(event) => this.props.handleDelete(this.state.currentFoodID, this.props.food)}>
             <i class="material-icons">remove_shopping_cart</i>
           </IconButton>
         </CardActions>
