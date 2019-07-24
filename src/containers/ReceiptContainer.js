@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ItemCard from '../components/ItemCard';
 import CartTotal from '../components/CartTotal';
 import {unstable_Box as Box} from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-class ReceiptContainer extends Component {
+class ReceiptContainer extends React.PureComponent {
 
   handleTotal = () => {
     let total = 0
