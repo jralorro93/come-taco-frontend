@@ -94,28 +94,26 @@ class App extends React.Component {
         food_id: foodObj.id
       })
     })
-    // let newShoppingCart = [...this.props.shoppingCart]
-    // let index = newShoppingCart.indexOf(foodObj)
-    // newShoppingCart.splice(index, 1)
-    // this.setState({
-    //   shoppingCart: newShoppingCart
-    // })
-    // let newShoppingCart = [...this.state.shoppingCart]
-    // newShoppingCart.filter(item => item === foodObj)
-    // this.setState({
-    //   shoppingCart: newShoppingCart
-    // })
-    let newShoppingCart = this.state.shoppingCart
-    console.log('this is newShoppingCart before: ', newShoppingCart)
-    console.log('this is foodObj: ', foodObj)
-    newShoppingCart.filter(item => {
-      console.log(item)
-      return item.id === foodObj.id
-    })
-    console.log('this is newShoppingCart after: ', newShoppingCart)
+    let newShoppingCart = [...this.state.shoppingCart]
+    let index = newShoppingCart.indexOf(foodObj)
+    newShoppingCart.splice(index, 1)
     this.setState({
       shoppingCart: newShoppingCart
     })
+
+
+
+    // let newShoppingCart = this.state.shoppingCart
+    // console.log('this is newShoppingCart before: ', newShoppingCart)
+    // console.log('this is foodObj: ', foodObj)
+    // newShoppingCart.filter(item => {
+    //   console.log(item)
+    //   return item.id === foodObj.id
+    // })
+    // console.log('this is newShoppingCart after: ', newShoppingCart)
+    // this.setState({
+    //   shoppingCart: newShoppingCart
+    // })
   }
 
   componentDidMount() {
@@ -127,7 +125,6 @@ class App extends React.Component {
         }
       }).then(res => res.json())
         .then(user => {
-          console.log(user)
           this.setState({
             currentUser: user
           })
