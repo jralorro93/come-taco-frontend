@@ -28,7 +28,6 @@ const styles = theme => ({
  class ItemCard extends React.PureComponent {
 
    state = {
-     orders: {},
      currentFoodID: ''
    }
 
@@ -36,7 +35,6 @@ const styles = theme => ({
     let userOrders = this.props.user.user.orders.find(order => order.item_id === this.props.food.id)
 
      this.setState({
-       orders: this.props.orders,
        currentFoodID: userOrders.id
      })
    }
@@ -44,7 +42,8 @@ const styles = theme => ({
   render() {
     const foodPrice = "$" + this.props.food.price
     const { classes } = this.props
-    console.log('this is food: ', this.state.currentFoodID)
+
+    console.log('this is order ID: ', this.state.currentFoodID)
     return(
       <Card className={classes.card}>
         <CardHeader title={this.props.food.name} />
