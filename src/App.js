@@ -94,6 +94,7 @@ class App extends React.Component {
         food_id: foodObj.id
       })
     })
+    console.log('this is id: ', id)
     let newShoppingCart = [...this.state.shoppingCart]
     let index = newShoppingCart.indexOf(foodObj)
     newShoppingCart.splice(index, 1)
@@ -159,6 +160,15 @@ class App extends React.Component {
     })
   }
 
+  handleTotal = () => {
+    let total = 0
+    for (let i = 0; i < this.state.shoppingCart.length; i++) {
+      total += this.state.shoppingCart[i].price
+    }
+    return '$' + total
+  }
+
+
   handleCheckout = () => {
    this.props.history.push('/checkout')
   }
@@ -205,7 +215,7 @@ class App extends React.Component {
           <Route path='/shoppingcart' render={
             () => {
               return (
-                <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete}/>
+                <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal}/>
               )
             }
           } />

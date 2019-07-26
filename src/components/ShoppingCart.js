@@ -1,11 +1,14 @@
 import React from 'react';
 
 import ReceiptContainer from '../containers/ReceiptContainer'
+import CartTotal from './CartTotal'
 
 const ShoppingCart = (props) => {
+  
     return (
-      <div className='ShoppingCardPage'>
-        <ReceiptContainer shoppingCart={props.shoppingCart} user={props.currentUser}  handleDelete={props.handleDelete} handleCheckout={props.handleCheckout}/>
+      <div className='ShoppingCartPage'>
+        <ReceiptContainer shoppingCart={props.shoppingCart} user={props.currentUser} handleDelete={props.handleDelete}/>
+        <CartTotal  shoppingCart={props.shoppingCart}  handleCheckout={props.handleCheckout} handleTotal={props.handleTotal}/>
       </div>
     )
 }

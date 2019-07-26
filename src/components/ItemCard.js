@@ -42,8 +42,6 @@ const styles = theme => ({
   render() {
     const foodPrice = "$" + this.props.food.price
     const { classes } = this.props
-
-    console.log('this is order ID: ', this.state.currentFoodID)
     return(
       <Card className={classes.card}>
         <CardHeader title={this.props.food.name} />
