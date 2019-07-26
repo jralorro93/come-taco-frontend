@@ -81,13 +81,17 @@ p.price {
 }
 
 div.userCart {
-  margin: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
   padding: 10px;
-  background-color: #cccccc;
+  background-color: #f0f0f5;
   text-align: center;
   display: inline-block;
-  border: 10px solid black;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  border-bottom: 10px solid black;
   flex-wrap: wrap;
+  left: 300px;
 }
 
 div#FoodContainer {
