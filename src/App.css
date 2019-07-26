@@ -80,23 +80,30 @@ p.price {
   font-weight: bold;
 }
 
-div.userCart {
+div.userCart{
   margin-left: 100px;
   margin-right: 100px;
   padding: 10px;
-  background-color: #f0f0f5;
+  background-color: #BFB394;
   text-align: center;
   display: inline-block;
-  border-left: 10px solid black;
-  border-right: 10px solid black;
-  border-bottom: 10px solid black;
+  border-left: 5px solid black;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
   flex-wrap: wrap;
   left: 300px;
 }
 
 div#FoodContainer {
+  margin-left: 150px;
+  margin-right: 150px;
   text-align: center;
   display: inline-block;
+  border-left: 5px solid black;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+  flex-wrap: wrap;
+  background-color: #BFB394;
 }
 
 @keyframes App-logo-spin {
