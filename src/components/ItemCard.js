@@ -32,11 +32,11 @@ const styles = theme => ({
    }
 
    componentDidMount() {
-    let userOrders = this.props.user.user.orders.find(order => order.item_id === this.props.food.id)
-
-     this.setState({
-       currentFoodID: userOrders.id
-     })
+      let userOrder = this.props.user.user.orders.find(order => order.item_id === this.props.food.id)
+      console.log('this is userOrder', userOrder)
+      this.setState({
+        currentFoodID: userOrder.id
+      })
    }
 
   render() {
