@@ -88,19 +88,18 @@ class App extends React.Component {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         'Authorization': `BEARER ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify({
-        user_id: this.state.currentUser.id,
-        food_id: foodObj.id
-      })
-    })
-    console.log('this is id: ', id)
-    let newShoppingCart = [...this.state.shoppingCart]
-    let index = newShoppingCart.indexOf(foodObj)
-    newShoppingCart.splice(index, 1)
-    this.setState({
-      shoppingCart: newShoppingCart
+      }
+    }).then((response) => {
+          console.log('this is id: ', id)
+          
+          let newShoppingCart = [...this.state.shoppingCart]
+          let index = newShoppingCart.indexOf(foodObj)
+          newShoppingCart.splice(index, 1)
+          this.setState({
+            shoppingCart: newShoppingCart
+          })
     })
   }
 
