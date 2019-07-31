@@ -82,6 +82,7 @@ class App extends React.Component {
       currentUser: null
     })
   }
+
   handleDelete = (id, foodObj) => {
     fetch(`http://localhost:3000/api/v1/orders/${id}`, {
       method: "DELETE",
@@ -101,20 +102,6 @@ class App extends React.Component {
     this.setState({
       shoppingCart: newShoppingCart
     })
-
-
-
-    // let newShoppingCart = this.state.shoppingCart
-    // console.log('this is newShoppingCart before: ', newShoppingCart)
-    // console.log('this is foodObj: ', foodObj)
-    // newShoppingCart.filter(item => {
-    //   console.log(item)
-    //   return item.id === foodObj.id
-    // })
-    // console.log('this is newShoppingCart after: ', newShoppingCart)
-    // this.setState({
-    //   shoppingCart: newShoppingCart
-    // })
   }
 
   componentDidMount() {
@@ -165,7 +152,17 @@ class App extends React.Component {
     for (let i = 0; i < this.state.shoppingCart.length; i++) {
       total += this.state.shoppingCart[i].price
     }
-    return '$' + total
+    return total
+  }
+
+  handleTaxes = () => {
+    let total = 0 
+    for (let i = 0; i < this.state.shoppingCart.length; i++) {
+      total += this.state.shoppingCart[i].price
+    }
+
+    let newTotal = total * .0875
+    return newTotal
   }
 
 
@@ -215,7 +212,7 @@ class App extends React.Component {
           <Route path='/shoppingcart' render={
             () => {
               return (
-                <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal}/>
+                <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal} handleTaxes={this.handleTaxes}/>
               )
             }
           } />

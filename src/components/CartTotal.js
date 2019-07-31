@@ -3,13 +3,15 @@ import {unstable_Box as Box} from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 class CartTotal extends Component {
+
   render() {
-    console.log('this is props from CT: ', this.props)
+    let grandTotal = this.props.handleTaxes() + this.props.handleTotal()
     return (
       <div className='totalBox'>
       <Box>
-        <h2> Grand Total: </h2>
-        {this.props.handleTotal()}
+        <p>Taxes: $ {this.props.handleTaxes().toFixed(2)}</p>
+        <p>Sub Total: $ {this.props.handleTotal()}</p>
+        <h2> Grand Total: $ {grandTotal.toFixed(2)}</h2>
         <br/>
         <br/>
         <Button color='primary' variant="contained" onClick={this.props.handleCheckout}>PROCEED TO CHECKOUT</Button>
