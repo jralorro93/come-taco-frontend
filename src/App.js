@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
+import {StripeProvider} from 'react-stripe-elements';
 
 import CategoryList from "./containers/CategoryList";
 import NavBar from "./components/NavBar";
@@ -172,53 +173,55 @@ class App extends React.Component {
 
   render() {
     return (
-      <Switch>
-        <div className="App">
-          <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
-          {/* Route to Menu page */}
-          <Route exact path='/' render={
-            () => {
-              return(
-                <div className="menu">
-                  <CategoryList handleCategoryClick={this.handleCategoryClick}/>
-                  <FoodContainer handleAddToCart={this.handleAddToCart} categoryChoice={this.state.categoryChoice}/>
-                </div>
-              )
-            }
-          }
-          />
-          {/* Route to About page */}
-          <Route path='/about' render={About}/>
-          {/* Route to Contact page */}
-          <Route path='/contact' render={Contact}/>
-          {/* Route to Login page */}
-          <Route path='/login' render={
-            () => {
-              return (
-                <Login handleLogin={this.handleLogin}/>
-              )
-            }
+        <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
+          <Switch>
+            <div className="App">
+              <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
+              {/* Route to Menu page */}
+              <Route exact path='/' render={
+                () => {
+                  return(
+                    <div className="menu">
+                      <CategoryList handleCategoryClick={this.handleCategoryClick}/>
+                      <FoodContainer handleAddToCart={this.handleAddToCart} categoryChoice={this.state.categoryChoice}/>
+                    </div>
+                  )
+                }
+              }
+              />
+              {/* Route to About page */}
+              <Route path='/about' render={About}/>
+              {/* Route to Contact page */}
+              <Route path='/contact' render={Contact}/>
+              {/* Route to Login page */}
+              <Route path='/login' render={
+                () => {
+                  return (
+                    <Login handleLogin={this.handleLogin}/>
+                  )
+                }
+                  } />
+              {/* Route to Signup page */}
+              <Route path='/signup' render={
+                () => {
+                  return(
+                    <SignupForm handleSignup={this.handleSignup}/>
+                  )
+                }
               } />
-          {/* Route to Signup page */}
-          <Route path='/signup' render={
-            () => {
-              return(
-                <SignupForm handleSignup={this.handleSignup}/>
-              )
-            }
-          } />
-          {/* Route to ShoppingCart page */}
-          <Route path='/shoppingcart' render={
-            () => {
-              return (
-                <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal} handleTaxes={this.handleTaxes}/>
-              )
-            }
-          } />
-        {/* Route to Checkout page*/}
-          <Route path='/checkout' component={Checkout}/>
-        </div>
-      </Switch>
+              {/* Route to ShoppingCart page */}
+              <Route path='/shoppingcart' render={
+                () => {
+                  return (
+                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal} handleTaxes={this.handleTaxes}/>
+                  )
+                }
+              } />
+            {/* Route to Checkout page*/}
+              <Route path='/checkout' component={Checkout}/>
+            </div>
+          </Switch>
+        </StripeProvider>
     );
   }
 }

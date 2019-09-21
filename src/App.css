@@ -128,4 +128,8 @@ div.totalBox {
   left: 500px;
 }
 
+form#ccForm {
+  background-color: #cccccc;
+}
+
 
