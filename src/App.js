@@ -173,7 +173,7 @@ class App extends React.Component {
 
   render() {
     return (
-        <StripeProvider>
+        <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div className="App">
               <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
