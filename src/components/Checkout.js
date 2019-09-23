@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CreditInfo from './CreditInfo'
+import CreditCheckoutContainer from '../containers/CreditCheckoutContainer'
 import CashOrCC from './CashOrCC'
-import CashCheckout from './CashCheckout'
+import CashCheckoutContainer from '../containers/CashCheckoutContainer'
 
 class Checkout extends Component {
 
@@ -29,10 +29,10 @@ class Checkout extends Component {
         currentView = <CashOrCC paymentOption={this.state.paymentOption} handleChoice={this.handleChoice} handleActivePage={this.handleActivePage}/>
         break;
       case('Cash'):
-        currentView = <CashCheckout/>
+        currentView = <CashCheckoutContainer/>
         break;
       case('CC'):
-        currentView = <CreditInfo/>
+        currentView = <CreditCheckoutContainer/>
         break;
     }
 
