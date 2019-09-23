@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CashCheckout = () => {
+const CashCheckoutContainer = () => {
     return (
         <div>Hi from CashCheckout</div>
     )
 }
-export default CashCheckout
+export default CashCheckoutContainer

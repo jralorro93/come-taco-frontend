@@ -19,7 +19,8 @@ class App extends React.Component {
   state = {
     categoryChoice: "",
     currentUser: null,
-    shoppingCart: []
+    shoppingCart: [],
+    grandTotal: null
   }
 
   // handles click to change categoryChoice by sending this function
@@ -165,6 +166,14 @@ class App extends React.Component {
     return newTotal
   }
 
+  handleGrandTotal = () => {
+    let grandTotal = this.handleTaxes() + this.handleTotal()
+    this.setState({
+      grandTotal: grandTotal.toFixed(2)
+    })
+    return grandTotal.toFixed(2)
+  }
+
 
   handleCheckout = () => {
    this.props.history.push('/checkout')
@@ -213,7 +222,7 @@ class App extends React.Component {
               <Route path='/shoppingcart' render={
                 () => {
                   return (
-                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal} handleTaxes={this.handleTaxes}/>
+                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal} handleTaxes={this.handleTaxes} handleGrandTotal={this.handleGrandTotal} grandTotal={this.state.grandTotal}/>
                   )
                 }
               } />
