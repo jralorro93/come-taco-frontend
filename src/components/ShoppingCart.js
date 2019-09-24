@@ -11,7 +11,7 @@ const ShoppingCart = (props) => {
     return (
       <div className='ShoppingCartPage'>
         <ReceiptContainer shoppingCart={props.shoppingCart} user={props.currentUser} handleDelete={props.handleDelete}/>
-        <CartTotal  shoppingCart={props.shoppingCart}  handleCheckout={props.handleCheckout} handleTotal={props.handleTotal} handleTaxes={props.handleTaxes} handleGrandTotal={props.handleGrandTotal} grandTotal={props.grandTotal}/>
+        <CartTotal  shoppingCart={props.shoppingCart} handleTaxes={props.handleTaxes} handleGrandTotal={props.handleGrandTotal} grandTotal={props.grandTotal} history={props.history}/>
       </div>
     )
 }
