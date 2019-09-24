@@ -12,6 +12,7 @@ import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
+import handleGrandTotal from './utils/Checkout/handleGrandTotal'
 
 
 class App extends React.Component {
@@ -132,22 +133,25 @@ class App extends React.Component {
           })
         })
       }
+    this.setState({
+      grandTotal: handleGrandTotal(this.state.shoppingCart)
+    })
   }
   
 
-  handleAddToCart = (event, foodObj) => {
-    fetch("http://localhost:3000/api/v1/orders", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: this.state.currentUser.user.id,
-        item_id: foodObj.id
-      })
-    })
-  }
+  // handleAddToCart = (event, foodObj) => {
+  //   fetch("http://localhost:3000/api/v1/orders", {
+  //     method: "POST",
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       user_id: this.state.currentUser.user.id,
+  //       item_id: foodObj.id
+  //     })
+  //   })
+  // }
 
   render() {
     return (
@@ -162,7 +166,7 @@ class App extends React.Component {
                   return(
                     <div className="menu">
                       <CategoryList handleCategoryClick={this.handleCategoryClick}/>
-                      <FoodContainer handleAddToCart={this.handleAddToCart} categoryChoice={this.state.categoryChoice}/>
+                      <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
                     </div>
                   )
                 }
@@ -192,7 +196,7 @@ class App extends React.Component {
               <Route path='/shoppingcart' render={
                 () => {
                   return (
-                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={this.props.history}/>
+                    <ShoppingCart grandTotal={this.state.grandTotal} currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={this.props.history}/>
                   )
                 }
               } />
