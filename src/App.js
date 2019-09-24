@@ -132,7 +132,7 @@ class App extends React.Component {
           })
         })
       }
-    }
+  }
   
 
   handleAddToCart = (event, foodObj) => {
@@ -148,38 +148,6 @@ class App extends React.Component {
       })
     })
   }
-
-  handleTotal = () => {
-    let total = 0
-    for (let i = 0; i < this.state.shoppingCart.length; i++) {
-      total += this.state.shoppingCart[i].price
-    }
-    return total
-  }
-
-  handleTaxes = () => {
-    let total = 0 
-    for (let i = 0; i < this.state.shoppingCart.length; i++) {
-      total += this.state.shoppingCart[i].price
-    }
-
-    let newTotal = total * .0875
-    return newTotal
-  }
-
-  handleGrandTotal = () => {
-    let grandTotal = this.handleTaxes() + this.handleTotal()
-    this.setState({
-      grandTotal: grandTotal.toFixed(2)
-    })
-    return grandTotal.toFixed(2)
-  }
-
-
-  handleCheckout = () => {
-   this.props.history.push('/checkout')
-  }
-
 
   render() {
     return (
@@ -224,7 +192,7 @@ class App extends React.Component {
               <Route path='/shoppingcart' render={
                 () => {
                   return (
-                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleCheckout={this.handleCheckout} handleDelete={this.handleDelete} handleTotal={this.handleTotal} handleTaxes={this.handleTaxes} handleGrandTotal={this.handleGrandTotal} grandTotal={this.state.grandTotal}/>
+                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={this.props.history}/>
                   )
                 }
               } />
