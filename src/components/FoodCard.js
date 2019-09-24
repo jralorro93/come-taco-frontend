@@ -10,6 +10,8 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 
+import handleAddToCart from '../utils/Cart/handleAddToCart'
+
 const styles = theme => ({
   card: {
     maxWidth: 200,
@@ -31,6 +33,7 @@ class FoodCard extends React.Component {
   render() {
     const foodPrice = "$" + this.props.food.price
     const { classes } = this.props;
+    console.log('this is props from foodCard', this.props)
     return (
       <Card className={classes.card}>
         <CardHeader title={this.props.food.name} />
@@ -46,7 +49,7 @@ class FoodCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" onClick={(event) => this.props.handleAddToCart(event, this.props.food)}>
+          <IconButton aria-label="Add to favorites" onClick={() => handleAddToCart(this.props.currentUser.user.id, this.props.food.id)}>
             <i class="material-icons">add_shopping_cart</i>
           </IconButton>
         </CardActions>

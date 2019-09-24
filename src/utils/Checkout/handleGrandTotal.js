@@ -8,10 +8,3 @@ const handleGrandTotal = (cart) => {
 }
 
 export default handleGrandTotal
-
-
-// let grandTotal = this.handleTaxes() + this.handleTotal()
-// this.setState({
-//   grandTotal: grandTotal.toFixed(2)
-// })
-// return grandTotal.toFixed(2)
