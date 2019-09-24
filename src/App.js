@@ -20,7 +20,7 @@ class App extends React.Component {
     categoryChoice: "",
     currentUser: null,
     shoppingCart: [],
-    grandTotal: null
+    grandTotal: 0
   }
 
   // handles click to change categoryChoice by sending this function
@@ -132,7 +132,8 @@ class App extends React.Component {
           })
         })
       }
-  }
+    }
+  
 
   handleAddToCart = (event, foodObj) => {
     fetch("http://localhost:3000/api/v1/orders", {
@@ -186,6 +187,7 @@ class App extends React.Component {
           <Switch>
             <div className="App">
               <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
+              <useTotal /> 
               {/* Route to Menu page */}
               <Route exact path='/' render={
                 () => {
@@ -234,5 +236,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default withRouter(App);

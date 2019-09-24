@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import ReceiptContainer from '../containers/ReceiptContainer'
 import CartTotal from './CartTotal'
 
+
+// We are trying to refactor hooks into our code to grab our
+// total from the shopping cart.
+
 const ShoppingCart = (props) => {
-  
     return (
       <div className='ShoppingCartPage'>
         <ReceiptContainer shoppingCart={props.shoppingCart} user={props.currentUser} handleDelete={props.handleDelete}/>
