@@ -10,19 +10,25 @@ import handleTaxes from '../utils/Checkout/handleTaxes'
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 
 const CartTotal = (props) => {
-  console.log('this is grandTotal props from CartTotal:', props)
-  return (
-    <div className='totalBox'>
-    <Box>
-      <p>Sub Total: $ {handleTotal(props.shoppingCart)}</p>
-      <p>Taxes: $ {handleTaxes(props.shoppingCart)}</p>
-      <h2> Grand Total: $ {handleGrandTotal(props.shoppingCart)}</h2>
-      <br/>
-      <br/>
-      <Button color='primary' variant="contained" onClick={() => handleCheckout(props.history)}>PROCEED TO CHECKOUT</Button>
-    </Box>
-  </div>
-  )
+    return (
+      <div className='totalBox'>
+      <Box>
+        <p>Sub Total: $ {handleTotal(props.shoppingCart)}</p>
+        <p>Taxes: $ {handleTaxes(props.shoppingCart)}</p>
+        <h2> Grand Total: $ {handleGrandTotal(props.shoppingCart)}</h2>
+        <br/>
+        <br/>
+        <Button 
+          color='primary' 
+          variant="contained" 
+          onClick={() => {
+            handleCheckout(props.history)
+          }}>
+          PROCEED TO CHECKOUT
+        </Button>
+      </Box>
+    </div>
+    )
 }
 
 export default CartTotal
