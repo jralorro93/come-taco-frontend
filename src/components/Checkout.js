@@ -32,7 +32,7 @@ class Checkout extends Component {
         currentView = <CashCheckoutContainer/>
         break;
       case('CC'):
-        currentView = <CreditCheckoutContainer/>
+        currentView = <CreditCheckoutContainer shoppingCart={this.props.shoppingCart} currentUser={this.props.currentUser}/>
         break;
     }
 

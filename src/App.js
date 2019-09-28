@@ -182,7 +182,13 @@ class App extends React.Component {
                 }
               } />
             {/* Route to Checkout page*/}
-              <Route path='/checkout' component={Checkout}/>
+              <Route path='/checkout' render={
+                () => {
+                  return (
+                    <Checkout shoppingCart={this.state.shoppingCart} currentUser={this.state.currentUser}/>
+                  )
+                }
+              }/>
             </div>
           </Switch>
         </StripeProvider>

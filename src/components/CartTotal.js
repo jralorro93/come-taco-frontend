@@ -10,6 +10,9 @@ import handleTaxes from '../utils/Checkout/handleTaxes'
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 
 const CartTotal = (props) => {
+    const [grandTotal, setGrandTotal] = useState(0)
+    
+
     return (
       <div className='totalBox'>
       <Box>
