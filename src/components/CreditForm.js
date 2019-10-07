@@ -33,19 +33,21 @@ class CreditForm extends Component {
                 user_id: userId,
                 price: price,
                 items: cart
-            }).then(res => res.json())
-        })
+            })
+        }).then(res => res.json())
     }
 
 
     //Left off at putting in parameters for handleSubmit
     //Check props, might not need to pass as many props as before
     //Use currentUser props instead
+
+    //Also might not need to have an items colmun in the charges
     render() {
-        console.log('this is props from CreditForm', this.props)
+        console.log('this is props from CreditForm', this.props.shoppingCart)
         let grandTotal = handleGrandTotal(this.props.shoppingCart)
         return (
-            <form id='ccForm' onSubmit={(e) => this.handleSubmit(e, grandTotal, this.props.currentUser.id, this.props.shoppingCart)}>
+            <form id='ccForm' onSubmit={(e) => this.handleSubmit(e, grandTotal, this.props.currentUser.user.id, this.props.shoppingCart)}>
                 <PersonalInfo firstName={this.state.firstName} lastName={this.state.lastName} email={this.state.email} handleChange={this.handleChange}/>
                 <CreditInfo cardNum={this.state.cardNum} cv={this.state.cv} expDate={this.state.expDate} handleChange={this.handleChange}/>
                 <button>Submit</button>

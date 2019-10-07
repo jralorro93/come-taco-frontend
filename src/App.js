@@ -71,12 +71,12 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(user => {
-        localStorage.setItem('token', user.jwt)
+      
+   localStorage.setItem('token', user.jwt)
         this.setState({
           currentUser: user.user
         }, () => this.props.history.push('/'))
-      })
-  }
+      }) }
 
   handleLogout = () => {
     localStorage.removeItem('token')
@@ -185,7 +185,7 @@ class App extends React.Component {
               <Route path='/checkout' render={
                 () => {
                   return (
-                    <Checkout shoppingCart={this.state.shoppingCart} currentUser={this.state.currentUser}/>
+                    <Checkout currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart}/>
                   )
                 }
               }/>
