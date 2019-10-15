@@ -1,7 +1,7 @@
 import React from 'react'
 
-const handleCharge = (price, userId, cart) => {
-    return fetch('http://localhost:3000/api/v1/charges', {
+const handlePayment = (price, userId, cart) => {
+    return fetch('http://localhost:3000/api/v1/payments', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -16,4 +16,4 @@ const handleCharge = (price, userId, cart) => {
     }).then(res => res.json())
 }
 
-export default handleCharge
+export default handlePayment
