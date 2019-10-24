@@ -1,36 +1,22 @@
 import React, {Component} from 'react';
-import {CardElement, CardExpiryElement, CardNumberElement, CardCvcElement, injectStripe} from 'react-stripe-elements';
+import {CardExpiryElement, CardNumberElement, CardCvcElement, injectStripe} from 'react-stripe-elements';
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 import handlePayment from '../utils/Checkout/handlePayment'
+import { create } from 'jss';
 
 
-var style = {
+let style = {
     base: {
-      color: '#32325d',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-      fontSmoothing: 'antialiased',
+      color: 'black',
+      fontFamily: 'Helvetica, Arial, sans-serif',
       fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4'
-      },
-      ':-webkit-autofill': {
-        color: '#32325d',
-      },
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a',
-      ':-webkit-autofill': {
-        color: '#fa755a',
-      },
+      padding: '10px',
+      textShadow: '2px'
     }
   };
 
 class CreditForm extends Component {
-    state = {
-        firstName: '',
-        lastName: ''
-    }
+
 
     handleChange = (e) => {
         this.setState({
@@ -71,16 +57,47 @@ class CreditForm extends Component {
         console.log('this is props from CreditForm', this.props)
         let grandTotal = handleGrandTotal(this.props.shoppingCart)
         return (
-            <form id='ccForm' onSubmit={(e) => this.submit(e, grandTotal, this.props.currentUser.user.id , this.props.shoppingCart)}>
-                <CardNumberElement onReady={(el) => el.focus()} style={{base: {fontSize: '18px'}}}/>
-                <CardCvcElement style={{base: {fontSize: '18px'}}}/>
-                <CardExpiryElement style={{base: {fontSize: '18px'}}}/>
-                <button>Submit</button>
-            </form>
+            <div id='creditFormBox'>
+                <h3>Enter Credit Info Below:</h3>
+                <form id='ccForm' onSubmit={(e) => this.submit(e, grandTotal, this.props.currentUser.user.id , this.props.shoppingCart)}>
+                    <label>
+                        Card Number
+                        <CardNumberElement 
+                            onReady={(el) => el.focus()} 
+                            style={style}
+                        />
+                    </label>
+                    <label>
+                        CVC Number
+                        <CardCvcElement 
+                            style={{padding: "30px"}}
+                            
+                        />
+                    </label>
+                    <label>
+                        Expiration Date
+                        <CardExpiryElement 
+                            style={style}
+                            
+                        /> 
+                    </label>
+                    <label>
+                       Postal Code
+                       <br/>
+                        <input  
+                            type='text' 
+                            placeholder='11357'
+                            className='StripeElement'
+                            required
+                        />
+                    </label>
+                    <br/>
+                    <button>Pay</button>
+                </form>
+            </div>
 
         )
     }
 }
 export default injectStripe(CreditForm)
 
-// (e) => this.handleSubmit(e, grandTotal, this.props.currentUser.user.id, this.props.shoppingCart)
