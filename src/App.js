@@ -5,6 +5,7 @@ import {StripeProvider} from 'react-stripe-elements';
 import CategoryList from "./containers/CategoryList";
 import NavBar from "./components/NavBar";
 import "./App.css";
+import HomePage from './containers/HomePage'
 import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
 import Contact from './components/Contact'
@@ -146,8 +147,9 @@ class App extends React.Component {
                 () => {
                   return(
                     <div className="menu">
-                      <CategoryList handleCategoryClick={this.handleCategoryClick}/>
-                      <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
+                      {/* <CategoryList handleCategoryClick={this.handleCategoryClick}/>
+                      <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/> */}
+                      <HomePage />
                     </div>
                   )
                 }
