@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {unstable_Box as Box} from '@material-ui/core/Box';
+import {Box} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import CashOrCC from './CashOrCC'
