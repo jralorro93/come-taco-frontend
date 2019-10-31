@@ -2,8 +2,9 @@ import React from 'react';
 import  { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core';
+import HomePic from '../Images/homePage.jpg'
 
-const drawerWidth = 400;
+const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,13 +25,19 @@ const useStyles = makeStyles(theme => ({
     content: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
-      padding: theme.spacing(3),
+      padding: theme.spacing(3)
     },
+    navOptions: {
+        padding: 15,
+        fontFamily: "Arial"
+    }
 }))
 
 
 const HomePageDrawerStyle = () => {
+    const centeredText = { textAlign: 'center'}
     const classes = useStyles()
+    console.log('this is classes', classes.toolbar.backgroundColor)
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -42,21 +49,28 @@ const HomePageDrawerStyle = () => {
                 }}
                 anchor='left'
             >
-                <h2>Logo Here</h2>
-                <h1>Come Taco!</h1>
+                <h2 style={centeredText}>Logo Here</h2>
+                <h1 style={centeredText}>Come Taco!</h1>
                 <Divider />
+                <div className={classes.toolbar} />
                 <List>
                     <ListItem>
-                        <ListItemText primary="Order Online"/>
+                        <ListItemText className={classes.navOptions} primary="Order Online" style={centeredText}/>
                     </ListItem>
                     <ListItem>
-                        <ListItemText primary="Location"/>
+                        <ListItemText className={classes.navOptions} primary="Location" style={centeredText}/>
                     </ListItem>
                     <ListItem>
-                         <ListItemText primary="Contact Us"/>
+                        <ListItemText className={classes.navOptions} primary="Contact Us" style={centeredText}/>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemText className={classes.navOptions} primary="Our Story" style={centeredText}/>
                     </ListItem>
                 </List>
             </Drawer>
+            <main>
+                <img src={HomePic}/>
+            </main>
         </div>
     )
 }
