@@ -2,13 +2,14 @@ import React from 'react';
 import  { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core';
-import HomePic from '../Images/homePage.jpg'
+import HomePic from '../Images/homePage3.jpg'
 
 const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
+      backgroundColor: theme.palette.background.default
     },
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -39,7 +40,7 @@ const HomePageDrawerStyle = () => {
     const classes = useStyles()
     console.log('this is classes', classes.toolbar.backgroundColor)
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{backgroundColor: "#A76C3F"}}>
             <CssBaseline />
             <Drawer 
                 className={classes.drawer}
@@ -54,16 +55,16 @@ const HomePageDrawerStyle = () => {
                 <Divider />
                 <div className={classes.toolbar} />
                 <List>
-                    <ListItem>
+                    <ListItem button>
                         <ListItemText className={classes.navOptions} primary="Order Online" style={centeredText}/>
                     </ListItem>
-                    <ListItem>
+                    <ListItem button>
                         <ListItemText className={classes.navOptions} primary="Location" style={centeredText}/>
                     </ListItem>
-                    <ListItem>
+                    <ListItem button>
                         <ListItemText className={classes.navOptions} primary="Contact Us" style={centeredText}/>
                     </ListItem>
-                    <ListItem>
+                    <ListItem button>
                         <ListItemText className={classes.navOptions} primary="Our Story" style={centeredText}/>
                     </ListItem>
                 </List>
