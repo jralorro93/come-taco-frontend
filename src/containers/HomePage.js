@@ -1,10 +1,12 @@
 import React from 'react';
-import HomePageDrawerStyle from '../styles/HomePageDrawerStyle'
+import { CssBaseline } from '@material-ui/core';
+import SideDrawer from '../components/SideDrawer';
 
-const HomePage = props => {
+const HomePage = () => {
     return (
         <div>
-            <HomePageDrawerStyle />
+            <CssBaseline />
+            <SideDrawer />
         </div>
     )
 }
