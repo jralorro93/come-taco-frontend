@@ -1,6 +1,5 @@
 import React from 'react';
 import { Drawer, Divider, List, ListItem, ListItemText, CssBaseline } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import HomePic from '../Images/homePage3.jpg'
 import withSideDrawerStyles from '../styles/SideDrawer.style'
 
