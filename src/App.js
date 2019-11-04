@@ -141,8 +141,7 @@ class App extends React.Component {
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div className="App">
-              <SideDrawer />
-              <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
+              <SideDrawer handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
               {/* Route to Menu page */}
               <Route exact path='/' render={HomePage}/>
               <Route exact path='/menu' render={

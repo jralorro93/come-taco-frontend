@@ -5,11 +5,13 @@ import HomePic from '../Images/homePage3.jpg'
 import withSideDrawerStyles from '../styles/SideDrawer.style'
 import { useTheme } from '@material-ui/core/styles'
 
-const SideDrawer = ({classes}) => {
+const SideDrawer = (props) => {
+    const {classes} = props
     const theme = useTheme()
     const centeredText = { textAlign: 'center'}
+
     return (
-        <div className={classes.root} style={{backgroundColor: "#A76C3F"}}>
+       <div className={classes.root}>
             <CssBaseline />
             <Drawer 
                 className={classes.drawer}
@@ -36,9 +38,31 @@ const SideDrawer = ({classes}) => {
                     <ListItem button component={Link} to='/about'>
                         <ListItemText className={classes.navOptions} primary="Our Story" style={centeredText}/>
                     </ListItem>
+                    
+                    { props.currentUser ? (
+                        <ListItem button component={Link} to='/login'>
+                            <ListItemText className={classes.navOptions} primary="Log Out" style={centeredText} onClick={props.handleLogout}/>
+                        </ListItem>
+                    ) : (
+                        <ListItem button component={Link} to='/login'>
+                            <ListItemText className={classes.navOptions} primary="Login" style={centeredText}/>
+                        </ListItem>
+                    )}
+                    
+                    { props.currentUser ? (
+                        <ListItem button component={Link} to='/shoppingcart'>
+                            <ListItemText className={classes.navOptions} primary="Shopping Cart" style={centeredText}/>
+                        </ListItem>
+                    ) : (
+                        <ListItem button component={Link} to='/signup'>
+                            <ListItemText className={classes.navOptions} primary="Sign Up" style={centeredText}/>
+                        </ListItem>
+                    )}
+                    
                 </List>
             </Drawer>
         </div>
+
     )
 }
 

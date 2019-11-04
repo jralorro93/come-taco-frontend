@@ -1,4 +1,4 @@
-import  { withStyles } from '@material-ui/core/styles'
+import  { withStyles } from '@material-ui/styles'
 import { useTheme } from '@material-ui/core/styles'
 
 const color = 'rgba(255, 255, 255, 0.7)'
@@ -6,13 +6,11 @@ const drawerWidth = 300
 
 export default withStyles(theme => ({
     root: {
-        display: 'flex',
-        backgroundColor: theme.palette.primary.dark
+        display: 'flex'
       },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        backgroundColor: theme.palette.primary.dark
+        marginLeft: drawerWidth
       },
     drawer: {
         width: drawerWidth,
