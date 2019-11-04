@@ -1,12 +1,10 @@
 import React from 'react';
-import { CssBaseline } from '@material-ui/core';
-import SideDrawer from '../components/SideDrawer';
+import HomePic from '../Images/homePage3.jpg'
 
 const HomePage = () => {
     return (
         <div>
-            <CssBaseline />
-            <SideDrawer />
+    
         </div>
     )
 }

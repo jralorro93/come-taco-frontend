@@ -1,9 +1,12 @@
 import React from 'react';
 import { Drawer, Divider, List, ListItem, ListItemText, CssBaseline } from '@material-ui/core';
+import { Link } from "react-router-dom";
 import HomePic from '../Images/homePage3.jpg'
 import withSideDrawerStyles from '../styles/SideDrawer.style'
+import { useTheme } from '@material-ui/core/styles'
 
 const SideDrawer = ({classes}) => {
+    const theme = useTheme()
     const centeredText = { textAlign: 'center'}
     return (
         <div className={classes.root} style={{backgroundColor: "#A76C3F"}}>
@@ -21,23 +24,20 @@ const SideDrawer = ({classes}) => {
                 <Divider />
                 <div className={classes.toolbar} />
                 <List>
-                    <ListItem button>
+                    <ListItem button component={Link} to='/'>
+                        <ListItemText className={classes.navOptions} primary="Home" style={centeredText}/>
+                    </ListItem>
+                    <ListItem button component={Link} to='/menu'>
                         <ListItemText className={classes.navOptions} primary="Order Online" style={centeredText}/>
                     </ListItem>
-                    <ListItem button>
-                        <ListItemText className={classes.navOptions} primary="Location" style={centeredText}/>
-                    </ListItem>
-                    <ListItem button>
+                    <ListItem button component={Link} to='/contact'>
                         <ListItemText className={classes.navOptions} primary="Contact Us" style={centeredText}/>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button component={Link} to='/about'>
                         <ListItemText className={classes.navOptions} primary="Our Story" style={centeredText}/>
                     </ListItem>
                 </List>
             </Drawer>
-            <main>
-                <img src={HomePic}/>
-            </main>
         </div>
     )
 }
