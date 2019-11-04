@@ -8,6 +8,7 @@ const theme = createMuiTheme({
             dark: '#006db3',
             contrastText: '#fff',
         },
+        //Still need to understand below
         overrides: {
             MuiDrawer: {
               paper: {

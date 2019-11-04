@@ -14,6 +14,7 @@ import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
 import handleGrandTotal from './utils/Checkout/handleGrandTotal'
+import SideDrawer from "./components/SideDrawer";
 
 
 class App extends React.Component {
@@ -140,16 +141,16 @@ class App extends React.Component {
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div className="App">
+              <SideDrawer />
               <NavBar handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
-              <useTotal /> 
               {/* Route to Menu page */}
-              <Route exact path='/' render={
+              <Route exact path='/' render={HomePage}/>
+              <Route exact path='/menu' render={
                 () => {
-                  return(
-                    <div className="menu">
-                      {/* <CategoryList handleCategoryClick={this.handleCategoryClick}/>
-                      <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/> */}
-                      <HomePage />
+                  return (
+                    <div>
+                      <CategoryList handleCategoryClick={this.handleCategoryClick}/>
+                      <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
                     </div>
                   )
                 }
