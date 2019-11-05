@@ -6,8 +6,8 @@ import withSideDrawerStyles from '../styles/SideDrawer.style'
 
 //Importing from MUI
 import { useTheme } from '@material-ui/core/styles'
-import { Drawer, Divider, List, ListItem, ListItemText, CssBaseline } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline } from '@material-ui/core';
+import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, PermIdentity } from '@material-ui/icons';
 
 const SideDrawer = (props) => {
     const {classes} = props
@@ -29,38 +29,61 @@ const SideDrawer = (props) => {
                 <h2 style={centeredText}>Logo Here</h2>
                 <h1 className={classes.companyTitle} style={centeredText}>¡Come Tacos!</h1>
                 <Divider className={classes.divider}/>
-                <div className={classes.toolbar} />
                 <List>
-                    <ListItem button divider component={Link} to='/'>
-                        <ListItemText className={classes.navOptions} primary="Home" style={centeredText}/>
+                    <ListItem button divider component={Link} to='/' className={classes.ListItem}>
+                        <ListItemIcon className={classes.drawerIcon}>
+                            <Home />
+                        </ListItemIcon>
+                        <ListItemText className={classes.navOptions} primary="Home"/>
                     </ListItem>
                     <ListItem button divider component={Link} to='/menu'>
-                        <ListItemText className={classes.navOptions} primary="Order Online" style={centeredText}/>
+                        <ListItemIcon className={classes.drawerIcon}>
+                            <Computer />
+                        </ListItemIcon>
+                        <ListItemText className={classes.navOptions} primary="Order Online"/>
                     </ListItem>
                     <ListItem button divider component={Link} to='/contact'>
-                        <ListItemText className={classes.navOptions} primary="Contact Us" style={centeredText}/>
+                        <ListItemIcon className={classes.drawerIcon}>
+                            <Email />
+                        </ListItemIcon>
+                        <ListItemText className={classes.navOptions} primary="Contact Us"/>
                     </ListItem>
                     <ListItem button divider component={Link} to='/about'>
-                        <ListItemText className={classes.navOptions} primary="Our Story" style={centeredText}/>
+                        <ListItemIcon className={classes.drawerIcon}>
+                            <MenuBook />
+                        </ListItemIcon>
+                        <ListItemText className={classes.navOptions} primary="Our Story"/>
                     </ListItem>
                     
                     { props.currentUser ? (
                         <ListItem button divider component={Link} to='/login'>
-                            <ListItemText className={classes.navOptions} primary="Log Out" style={centeredText} onClick={props.handleLogout}/>
+                            <ListItemIcon className={classes.drawerIcon}>
+                                <ExitToApp />
+                            </ListItemIcon>
+                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={props.handleLogout}/>
                         </ListItem>
                     ) : (
                         <ListItem button divider component={Link} to='/login'>
-                            <ListItemText className={classes.navOptions} primary="Login" style={centeredText}/>
+                            <ListItemIcon className={classes.drawerIcon}>
+                                <PermIdentity />
+                            </ListItemIcon>
+                            <ListItemText className={classes.navOptions} primary="Login"/>
                         </ListItem>
                     )}
                     
                     { props.currentUser ? (
-                        <ListItem button component={Link} to='/shoppingcart'>
-                            <ListItemText className={classes.navOptions} primary="Shopping Cart" style={centeredText}/>
+                        <ListItem button divider component={Link} to='/shoppingcart'>
+                            <ListItemIcon className={classes.drawerIcon}>
+                                <ShoppingCart />
+                            </ListItemIcon>
+                            <ListItemText className={classes.navOptions} primary="Shopping Cart"/>
                         </ListItem>
                     ) : (
-                        <ListItem button component={Link} to='/signup'>
-                            <ListItemText className={classes.navOptions} primary="Sign Up" style={centeredText}/>
+                        <ListItem button divider component={Link} to='/signup'>
+                            <ListItemIcon className={classes.drawerIcon}>
+                                <PersonAdd />
+                            </ListItemIcon>
+                            <ListItemText className={classes.navOptions} primary="Sign Up"/>
                         </ListItem>
                     )}
                 </List>

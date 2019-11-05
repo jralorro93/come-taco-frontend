@@ -3,6 +3,7 @@
 }
 .App {
   text-align: center;
+  margin-left: 300px;
 }
 
 .App-logo {
@@ -29,6 +30,11 @@
 body {
   background-image: url("./Images/background.jpg");
   background-color: #cccccc;
+}
+
+div.homePage  img {
+  max-width: 100%;
+  height: 70%;
 }
 
 div.Category {
