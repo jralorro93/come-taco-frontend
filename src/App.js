@@ -144,58 +144,60 @@ class App extends React.Component {
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
-            <div className="App">
+            <div>
               <CssBaseline/>
               <SideDrawer handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
-              {/* Route to Menu page */}
-              <Route exact path='/' render={HomePage}/>
-              <Route exact path='/menu' render={
-                () => {
-                  return (
-                    <div>
-                      <CategoryList handleCategoryClick={this.handleCategoryClick}/>
-                      <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
-                    </div>
-                  )
+              <div className='App'>
+                {/* Route to Menu page */}
+                <Route exact path='/' render={HomePage}/>
+                <Route exact path='/menu' render={
+                  () => {
+                    return (
+                      <div>
+                        <CategoryList handleCategoryClick={this.handleCategoryClick}/>
+                        <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
+                      </div>
+                    )
+                  }
                 }
-              }
-              />
-              {/* Route to About page */}
-              <Route path='/about' render={About}/>
-              {/* Route to Contact page */}
-              <Route path='/contact' render={Contact}/>
-              {/* Route to Login page */}
-              <Route path='/login' render={
-                () => {
-                  return (
-                    <Login handleLogin={this.handleLogin}/>
-                  )
-                }
-                  } />
-              {/* Route to Signup page */}
-              <Route path='/signup' render={
-                () => {
-                  return(
-                    <SignupForm handleSignup={this.handleSignup}/>
-                  )
-                }
-              } />
-              {/* Route to ShoppingCart page */}
-              <Route path='/shoppingcart' render={
-                () => {
-                  return (
-                    <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={this.props.history}/>
-                  )
-                }
-              } />
-            {/* Route to Checkout page*/}
-              <Route path='/checkout' render={
-                () => {
-                  return (
-                    <Checkout currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart}/>
-                  )
-                }
-              }/>
+                />
+                {/* Route to About page */}
+                <Route path='/about' render={About}/>
+                {/* Route to Contact page */}
+                <Route path='/contact' render={Contact}/>
+                {/* Route to Login page */}
+                <Route path='/login' render={
+                  () => {
+                    return (
+                      <Login handleLogin={this.handleLogin}/>
+                    )
+                  }
+                    } />
+                {/* Route to Signup page */}
+                <Route path='/signup' render={
+                  () => {
+                    return(
+                      <SignupForm handleSignup={this.handleSignup}/>
+                    )
+                  }
+                } />
+                {/* Route to ShoppingCart page */}
+                <Route path='/shoppingcart' render={
+                  () => {
+                    return (
+                      <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={this.props.history}/>
+                    )
+                  }
+                } />
+              {/* Route to Checkout page*/}
+                <Route path='/checkout' render={
+                  () => {
+                    return (
+                      <Checkout currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart}/>
+                    )
+                  }
+                }/>
+              </div>
             </div>
           </Switch>
         </StripeProvider>

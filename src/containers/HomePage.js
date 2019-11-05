@@ -3,7 +3,7 @@ import HomePic from '../Images/homePage3.jpg'
 
 const HomePage = () => {
     return (
-        <div>
+        <div className='homePage' >
             <img src={HomePic}/>
         </div>
     )
