@@ -1,9 +1,13 @@
 import React from 'react';
-import { Drawer, Divider, List, ListItem, ListItemText, CssBaseline } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import HomePic from '../Images/homePage3.jpg'
+
+//Importing from components
 import withSideDrawerStyles from '../styles/SideDrawer.style'
+
+//Importing from MUI
 import { useTheme } from '@material-ui/core/styles'
+import { Drawer, Divider, List, ListItem, ListItemText, CssBaseline } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
 
 const SideDrawer = (props) => {
     const {classes} = props
@@ -23,29 +27,29 @@ const SideDrawer = (props) => {
                 anchor='left'
             >
                 <h2 style={centeredText}>Logo Here</h2>
-                <h1 style={centeredText, colorWhite}>Come Taco!</h1>
-                <Divider />
+                <h1 className={classes.companyTitle} style={centeredText}>¡Come Tacos!</h1>
+                <Divider className={classes.divider}/>
                 <div className={classes.toolbar} />
                 <List>
-                    <ListItem button component={Link} to='/'>
+                    <ListItem button divider component={Link} to='/'>
                         <ListItemText className={classes.navOptions} primary="Home" style={centeredText}/>
                     </ListItem>
-                    <ListItem button component={Link} to='/menu'>
+                    <ListItem button divider component={Link} to='/menu'>
                         <ListItemText className={classes.navOptions} primary="Order Online" style={centeredText}/>
                     </ListItem>
-                    <ListItem button component={Link} to='/contact'>
+                    <ListItem button divider component={Link} to='/contact'>
                         <ListItemText className={classes.navOptions} primary="Contact Us" style={centeredText}/>
                     </ListItem>
-                    <ListItem button component={Link} to='/about'>
+                    <ListItem button divider component={Link} to='/about'>
                         <ListItemText className={classes.navOptions} primary="Our Story" style={centeredText}/>
                     </ListItem>
                     
                     { props.currentUser ? (
-                        <ListItem button component={Link} to='/login'>
+                        <ListItem button divider component={Link} to='/login'>
                             <ListItemText className={classes.navOptions} primary="Log Out" style={centeredText} onClick={props.handleLogout}/>
                         </ListItem>
                     ) : (
-                        <ListItem button component={Link} to='/login'>
+                        <ListItem button divider component={Link} to='/login'>
                             <ListItemText className={classes.navOptions} primary="Login" style={centeredText}/>
                         </ListItem>
                     )}

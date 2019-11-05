@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
 import {StripeProvider} from 'react-stripe-elements';
 
+//Imports from Components
 import CategoryList from "./containers/CategoryList";
 import NavBar from "./components/NavBar";
 import "./App.css";
@@ -15,6 +16,9 @@ import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
 import handleGrandTotal from './utils/Checkout/handleGrandTotal'
 import SideDrawer from "./components/SideDrawer";
+
+//Imports from MUI
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 
 class App extends React.Component {
@@ -141,6 +145,7 @@ class App extends React.Component {
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div className="App">
+              <CssBaseline/>
               <SideDrawer handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
               {/* Route to Menu page */}
               <Route exact path='/' render={HomePage}/>
