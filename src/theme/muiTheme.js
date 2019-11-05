@@ -1,6 +1,9 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
+    typography: {
+      fontFamily: 'sans-serif'
+    },
     palette: {
         primary: {
             light: '#63ccff',
@@ -12,7 +15,7 @@ const theme = createMuiTheme({
         overrides: {
             MuiDrawer: {
               paper: {
-                background: '#18202c',
+                background: '#101318',
               },
             },
           },

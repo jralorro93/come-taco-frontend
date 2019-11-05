@@ -9,6 +9,7 @@ const SideDrawer = (props) => {
     const {classes} = props
     const theme = useTheme()
     const centeredText = { textAlign: 'center'}
+    const colorWhite = {color: 'white'}
 
     return (
        <div className={classes.root}>
@@ -22,7 +23,7 @@ const SideDrawer = (props) => {
                 anchor='left'
             >
                 <h2 style={centeredText}>Logo Here</h2>
-                <h1 style={centeredText}>Come Taco!</h1>
+                <h1 style={centeredText, colorWhite}>Come Taco!</h1>
                 <Divider />
                 <div className={classes.toolbar} />
                 <List>
@@ -58,7 +59,6 @@ const SideDrawer = (props) => {
                             <ListItemText className={classes.navOptions} primary="Sign Up" style={centeredText}/>
                         </ListItem>
                     )}
-                    
                 </List>
             </Drawer>
         </div>

@@ -1,5 +1,4 @@
-import  { withStyles } from '@material-ui/styles'
-import { useTheme } from '@material-ui/core/styles'
+import  { withStyles } from '@material-ui/core/styles'
 
 const color = 'rgba(255, 255, 255, 0.7)'
 const drawerWidth = 300
@@ -14,14 +13,11 @@ export default withStyles(theme => ({
       },
     drawer: {
         width: drawerWidth,
-        flexShrink: 0,
-        background: '#19212b',
-        // '& *': {
-        //     color,
-        // }
+        flexShrink: 0
       },
     drawerPaper: {
         width: drawerWidth,
+        backgroundColor: '#101318'
       },
     toolbar: theme.mixins.toolbar,
     content: {
@@ -31,6 +27,14 @@ export default withStyles(theme => ({
       },
     navOptions: {
         padding: 15,
-        fontFamily: "Arial"
-      }
+        fontFamily: "Arial",
+        color: 'white',
+        fontSize: 15,
+        '&:hover': {
+          background: '#343536'
+        }
+      },
+    divide: {
+        color: 'white'
+    }
 }))
