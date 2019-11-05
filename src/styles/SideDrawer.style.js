@@ -8,12 +8,8 @@ export default withStyles(theme => ({
       display: 'flex'
     },
     companyTitle: {
-      color: 'white',
+      color: theme.palette.common.white,
       textShadow: '2px 3px #464948'
-    },
-    appBar: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth
     },
     drawer: {
       width: drawerWidth,
@@ -23,21 +19,27 @@ export default withStyles(theme => ({
       width: drawerWidth,
       backgroundColor: '#101318'
     },
+    drawerIcon: {
+      margin: 0,
+      color: theme.palette.common.white
+    },
     toolbar: theme.mixins.toolbar,
     content: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
       padding: theme.spacing(3)
     },
+    listItem: {
+      '&:hover': {
+        background: 'rgba(255,255,255,.08)',
+      }
+    },
     navOptions: {
       padding: 15,
       fontFamily: "Arial",
-      color: 'white',
+      color: theme.palette.common.white,
       textShadow: '2px 1px #464948',
-      fontSize: 15,
-      '&:hover': {
-        background: '#343536'
-      }
+      fontSize: 15
     },
     divider: {
       marginTop: theme.spacing.unit * 10,
