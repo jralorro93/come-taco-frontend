@@ -7,7 +7,7 @@ import CategoryList from "./containers/CategoryList";
 import NavBar from "./components/NavBar";
 import "./App.css";
 import HomePage from './containers/HomePage'
-import FoodContainer from './containers/FoodContainer'
+import FoodContainer from './containers/FoodContainer2'
 import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login'
