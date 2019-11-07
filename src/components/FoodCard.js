@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 
 import handleAddToCart from '../utils/Cart/handleAddToCart'
+import withFoodCardStyle from '../styles/FoodCard.style'
 
 const styles = theme => ({
   card: {

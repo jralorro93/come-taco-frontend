@@ -1,6 +1,5 @@
 import  { withStyles } from '@material-ui/core/styles'
 
-const color = 'rgba(255, 255, 255, 0.7)'
 const drawerWidth = 280
 
 export default withStyles(theme => ({
