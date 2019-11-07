@@ -11,9 +11,7 @@ import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, Pe
 
 const SideDrawer = (props) => {
     const {classes} = props
-    const theme = useTheme()
     const centeredText = { textAlign: 'center'}
-    const colorWhite = {color: 'white'}
 
     return (
        <div className={classes.root}>
