@@ -30,25 +30,25 @@ const SideDrawer = (props) => {
                 <h1 className={classes.companyTitle} style={centeredText}>¡Come Tacos!</h1>
                 <Divider className={classes.divider}/>
                 <List>
-                    <ListItem button divider component={Link} to='/' className={classes.ListItem}>
+                    <ListItem button divider component={Link} to='/' className={classes.listItem}>
                         <ListItemIcon className={classes.drawerIcon}>
                             <Home />
                         </ListItemIcon>
                         <ListItemText className={classes.navOptions} primary="Home"/>
                     </ListItem>
-                    <ListItem button divider component={Link} to='/menu'>
+                    <ListItem button divider component={Link} to='/menu' className={classes.listItem}>
                         <ListItemIcon className={classes.drawerIcon}>
                             <Computer />
                         </ListItemIcon>
                         <ListItemText className={classes.navOptions} primary="Order Online"/>
                     </ListItem>
-                    <ListItem button divider component={Link} to='/contact'>
+                    <ListItem button divider component={Link} to='/contact' className={classes.listItem}>
                         <ListItemIcon className={classes.drawerIcon}>
                             <Email />
                         </ListItemIcon>
                         <ListItemText className={classes.navOptions} primary="Contact Us"/>
                     </ListItem>
-                    <ListItem button divider component={Link} to='/about'>
+                    <ListItem button divider component={Link} to='/about' className={classes.listItem}>
                         <ListItemIcon className={classes.drawerIcon}>
                             <MenuBook />
                         </ListItemIcon>
@@ -56,14 +56,14 @@ const SideDrawer = (props) => {
                     </ListItem>
                     
                     { props.currentUser ? (
-                        <ListItem button divider component={Link} to='/login'>
+                        <ListItem button divider component={Link} to='/login' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ExitToApp />
                             </ListItemIcon>
                             <ListItemText className={classes.navOptions} primary="Log Out" onClick={props.handleLogout}/>
                         </ListItem>
                     ) : (
-                        <ListItem button divider component={Link} to='/login'>
+                        <ListItem button divider component={Link} to='/login' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <PermIdentity />
                             </ListItemIcon>
@@ -72,14 +72,14 @@ const SideDrawer = (props) => {
                     )}
                     
                     { props.currentUser ? (
-                        <ListItem button divider component={Link} to='/shoppingcart'>
+                        <ListItem button divider component={Link} to='/shoppingcart' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ShoppingCart />
                             </ListItemIcon>
                             <ListItemText className={classes.navOptions} primary="Shopping Cart"/>
                         </ListItem>
                     ) : (
-                        <ListItem button divider component={Link} to='/signup'>
+                        <ListItem button divider component={Link} to='/signup' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <PersonAdd />
                             </ListItemIcon>

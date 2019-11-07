@@ -23,7 +23,6 @@ export default withStyles(theme => ({
       margin: 0,
       color: theme.palette.common.white
     },
-    toolbar: theme.mixins.toolbar,
     content: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.default,
