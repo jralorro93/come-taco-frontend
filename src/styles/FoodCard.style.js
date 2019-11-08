@@ -27,5 +27,5 @@ export default withStyles(theme => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
-    },
+    }
 }))
