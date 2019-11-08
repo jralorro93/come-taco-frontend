@@ -1,65 +1,56 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
+import React, {useState} from 'react';
 
+import withFoodCardStyles from '../styles/FoodCard.style'
 import handleAddToCart from '../utils/Cart/handleAddToCart'
-import withFoodCardStyle from '../styles/FoodCard.style'
 
-const styles = theme => ({
-  card: {
-    maxWidth: 200,
-    float: "right",
-    margin: "10px",
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  actions: {
-    display: "flex"
-  }
-});
+import { Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typography, Collapse, Divider} from '@material-ui/core'
+import { ExpandMore, AddShoppingCart } from '@material-ui/icons'
+import clsx from 'clsx';
 
 
+const FoodCard = (props) => {
+    const { classes } = props
+    const [expanded, setExpanded] = useState(false)
+    const foodPrice = `$ ${props.food.price}`
+    const handleExpandCard = () => {
+        setExpanded(!expanded)
+    }
 
-class FoodCard extends React.Component {
-  render() {
-    const foodPrice = "$" + this.props.food.price
-    const { classes } = this.props;
-    console.log('this is props from foodCard', this.props)
     return (
-      <Card className={classes.card}>
-        <CardHeader title={this.props.food.name} />
-        <CardMedia
-          className={classes.media}
-          image={this.props.food.imgURL}
-          title={this.props.food.name}
-        />
-        <CardContent>
-          <Typography component="p">
-            {this.props.food.description}<br/>
-          <p className="price" >{foodPrice}</p>
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites" onClick={() => handleAddToCart(this.props.currentUser.user.id, this.props.food.id)}>
-            <i class="material-icons">add_shopping_cart</i>
-          </IconButton>
-        </CardActions>
-      </Card>
-    );
-  }
+        <Card className={classes.card}>
+            <CardHeader title={props.food.name} className={classes.icon}/>
+            <CardMedia
+            className={classes.media}
+            image={props.food.imgURL}
+            title={props.food.name}
+            />
+            <CardContent>
+                <p style={{fontWeight: 'bold'}} className={classes.icon} >{foodPrice}</p>
+            </CardContent>
+            <Divider/>
+            <CardActions className={classes.actions} disableActionSpacing>
+                <IconButton onClick={() => handleAddToCart(props.currentUser.user.id, props.food.id)}>
+                    <AddShoppingCart className={classes.icon} />
+                </IconButton>
+                <IconButton 
+                    className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandCard} 
+                    aria-expanded={expanded}
+                    aria-label='Show More'
+                >
+                    <ExpandMore/>
+                </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                    <Typography component="p">
+                        {props.food.description}<br/>
+                    </Typography>
+                </CardContent>
+            </Collapse>
+        </Card>
+    )
 }
-
-FoodCard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(FoodCard);
+export default withFoodCardStyles(FoodCard)
