@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
-const FoodContainer2 = (props) => {
+const FoodContainer = (props) => {
     const { classes } = useStyles()
     const [foodList, setFoodList] = useState([])
 
@@ -37,6 +37,6 @@ const FoodContainer2 = (props) => {
         </div>
     )
 }
-export default FoodContainer2
+export default FoodContainer
 
 // {this.state.foodsList.filter(food => food.category.includes(this.props.categoryChoice)).map(food => <FoodCard currentUser={this.props.currentUser} food={food}/>)}
