@@ -25,10 +25,14 @@ const FoodContainer2 = (props) => {
     }, [])
 
     return (
-        <div>
+        <div className='foodContainer'>
             <h1>¡Come Taco!</h1>
             <Grid container>
-                {foodList.map(food => <FoodCard currentUser={props.currentUser} food={food}/>)}
+                {foodList.map(food => (
+                    <Grid item>
+                        <FoodCard currentUser={props.currentUser} food={food}/>
+                    </Grid>
+                ))}
             </Grid>
         </div>
     )

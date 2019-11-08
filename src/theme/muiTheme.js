@@ -16,7 +16,12 @@ const theme = createMuiTheme({
     MuiListItem: {
       divider: {
         borderBottom: '1px solid #404854'
-      },
+      }
+    },
+    MuiList: {
+      padding: {
+        paddingTop: 0
+      }
     }
   }
 })
