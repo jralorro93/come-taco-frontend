@@ -24,18 +24,17 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 class App extends React.Component {
 
   state = {
-    categoryChoice: "",
     currentUser: null,
     shoppingCart: []
   }
 
   // handles click to change categoryChoice by sending this function
   // down to CategoryList and down to a specific Category
-  handleCategoryClick = (event) => {
-    this.setState({
-      categoryChoice: event.target.innerText.toLowerCase()
-    })
-  }
+  // handleCategoryClick = (event) => {
+  //   this.setState({
+  //     categoryChoice: event.target.innerText.toLowerCase()
+  //   })
+  // }
 
   handleSignup = (e, userObj) => {
     e.preventDefault()
@@ -154,7 +153,6 @@ class App extends React.Component {
                   () => {
                     return (
                       <div>
-                        <CategoryList handleCategoryClick={this.handleCategoryClick}/>
                         <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
                       </div>
                     )
