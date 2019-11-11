@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import FoodCard from '../components/FoodCard'
+import Category2 from '../components/Category2'
 
 import { makeStyles } from '@material-ui/core/styles';
 import{ Grid } from '@material-ui/core';
@@ -26,6 +27,7 @@ const FoodContainer = (props) => {
 
     return (
         <div className='foodContainer'>
+            <Category2 />
             <h1>¡Come Taco!</h1>
             <Grid container>
                 {foodList.map(food => (
