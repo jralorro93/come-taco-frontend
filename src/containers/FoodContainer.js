@@ -16,6 +16,11 @@ const useStyles = makeStyles(theme =>({
 const FoodContainer = (props) => {
     const { classes } = useStyles()
     const [foodList, setFoodList] = useState([])
+    const [categoryChoice, setCategoryChoice] = useState("")
+
+    const handleChoice = (newValue) => {
+        setCategoryChoice(newValue)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,13 +29,13 @@ const FoodContainer = (props) => {
         }
         fetchData()
     }, [])
-
+    console.log(categoryChoice)
     return (
         <div className='foodContainer'>
-            <Category2 />
+            <Category2 handleChoice={handleChoice} categoryChoice={categoryChoice} />
             <h1>¡Come Taco!</h1>
             <Grid container>
-                {foodList.map(food => (
+                {foodList.filter(food => food.category.includes(categoryChoice)).map(food => (
                     <Grid item>
                         <FoodCard currentUser={props.currentUser} food={food}/>
                     </Grid>

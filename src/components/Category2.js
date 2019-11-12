@@ -6,17 +6,10 @@ import { Paper, Tabs, Tab} from '@material-ui/core'
 const Category2 = (props) => {
     const { classes } = props
     const [value, setValue] = useState(0)
-    const [categoryChoice, setCategoryChoice] = useState()
-
-    const categoryList = ["Appetizers", "Main", "Desserts", "Drinks"]
+    const categoryList = ["appetizers", "main", "desserts", "drinks"]
 
     const handleChangeValue = (e, newValue) => {
         setValue(newValue)
-    }
-
-    const handleChoice = (newValue) => {
-        setCategoryChoice(newValue)
-        console.log('this is handleChoice', categoryChoice)
     }
 
     return (
@@ -29,7 +22,7 @@ const Category2 = (props) => {
                 centered
             >
                 {categoryList.map(category => (
-                    <Tab label={category} onClick={() => handleChoice(category)}/>
+                    <Tab label={category} onClick={() => props.handleChoice(category)}/>
                 ))}
             </Tabs>
         </Paper>
