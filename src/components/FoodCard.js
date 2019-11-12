@@ -45,7 +45,7 @@ const FoodCard = (props) => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography component="p">
+                    <Typography component="p" className={classes.icon}>
                         {props.food.description}<br/>
                     </Typography>
                 </CardContent>

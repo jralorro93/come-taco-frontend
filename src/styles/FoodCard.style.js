@@ -6,7 +6,7 @@ export default withStyles(theme => ({
         minWidth: 200,
         float: "right",
         margin: '10px',
-        backgroundColor: '#7B4627'
+        backgroundColor: '#332A2F'
     },
     media: {
         height: 0,
@@ -20,6 +20,7 @@ export default withStyles(theme => ({
     },
     expand: {
         transform: 'rotate(0deg)',
+        color: '#EBE3E0',
         marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
@@ -27,5 +28,6 @@ export default withStyles(theme => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+        color: '#EBE3E0'
     }
 }))
