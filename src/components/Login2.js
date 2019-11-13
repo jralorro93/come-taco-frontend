@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
 import { Box, FormControl, InputAdornment, IconButton, TextField, FormGroup, Button } from '@material-ui/core'
+import { Visibility, VisibilityOff, Lock, Face } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
     container: {
-        backgroundColor: theme.palette.common.white
+        backgroundColor: theme.palette.common.white,
+        width: '570px',
+        marginLeft: '280px'
+    },
+    text: {
+        width: '200px'
     },
     button: {
         width: '40px',
@@ -30,31 +36,45 @@ const Login2 = (props) => {
         setValues({...values, showPassword: !values.showPassword})
     }
 
-    const showStuff = (e, p) => {
-        console.log('this is e', e)
-        console.log('this is p', p)
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault()
     }
+
     return (
         <Box className={classes.container}>
             <h1>Login</h1>
-            <FormGroup>     
+            <FormGroup>    
                 <FormControl variant="outlined">
                     <TextField 
-                    variant='outlined'
-                    multiline
-                    name='email'
-                    label="Email"
-                    onChange={handleChange}
-                    />
-                </FormControl>
-                <br/>
-                <FormControl variant='outlined'>
-                    <TextField 
+                        className={classes.text}
                         variant='outlined'
                         multiline
-                        name='password'
-                        label='Password'
+                        name='email'
+                        label="Email"
                         onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl variant='outlined'>
+                    <TextField
+                        label='Password'
+                        className={classes.text}
+                        type={values.showPassword ? 'text' : 'password'}
+                        name='password'
+                        margin="normal"
+                        variant='outlined'
+                        onChange={handleChange}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment>
+                                    <IconButton
+                                        onClick={handleShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
                     />
                 </FormControl>
                 <Button 
