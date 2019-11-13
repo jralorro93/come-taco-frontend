@@ -8,7 +8,7 @@ import HomePage from './containers/HomePage'
 import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
 import Contact from './components/Contact'
-import Login from './components/Login'
+import Login from './components/Login2'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
@@ -59,8 +59,7 @@ class App extends React.Component {
       })
   }
 
-  handleLogin = (e, userObj) => {
-    e.preventDefault()
+  handleLogin = (userEmail, userPassword) => {
     fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       headers: {
@@ -68,8 +67,8 @@ class App extends React.Component {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        email: userObj.email,
-        password: userObj.password
+        email: userEmail,
+        password: userPassword
       })
     })
       .then(res => res.json())

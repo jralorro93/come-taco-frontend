@@ -6,7 +6,7 @@ import { Paper, Tabs, Tab} from '@material-ui/core'
 const Category = (props) => {
     const { classes } = props
     const [value, setValue] = useState(0)
-    const categoryList = ["appetizers", "main", "desserts", "drinks"]
+    const categoryList = ["all","appetizers", "main", "desserts", "drinks"]
 
     const handleChangeValue = (e, newValue) => {
         setValue(newValue)

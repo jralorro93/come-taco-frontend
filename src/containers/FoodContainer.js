@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme =>({
         marginLeft: '125px',
         marginRight: '125px',
         padding: '20px',
-        backgroundColor: theme.palette.common.white
+        backgroundColor: "#754F41"
     },
     header: {
         color: theme.palette.common.white
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme =>({
 const FoodContainer = (props) => {
     const classes = useStyles()
     const [foodList, setFoodList] = useState([])
-    const [categoryChoice, setCategoryChoice] = useState("")
+    const [categoryChoice, setCategoryChoice] = useState("all")
 
     const handleChoice = (newValue) => {
         setCategoryChoice(newValue)
@@ -43,11 +43,14 @@ const FoodContainer = (props) => {
             <Category handleChoice={handleChoice} categoryChoice={categoryChoice} />
             <h1 className={classes.header}>¡Come Tacos!</h1>
             <Grid container className={classes.container}>
-                {foodList.filter(food => food.category.includes(categoryChoice)).map(food => (
+                { categoryChoice === 'all' ? ( foodList.map(food => (
+                    <Grid item>
+                        <FoodCard currentUser={props.currentUser} food={food}/>
+                    </Grid>))) : ( foodList.filter(food => food.category.includes(categoryChoice)).map(food => (
                     <Grid item>
                         <FoodCard currentUser={props.currentUser} food={food}/>
                     </Grid>
-                ))}
+                )))}
             </Grid>
         </div>
     )

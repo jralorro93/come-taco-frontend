@@ -19,7 +19,7 @@ class Login extends Component {
       <div id="contactPage">
         <div id="loginDiv">
           <h1>Login</h1>
-          <form onSubmit={(e) => {this.props.handleLogin(e, this.state)}}>
+          <form onSubmit={() => {this.props.handleLogin(this.state)}}>
             <label>Email:</label>
             <input type="email" name='email' placeholder='Email@test.com' value={this.state.email} onChange={this.handleChange}/>
             <br/>
