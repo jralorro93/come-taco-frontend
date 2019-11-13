@@ -45,18 +45,6 @@ div.Category {
   font-size: 20px;
 }
 
-div#CategoryList {
-  height: 50%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 25%;
-  left: 0;
-  background-image: url("./Images/side-panel.jpg");
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
 div#contactPage {
   position: fixed;
   top: 50%;
