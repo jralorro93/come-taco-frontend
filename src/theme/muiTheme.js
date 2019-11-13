@@ -22,6 +22,11 @@ const theme = createMuiTheme({
       padding: {
         paddingTop: 0
       }
+    },
+    MuiFormGroup: {
+      root: {
+        alignItems: 'center'
+      }
     }
   }
 })
