@@ -1,36 +1,92 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react';
 
-class Login extends Component {
+import { Box, FormControl, InputAdornment, IconButton, TextField, FormGroup, Button } from '@material-ui/core'
+import { Visibility, VisibilityOff } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/core/styles'
 
-  state = {
-    email: "",
-    password: ""
-  }
+const useStyles = makeStyles(theme => ({
+    container: {
+        backgroundColor: theme.palette.common.white,
+        width: '570px',
+        marginLeft: '280px',
+        marginTop: '275px'
+    },
+    text: {
+        width: '200px'
+    },
+    button: {
+        width: '40px',
+        alignContent: 'centered'
+    }
+}))
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
+const Login = (props) => {
+    const classes = useStyles()
+    const [ values, setValues ] = useState({
+        email: '',
+        password: '',
+        showPassword: false
     })
-  }
 
+    const handleChange = e => {
+        const { name, value } = e.target
+        setValues({ ...values, [name]: value})
+    }
+    
+    const handleShowPassword = () => {
+        setValues({...values, showPassword: !values.showPassword})
+    }
 
-  render() {
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault()
+    }
+
     return (
-      <div id="contactPage">
-        <div id="loginDiv">
-          <h1>Login</h1>
-          <form onSubmit={() => {this.props.handleLogin(this.state)}}>
-            <label>Email:</label>
-            <input type="email" name='email' placeholder='Email@test.com' value={this.state.email} onChange={this.handleChange}/>
-            <br/>
-            <label>Password:</label>
-            <input type="password" name='password' value={this.state.password} onChange={this.handleChange}/>
-            <br/>
-            <input type="submit" value="Log In"/>
-          </form>
-        </div>
-      </div>
+        <Box className={classes.container}>
+            <h1>Login</h1>
+            <FormGroup>    
+                <FormControl variant="outlined">
+                    <TextField 
+                        className={classes.text}
+                        variant='outlined'
+                        multiline
+                        name='email'
+                        label="Email"
+                        onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl variant='outlined'>
+                    <TextField
+                        label='Password'
+                        className={classes.text}
+                        type={values.showPassword ? 'text' : 'password'}
+                        name='password'
+                        margin="normal"
+                        variant='outlined'
+                        onChange={handleChange}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment>
+                                    <IconButton
+                                        onClick={handleShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                </FormControl>
+                <Button 
+                    variant='contained'
+                    className={classes.button}
+                    onClick={ () => props.handleLogin(values.email, values.password)}
+                >
+                    Login
+                </Button>
+            </FormGroup>
+        </Box>
     )
-  }
 }
 export default Login
