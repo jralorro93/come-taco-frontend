@@ -9,7 +9,7 @@ import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login'
-import SignupForm from './components/SignupForm2'
+import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
 import handleGrandTotal from './utils/Checkout/handleGrandTotal'
@@ -34,8 +34,7 @@ class App extends React.Component {
   //   })
   // }
 
-  handleSignup = (e, userObj) => {
-    e.preventDefault()
+  handleSignup = (email, password, firstName, lastName) => {
 
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
@@ -44,10 +43,10 @@ class App extends React.Component {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        email: userObj.email,
-        password: userObj.password,
-        first_name: userObj.firstName,
-        last_name: userObj.lastName
+        email: email,
+        password: password,
+        first_name: firstName,
+        last_name: lastName
       })
     })
       .then(res => res.json())
