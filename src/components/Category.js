@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import withCategoryStyles from '../styles/Category.style'
 
-export default class Category extends React.Component {
-  render() {
+import { Paper, Tabs, Tab} from '@material-ui/core'
+
+const Category = (props) => {
+    const { classes } = props
+    const [value, setValue] = useState(0)
+    const categoryList = ["appetizers", "main", "desserts", "drinks"]
+
+    const handleChangeValue = (e, newValue) => {
+        setValue(newValue)
+    }
+
     return (
-      <div className="Category" onClick={this.props.handleCategoryClick}>
-        {this.props.category}
-      </div>
+        <Paper className={classes.root}>
+            <Tabs 
+                value={value}
+                onChange={handleChangeValue}
+                indicatorColor='secondary'
+                textColor='secondary'
+                centered
+                className={classes.tabs}
+            >
+                {categoryList.map(category => (
+                    <Tab className={classes.tab} label={category} onClick={() => props.handleChoice(category)}/>
+                ))}
+            </Tabs>
+        </Paper>
     )
-  }
 }
+
+export default withCategoryStyles(Category)

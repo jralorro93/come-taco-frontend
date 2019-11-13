@@ -2,19 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import FoodCard from '../components/FoodCard'
-import Category2 from '../components/Category2'
+import Category from '../components/Category'
 
 import { makeStyles } from '@material-ui/core/styles';
 import{ Grid } from '@material-ui/core';
 
 const useStyles = makeStyles(theme =>({
-    root: {
-        flexGrow: 1
+    container: {
+        border: '2px solid black',
+        maxWidth: '925px',
+        marginLeft: '125px',
+        marginRight: '125px',
+        padding: '20px',
+        backgroundColor: theme.palette.common.white
+    },
+    header: {
+        color: theme.palette.common.white
     }
 }))
 
 const FoodContainer = (props) => {
-    const { classes } = useStyles()
+    const classes = useStyles()
     const [foodList, setFoodList] = useState([])
     const [categoryChoice, setCategoryChoice] = useState("")
 
@@ -31,10 +39,10 @@ const FoodContainer = (props) => {
     }, [])
     console.log(categoryChoice)
     return (
-        <div className='foodContainer'>
-            <Category2 handleChoice={handleChoice} categoryChoice={categoryChoice} />
-            <h1>¡Come Taco!</h1>
-            <Grid container>
+        <div>
+            <Category handleChoice={handleChoice} categoryChoice={categoryChoice} />
+            <h1 className={classes.header}>¡Come Tacos!</h1>
+            <Grid container className={classes.container}>
                 {foodList.filter(food => food.category.includes(categoryChoice)).map(food => (
                     <Grid item>
                         <FoodCard currentUser={props.currentUser} food={food}/>

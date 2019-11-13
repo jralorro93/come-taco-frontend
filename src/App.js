@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router
 import {StripeProvider} from 'react-stripe-elements';
 
 //Imports from Components
-import CategoryList from "./containers/CategoryList";
-import NavBar from "./components/NavBar";
 import "./App.css";
 import HomePage from './containers/HomePage'
 import FoodContainer from './containers/FoodContainer'
