@@ -26,14 +26,6 @@ class App extends React.Component {
     shoppingCart: []
   }
 
-  // handles click to change categoryChoice by sending this function
-  // down to CategoryList and down to a specific Category
-  // handleCategoryClick = (event) => {
-  //   this.setState({
-  //     categoryChoice: event.target.innerText.toLowerCase()
-  //   })
-  // }
-
   handleSignup = (email, password, firstName, lastName) => {
 
     fetch('http://localhost:3000/api/v1/users', {
