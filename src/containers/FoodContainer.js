@@ -37,7 +37,7 @@ const FoodContainer = (props) => {
         }
         fetchData()
     }, [])
-    console.log(categoryChoice)
+
     return (
         <div>
             <Category handleChoice={handleChoice} categoryChoice={categoryChoice} />

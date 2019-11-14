@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         width: '40px',
-        alignContent: 'centered'
+        alignContent: 'centered',
+        marginBottom: '15px'
     }
 }))
 
