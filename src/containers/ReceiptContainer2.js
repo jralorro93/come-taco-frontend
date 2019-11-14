@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import ItemCard from '../components/ItemCard'
+import ItemCard from '../components/ItemCard2'
 
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     container: {
         border: '2px solid black',
-        maxWidth: '950px',
+        maxWidth: '925px',
         marginLeft: '125px',
         marginRight: '125px',
         padding: '20px',
@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
 const ReceiptContainer2 = (props) => {
     const classes = useStyles()
     return (
-        <div className={classes.container}>
+        <div>
             <h1>Your Cart</h1>
             { props.shoppingCart.length === 0 ? <h3>Your cart is empty!</h3> : (
-                <Grid container>
+                <Grid container className={classes.container}>
                     {props.shoppingCart.map(food =>( 
                         <Grid item>
                             <ItemCard food={food} user={props.user} handleDelete={props.handleDelete}/>
