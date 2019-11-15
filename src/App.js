@@ -7,7 +7,7 @@ import "./App.css";
 import HomePage from './containers/HomePage'
 import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
-import Contact from './components/Contact'
+import Contact from './components/Contact2'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
@@ -88,7 +88,7 @@ class App extends React.Component {
       }
     }).then((response) => {
           console.log('this is id: ', id)
-          
+          console.log('this is foodObj', foodObj)
           let newShoppingCart = [...this.state.shoppingCart]
           let index = newShoppingCart.indexOf(foodObj)
           newShoppingCart.splice(index, 1)

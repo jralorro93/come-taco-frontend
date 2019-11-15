@@ -9,27 +9,26 @@ import clsx from 'clsx';
 
 
 const FoodCard = (props) => {
-    const { classes } = props
+    const { classes, food } = props
     const [expanded, setExpanded] = useState(false)
-    const foodPrice = `$ ${props.food.price}`
     const handleExpandCard = () => {
         setExpanded(!expanded)
     }
 
     return (
         <Card className={classes.card}>
-            <CardHeader title={props.food.name} className={classes.icon}/>
+            <CardHeader title={food.name} className={classes.icon}/>
             <CardMedia
-            className={classes.media}
-            image={props.food.imgURL}
-            title={props.food.name}
+                className={classes.media}
+                image={food.imgURL}
+                title={food.name}
             />
             <CardContent>
-                <p style={{fontWeight: 'bold'}} className={classes.icon} >{foodPrice}</p>
+                <h3 className={classes.icon}>${food.price}</h3>
             </CardContent>
             <Divider/>
             <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton onClick={() => handleAddToCart(props.currentUser.user.id, props.food.id)}>
+                <IconButton onClick={() => handleAddToCart(props.currentUser.user.id, food.id)}>
                     <AddShoppingCart className={classes.icon} />
                 </IconButton>
                 <IconButton 
@@ -46,7 +45,7 @@ const FoodCard = (props) => {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography component="p" className={classes.icon}>
-                        {props.food.description}<br/>
+                        {food.description}<br/>
                     </Typography>
                 </CardContent>
             </Collapse>
