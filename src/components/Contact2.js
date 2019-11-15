@@ -1,21 +1,22 @@
 import React from 'react'
-
-import { makeStyles } from '@material-ui/styles'
-
-import bg from '../Images/cutting-board.jpg'
+import withContactStyles from '../styles/Contact.style'
+import { Box } from '@material-ui/core'
+import feedback from '../Images/feedback.jpg'
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
-    bg: {
-        backgroundImage: `url(${bg})`
+    image: {
+        maxHeight: '300px'
     }
 }))
 
-
-const Contact2 = () => {
+const Contact2 = (props) => {
     const classes = useStyles()
     return (
         <div>
-
+            <div>
+                <img src={feedback} alt='Feedback' className={classes.image}/>
+            </div>
         </div>
     )
 }
