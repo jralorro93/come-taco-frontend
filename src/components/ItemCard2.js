@@ -9,9 +9,11 @@ const ItemCard2 = (props) => {
     const { food, classes, orders } = props
     const [foodOrderId, setFoodOrderId] = useState('')
 
-    //Fix
+    
     useEffect(() => {
         let orderId = props.user.user.orders.find(order => order.item_id === food.id)
+        console.log('this is orderid', orderId.id)
+        console.log('this is food', food.name)
         setFoodOrderId(orderId.id)
     }, [])
 

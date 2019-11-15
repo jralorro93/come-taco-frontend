@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import ItemCard from '../components/ItemCard2'
 
@@ -19,12 +18,17 @@ const useStyles = makeStyles(theme => ({
 
 const ReceiptContainer2 = (props) => {
     const classes = useStyles()
+    const [newCart, setNewCart] = useState([])
+
+    useEffect(() => {
+        setNewCart(props.shoppingCart)
+    }, [])
     return (
         <div>
             <h1>Your Cart</h1>
             { props.shoppingCart.length === 0 ? <h3>Your cart is empty!</h3> : (
                 <Grid container className={classes.container}>
-                    {props.shoppingCart.map(food =>( 
+                    {newCart.map(food =>( 
                         <Grid item>
                             <ItemCard food={food} user={props.user} handleDelete={props.handleDelete}/>
                         </Grid>
