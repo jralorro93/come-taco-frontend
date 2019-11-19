@@ -1,13 +1,14 @@
 import React from 'react';
-import ItemCard from '../components/ItemCard';
-import CartTotal from '../components/CartTotal';
 
-import useGlobal from '../store'
+import useGlobal from '../store/store'
 
 const ReceiptContainer = () => {
   const [globalState, globalActions] = useGlobal()
-    return (
-      
+  console.log('this is globalActions', globalActions)
+  return (
+      <div>
+        <h2>Your cart</h2>
+      </div>
     )
 }
 export default ReceiptContainer

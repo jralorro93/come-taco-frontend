@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+import useGlobal from '../store/store'
+
 import withFoodCardStyles from '../styles/FoodCard.style'
 import handleAddToCart from '../utils/Cart/handleAddToCart'
 
@@ -14,7 +16,6 @@ const FoodCard = (props) => {
     const handleExpandCard = () => {
         setExpanded(!expanded)
     }
-
     return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>

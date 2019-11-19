@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import ReceiptContainer from '../containers/ReceiptContainer2'
+import ReceiptContainer from '../containers/ReceiptContainer'
 import CartTotal from './CartTotal'
 
 
