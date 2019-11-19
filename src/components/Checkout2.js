@@ -23,20 +23,20 @@ const useStyles = makeStyles(theme => ({
 
 function getSteps() {
     return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
-  }
+}
   
-  function getStepContent(stepIndex) {
+function getStepContent(stepIndex) {
     switch (stepIndex) {
-      case 0:
+        case 0:
         return 'Select campaign settings...';
-      case 1:
+        case 1:
         return 'What is an ad group anyways?';
-      case 2:
+        case 2:
         return 'This is the bit I really care about!';
-      default:
+        default:
         return 'Unknown stepIndex';
     }
-  }
+}
   
   export default function Checkout2() {
     const classes = useStyles();
