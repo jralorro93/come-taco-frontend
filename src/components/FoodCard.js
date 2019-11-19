@@ -12,10 +12,13 @@ import clsx from 'clsx';
 
 const FoodCard = (props) => {
     const { classes, food } = props
+
     const [expanded, setExpanded] = useState(false)
+
     const handleExpandCard = () => {
         setExpanded(!expanded)
     }
+
     const [cart, addToCart] = useGlobal(
         state => state.shoppingCart,
         actions => actions.addToCart
