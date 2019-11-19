@@ -1,5 +1,8 @@
 export const addToCart = (store, food) => {
-    const newItem = store.state.shoppingList
+    // store.state.shoppingCart.push(food)
+
+    store.setState({shoppingCart: [...store.state.shoppingCart, food]})
+    console.log('this is store', store.state.shoppingCart)
 }
 
 

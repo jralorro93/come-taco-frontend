@@ -16,6 +16,11 @@ const FoodCard = (props) => {
     const handleExpandCard = () => {
         setExpanded(!expanded)
     }
+    const [cart, addToCart] = useGlobal(
+        state => state.shoppingCart,
+        actions => actions.addToCart
+    )
+
     return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>
@@ -29,7 +34,7 @@ const FoodCard = (props) => {
             </CardContent>
             <Divider/>
             <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton onClick={() => handleAddToCart(props.currentUser.user.id, food.id)}>
+                <IconButton onClick={() => addToCart(food) }>
                     <AddShoppingCart className={classes.icon} />
                 </IconButton>
                 <IconButton 
@@ -54,3 +59,6 @@ const FoodCard = (props) => {
     )
 }
 export default withFoodCardStyles(FoodCard)
+
+
+// handleAddToCart(props.currentUser.user.id, food.id)
