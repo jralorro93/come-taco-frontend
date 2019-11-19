@@ -1,13 +1,9 @@
 import React from 'react'
-import useGlobalHook from 'use-global-hook'
-
-// Actions here
-import * as actions from '../actions'
+import globalHook from 'use-global-hook'
+import * as actions from '../actions/actions'
 
 const initialState = {
     shoppingCart: []
 };
-
-const useGlobal = useGlobalHook(React, initialState, actions)
-
+const useGlobal = globalHook(React, initialState, actions)
 export default useGlobal
