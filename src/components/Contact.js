@@ -1,18 +1,10 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
 import bg from '../Images/cutting-board.jpg'
 
-const useStyles = makeStyles(theme => ({
-  bg: {
-    backgroundImage: `url(${bg})`
-  }
-}))
-
 const Contact = (props) => {
-  const classes = useStyles()
   return (
     <div>
-      <div>
+      <div id='contactPage'>
         <h1>Come Taco</h1>
         <h5>321 Borg Ave, Turing City, Flatiron 10010</h5>
         <h3>Phone Number:</h3>

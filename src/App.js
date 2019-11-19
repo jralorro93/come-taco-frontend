@@ -11,7 +11,7 @@ import Contact from './components/Contact2'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
-import Checkout from './components/Checkout'
+import Checkout from './components/Checkout2'
 import handleGrandTotal from './utils/Checkout/handleGrandTotal'
 import SideDrawer from "./components/SideDrawer";
 
