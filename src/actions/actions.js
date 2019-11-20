@@ -1,10 +1,10 @@
 export const addToCart = (store, food) => {
     store.setState({shoppingCart: [...store.state.shoppingCart, food]})
-    console.log('this is store', store.state.shoppingCart)
+    console.log('this is store', store)
 }
 
 export const deleteFromCart = (store, food) => {
-    console.log('hi from deleteFromCart')
+    console.log(store)
 }
 
 // Example below:

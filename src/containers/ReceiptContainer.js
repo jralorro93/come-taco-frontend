@@ -24,8 +24,7 @@ const ReceiptContainer = (props) => {
     state => state.shoppingCart,
     actions => actions.deleteFromCart
   )
-  console.log(cart)
-  console.log(deleteFromCart)
+  console.log(useGlobal())
   return (
       <div>
         <h2>Your cart</h2>
