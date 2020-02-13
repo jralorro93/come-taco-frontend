@@ -7,7 +7,7 @@ import "./App.css";
 import HomePage from './containers/HomePage'
 import FoodContainer from './containers/FoodContainer'
 import About from './components/About'
-import Contact from './components/Contact2'
+import Contact from './components/Contact'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
