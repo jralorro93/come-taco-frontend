@@ -1,23 +1,45 @@
-import React from 'react'
+import React, {useState} from 'react'
 import withContactStyles from '../styles/Contact.style'
-import { Box } from '@material-ui/core'
-import feedback from '../Images/feedback.jpg'
-import { makeStyles } from "@material-ui/styles";
-
-const useStyles = makeStyles(theme => ({
-    image: {
-        maxHeight: '300px'
-    }
-}))
+import { TextField, FormGroup, FormControl } from '@material-ui/core'
 
 const Contact2 = (props) => {
-    const classes = useStyles()
+    const { classes } = props
+    const [ values, setValues ] = useState({
+        name: '',
+        email: ''
+    })
+
+
+    const handleOnChange = (e) => {
+        const {name, value} = e.target
+        setValues({...values, [name]:value})
+        console.log('this is values', values)
+    }
+
     return (
         <div>
-            <div>
-                <img src={feedback} alt='Feedback' className={classes.image}/>
-            </div>
+            <FormGroup>
+                <FormControl variant='outlined'>
+                    <TextField
+                        variant='outlined'
+                        multiline
+                        name='name'
+                        label='Name'
+                        onChange={handleOnChange}
+                    />
+                </FormControl>
+                <FormControl>
+                    <TextField
+                        variant='outlined'
+                        multiline
+                        name='email'
+                        label='Email'
+                        onChange={handleOnChange}
+                    />
+                </FormControl>
+            </FormGroup>
         </div>
     )
 }
-export default Contact2
+
+export default withContactStyles(Contact2)

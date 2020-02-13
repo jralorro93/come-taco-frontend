@@ -62,6 +62,3 @@ const FoodCard = (props) => {
     )
 }
 export default withFoodCardStyles(FoodCard)
-
-
-// handleAddToCart(props.currentUser.user.id, food.id)

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import withSideDrawerStyles from '../styles/SideDrawer.style'
 
 //Importing from MUI
-import { useTheme } from '@material-ui/core/styles'
 import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline } from '@material-ui/core';
 import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, PermIdentity } from '@material-ui/icons';
 

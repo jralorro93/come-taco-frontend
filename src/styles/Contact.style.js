@@ -1,8 +1,9 @@
 import { withStyles } from '@material-ui/core/styles'
-import bg from '../Images/cutting-board.jpg'
+import contactUs from '../Images/contact.jpg'
 
 export default withStyles(theme => ({
     container: {
-        backgroundImage: `url(${bg})`
+        backgroundImage: `url(${contactUs})`,
+        height: '900px'
     }
 }))
