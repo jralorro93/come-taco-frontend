@@ -4,7 +4,7 @@ import bg from '../Images/cutting-board.jpg'
 
 const About = () => {
   return (
-    <Box style={{backgroundImage: `url(${bg})`, maxWidth: '640px'}}>
+    <Box style={{backgroundImage: `url(${bg})`, maxWidth: '640px', marginLeft: '23%', marginTop: '20%'}}>
       <Box>
         <p>Who are we?</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
