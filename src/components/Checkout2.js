@@ -16,11 +16,6 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-// const Checkout2 = (props) => {
-
-// }
-// export default Checkout2
-
 function getSteps() {
     return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
 }

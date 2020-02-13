@@ -150,7 +150,15 @@ class App extends React.Component {
                 {/* Route to About page */}
                 <Route path='/about' render={About}/>
                 {/* Route to Contact page */}
-                <Route path='/contact' render={Contact}/>
+                <Route path='/contact' render={
+                  () => {
+                    return (
+                      <div>
+                        <Contact/>
+                      </div>
+                    )
+                  }
+                }/>
                 {/* Route to Login page */}
                 <Route path='/login' render={
                   () => {
