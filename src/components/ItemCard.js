@@ -1,78 +1,39 @@
-import React from 'react'
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import React, {useState, useEffect} from 'react'
 
+import withFoodCardStyles from '../styles/FoodCard.style'
 
-const styles = theme => ({
-  card: {
-    maxWidth: 200,
-    float: "left",
-    margin: "10px",
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  actions: {
-    display: "flex"
-  }
-});
+import { Divider, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton} from '@material-ui/core'
+import { RemoveShoppingCart } from '@material-ui/icons'
 
- class ItemCard extends React.PureComponent {
+const ItemCard = (props) => {
+    const { food, classes, orders } = props
+    const [foodOrderId, setFoodOrderId] = useState('')
+    
+    useEffect(() => {
+        let orderId = props.user.user.orders.find(order => order.item_id === food.id)
+        console.log('this is orderid', orderId.id)
+        console.log('this is food', food.name)
+        setFoodOrderId(orderId.id)
+    }, [food])
 
-   state = {
-     currentFoodID: ''
-   }
-
-   componentDidMount() {
-      let userOrder = this.props.user.user.orders.find(order => order.item_id === this.props.food.id)
-      console.log('this is userOrder', userOrder)
-      this.setState({
-        currentFoodID: userOrder.id
-      })
-   }
-
-  render() {
-    const foodPrice = "$" + this.props.food.price
-    const { classes } = this.props
-    return(
-      <Card className={classes.card}>
-        <CardHeader title={this.props.food.name} />
-        <CardMedia
-          className={classes.media}
-          image={this.props.food.imgURL}
-          title={this.props.food.name}
-        />
-        <CardContent>
-          <Typography component="p">
-            {this.props.food.description}
-            <p className="price" >{foodPrice}</p>
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Delete" onClick={(event) => this.props.handleDelete(this.state.currentFoodID, this.props.food)}>
-            <i class="material-icons">remove_shopping_cart</i>
-          </IconButton>
-        </CardActions>
-      </Card>
-    )
-  }
+   return (
+        <Card className={classes.card}>
+            <CardHeader title={food.name} className={classes.icon}/>
+            <CardMedia 
+                className={classes.media}
+                image={food.imgURL} 
+                title={food.name}
+            />
+            <CardContent>
+                <h3 className={classes.icon}>${food.price}</h3>
+            </CardContent>
+            <Divider />
+            <CardActions>
+                <IconButton onClick={ () => props.handleDelete(foodOrderId, food)}>
+                    <RemoveShoppingCart className={classes.icon}/>
+                </IconButton>
+            </CardActions>
+        </Card>
+   )
 }
-
-ItemCard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(ItemCard);
-// <div>
-// <h3>{this.props.food.name}</h3>
-// <h5>{this.props.food.price}</h5>
-// <h6 onClick={() => this.props.handleDelete(this.props.food)}>Remove</h6>
-// </div>
+export default withFoodCardStyles(ItemCard)
