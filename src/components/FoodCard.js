@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 
-import useGlobal from '../store/store'
-
 import withFoodCardStyles from '../styles/FoodCard.style'
 import handleAddToCart from '../utils/Cart/handleAddToCart'
 
@@ -11,19 +9,14 @@ import clsx from 'clsx';
 
 
 const FoodCard = (props) => {
-    const { classes, food } = props
+    const { classes, food, currentUser } = props
 
     const [expanded, setExpanded] = useState(false)
 
     const handleExpandCard = () => {
         setExpanded(!expanded)
     }
-
-    const [cart, addToCart] = useGlobal(
-        state => state.shoppingCart,
-        actions => actions.addToCart
-    )
-
+    console.log('this is props', props)
     return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>
@@ -37,7 +30,7 @@ const FoodCard = (props) => {
             </CardContent>
             <Divider/>
             <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton onClick={() => addToCart(food) }>
+                <IconButton onClick={() => handleAddToCart(currentUser.user.id, food.id)}>
                     <AddShoppingCart className={classes.icon} />
                 </IconButton>
                 <IconButton 
