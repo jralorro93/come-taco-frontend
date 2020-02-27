@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {CardExpiryElement, CardNumberElement, CardCvcElement, injectStripe} from 'react-stripe-elements';
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 import handlePayment from '../utils/Checkout/handlePayment'
-import { create } from 'jss';
-
 
 let style = {
     base: {
@@ -54,7 +52,6 @@ class CreditForm extends Component {
     }
 
     render() {
-        console.log('this is props from CreditForm', this.props)
         let grandTotal = handleGrandTotal(this.props.shoppingCart)
         return (
             <div id='creditFormBox'>

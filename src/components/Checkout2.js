@@ -1,4 +1,5 @@
 import React from 'react'
+import Step1 from './Step1'
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Stepper, Step, StepLabel, Button, Typography} from '@material-ui/core'
@@ -23,7 +24,7 @@ function getSteps() {
 function getStepContent(stepIndex) {
     switch (stepIndex) {
         case 0:
-        return 'Select campaign settings...';
+        return Step1;
         case 1:
         return 'What is an ad group anyways?';
         case 2:

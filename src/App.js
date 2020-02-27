@@ -11,7 +11,7 @@ import Contact from './components/Contact'
 import Login from './components/Login'
 import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
-import Checkout from './components/Checkout2'
+import Checkout from './components/Checkout'
 import SideDrawer from "./components/SideDrawer";
 
 //Imports from MUI
