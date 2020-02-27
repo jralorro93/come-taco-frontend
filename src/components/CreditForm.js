@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {CardExpiryElement, CardNumberElement, CardCvcElement, injectStripe} from 'react-stripe-elements';
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 import handlePayment from '../utils/Checkout/handlePayment'
+import {Button} from '@material-ui/core'
 
 let style = {
     base: {
@@ -10,6 +11,9 @@ let style = {
       fontSize: '16px',
       padding: '10px',
       textShadow: '2px'
+    },
+    button: {
+        marginTop: '10px'
     }
   };
 
@@ -50,9 +54,10 @@ class CreditForm extends Component {
             body: JSON.stringify({charge: charge})
         })
     }
-
+    
     render() {
         let grandTotal = handleGrandTotal(this.props.shoppingCart)
+        console.log('this is style',style.base)
         return (
             <div id='creditFormBox'>
                 <h3>Enter Credit Info Below:</h3>
@@ -61,7 +66,7 @@ class CreditForm extends Component {
                         Card Number
                         <CardNumberElement 
                             onReady={(el) => el.focus()} 
-                            style={style}
+                            style={style.base}
                         />
                     </label>
                     <label>
@@ -74,7 +79,7 @@ class CreditForm extends Component {
                     <label>
                         Expiration Date
                         <CardExpiryElement 
-                            style={style}
+                            style={style.base}
                             
                         /> 
                     </label>
@@ -89,7 +94,7 @@ class CreditForm extends Component {
                         />
                     </label>
                     <br/>
-                    <button>Pay</button>
+                    <Button variant='contained' color='primary' style={style.button}>Confirm</Button>
                 </form>
             </div>
 

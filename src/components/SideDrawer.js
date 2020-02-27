@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import withSideDrawerStyles from '../styles/SideDrawer.style'
 
 //Importing from MUI
-import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline } from '@material-ui/core';
+import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline, CardMedia } from '@material-ui/core';
 import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, PermIdentity } from '@material-ui/icons';
 
 const SideDrawer = (props) => {
@@ -23,7 +23,6 @@ const SideDrawer = (props) => {
                 }}
                 anchor='left'
             >
-                <h2 style={centeredText}>Logo Here</h2>
                 <h1 className={classes.companyTitle} style={centeredText}>¡Come Tacos!</h1>
                 <Divider className={classes.divider}/>
                 <List>
