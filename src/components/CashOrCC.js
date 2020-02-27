@@ -1,18 +1,29 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { FormControl, FormControlLabel, RadioGroup, Radio, FormLabel, Button } from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+    form: {
+        backgroundColor: theme.palette.common.white,
+        marginTop: '200px',
+        borderStyle: 'solid',
+        borderWidth: '3px'
+    }
+}))
 
 const CashOrCC = (props) => {
-    console.log('this is props', props)
+    const classes = useStyles()
     return (
-        <div>
-            <form onSubmit={props.handleActivePage}>
-                <h3>Select payment</h3>
-                <input type='radio' onClick={props.handleChoice} value='Cash' name='paymentOption'/>
-                <label>Cash</label>
-                <input type='radio' onClick={props.handleChoice} value='Card' name='paymentOption'/>
-                <label>Card</label>
-                <br/>
-                <button>Go</button>
-            </form>
+        <div >
+            <FormControl className={classes.form}>
+                <FormLabel>Select Payment Method</FormLabel>
+                <RadioGroup>
+                    <FormControlLabel onClick={props.handleChoice} value="Cash" control={<Radio />} label="Cash" />
+                    <FormControlLabel onClick={props.handleChoice} value="Card" control={<Radio />} label="Card" />
+                </RadioGroup>
+                <Button onClick={props.handleActivePage} variant='contained' color='primary'>Go</Button>
+            </FormControl>
         </div>
     )
 }

@@ -12,7 +12,7 @@ class Checkout extends Component {
 
   handleChoice = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      paymentOption: e.target.value
     })
   }
 
