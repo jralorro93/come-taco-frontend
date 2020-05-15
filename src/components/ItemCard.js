@@ -11,8 +11,6 @@ const ItemCard = (props) => {
     
     useEffect(() => {
         let orderId = user.user.orders.find(order => order.item_id === food.id)
-        console.log('this is orderId', orderId.id)
-        console.log('this is food', food)
         setFoodOrderId(orderId.id)
     }, [])
 

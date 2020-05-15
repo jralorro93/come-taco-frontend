@@ -126,6 +126,12 @@ class App extends React.Component {
       }
   }
 
+  // componentDidUpdate(prevState) {
+  //   if (this.state.shoppingCart !== prevState.shoppingCart) {
+
+  //   }
+  // }
+
   render() {
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
