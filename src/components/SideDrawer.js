@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 
 //Importing from components
 import withSideDrawerStyles from '../styles/SideDrawer.style'
+import handleLogout from '../utils/Login/handleLogout'
 
 //Importing from MUI
 import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline, CardMedia } from '@material-ui/core';
 import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, PermIdentity } from '@material-ui/icons';
 
 const SideDrawer = (props) => {
-    const {classes} = props
+    const {classes, setCurrentUser, currentUser} = props
     const centeredText = { textAlign: 'center'}
-
+    
     return (
        <div className={classes.root}>
             <CssBaseline />
@@ -51,12 +52,12 @@ const SideDrawer = (props) => {
                         <ListItemText className={classes.navOptions} primary="Our Story"/>
                     </ListItem>
                     
-                    { props.currentUser ? (
+                    { currentUser ? (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ExitToApp />
                             </ListItemIcon>
-                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={props.handleLogout}/>
+                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={handleLogout(localStorage, setCurrentUser)}/>
                         </ListItem>
                     ) : (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
@@ -67,7 +68,7 @@ const SideDrawer = (props) => {
                         </ListItem>
                     )}
                     
-                    { props.currentUser ? (
+                    { currentUser ? (
                         <ListItem button divider component={Link} to='/shoppingcart' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ShoppingCart />

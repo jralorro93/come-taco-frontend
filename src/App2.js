@@ -17,8 +17,7 @@ import SideDrawer from "./components/SideDrawer";
 //Imports from MUI
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-const App = () => {
-    const [ shoppingCart, setShoppingCart ] = useState([])
+const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState()
 
     useEffect(() => {
@@ -33,13 +32,13 @@ const App = () => {
             .then(user => setCurrentUser(user))
         }
     }, [])
-
+    console.log('this is props', props)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div>
               <CssBaseline/>
-              <SideDrawer handleLogout={this.handleLogout} currentUser={this.state.currentUser}/>
+              <SideDrawer currentUser={currentUser} setCurrentUser={setCurrentUser}/>
               <div className='App'>
                 {/* Route to Menu page */}
                 <Route exact path='/' render={HomePage}/>
@@ -69,7 +68,7 @@ const App = () => {
                 <Route path='/login' render={
                   () => {
                     return (
-                      <Login handleLogin={this.handleLogin}/>
+                      <Login currentUser={currentUser} setCurrentUser={setCurrentUser} history={props.history}/>
                     )
                   }
                     } />

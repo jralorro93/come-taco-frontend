@@ -63,12 +63,12 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(user => {
-      
-   localStorage.setItem('token', user.jwt)
+        localStorage.setItem('token', user.jwt)
         this.setState({
           currentUser: user.user
         }, () => this.props.history.push('/'))
-      }) }
+      }) 
+  }
 
   handleLogout = () => {
     localStorage.removeItem('token')
@@ -146,7 +146,7 @@ class App extends React.Component {
                   () => {
                     return (
                       <div>
-                        <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
+                        <FoodContainer currentUser={this.state.currentUser} />
                       </div>
                     )
                   }
