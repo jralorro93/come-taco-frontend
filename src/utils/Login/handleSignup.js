@@ -15,7 +15,8 @@ const handleSignup = (email, password, firstName, lastName, setCurrentUser, loca
     .then(res => res.json())
     .then(user => {
         localStorage.setItem('token', user.jwt)
-        setCurrentUser(user.user, () => history.push('/'))
+        setCurrentUser(user.user)
+        history.push('/')
     })
 }
 
