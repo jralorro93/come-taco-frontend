@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Login = ({handleLogin, setCurrentUser, history}) => {
+const Login = ({setCurrentUser, history}) => {
     const classes = useStyles()
     const [ values, setValues ] = useState({
         email: '',

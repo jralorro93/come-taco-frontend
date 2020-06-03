@@ -19,6 +19,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState()
+    const [ shoppingCart, setShoppingCart ] = useState([])
 
     useEffect(() => {
         if (!currentUser && localStorage.getItem('token') !==null) {
@@ -29,14 +30,18 @@ const App = (props) => {
                 }
             })
             .then(res => res.json())
-            .then(user => setCurrentUser(user))
+            .then(user => {
+                setCurrentUser(user)
+                setShoppingCart(user.shoppingCart)
+            })
         }
-    }, [])
+    }, [currentUser])
 
     // useEffect(() => {
     //     const fetchData = () => {
 
     //     }
+    //     fetchData()
     // }, [currentUser])
     
     console.log('this is currentUser', currentUser)
