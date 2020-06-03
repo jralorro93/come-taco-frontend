@@ -32,7 +32,14 @@ const App = (props) => {
             .then(user => setCurrentUser(user))
         }
     }, [])
-    console.log('this is props', props)
+
+    // useEffect(() => {
+    //     const fetchData = () => {
+
+    //     }
+    // }, [currentUser])
+    
+    console.log('this is currentUser', currentUser)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
@@ -68,7 +75,7 @@ const App = (props) => {
                 <Route path='/login' render={
                   () => {
                     return (
-                      <Login currentUser={currentUser} setCurrentUser={setCurrentUser} history={props.history}/>
+                      <Login setCurrentUser={setCurrentUser} history={props.history}/>
                     )
                   }
                     } />
@@ -76,7 +83,7 @@ const App = (props) => {
                 <Route path='/signup' render={
                   () => {
                     return(
-                      <SignupForm handleSignup={this.handleSignup}/>
+                      <SignupForm setCurrentUser={setCurrentUser} history={props.history}/>
                     )
                   }
                 } />
