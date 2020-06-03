@@ -10,7 +10,7 @@ const handleLogin = ( email, password, setCurrentUser, localStorage, history) =>
     .then(res => res.json())
     .then(user => {
         localStorage.setItem('token', user.jwt)
-        setCurrentUser(user.user, () => history.push('/'))
+        setCurrentUser(user.user)
     })
 }
 export default handleLogin
