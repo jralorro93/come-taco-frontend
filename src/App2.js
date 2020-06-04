@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useRef} from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
 import {StripeProvider} from 'react-stripe-elements';
 
@@ -32,10 +32,10 @@ const App = (props) => {
             .then(res => res.json())
             .then(user => {
                 setCurrentUser(user)
-                setShoppingCart(user.shoppingCart)
+                setShoppingCart(user.items)
             })
         }
-    }, [currentUser])
+    }, [])
 
     // useEffect(() => {
     //     const fetchData = () => {
@@ -96,7 +96,7 @@ const App = (props) => {
                 <Route path='/shoppingcart' render={
                   () => {
                     return (
-                      <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={this.props.history}/>
+                      <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={props.history}/>
                     )
                   }
                 } />
