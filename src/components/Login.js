@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import handleLogin from '../utils/Login/handleLogin'
+// import handleLogin from '../utils/Login/handleLogin'
 
 import { Box, FormControl, InputAdornment, IconButton, TextField, FormGroup, Button } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Login = ({setCurrentUser, currentUser, history}) => {
+const Login = ({history, handleLogin}) => {
     const classes = useStyles()
     const [ values, setValues ] = useState({
         email: '',
@@ -84,7 +84,7 @@ const Login = ({setCurrentUser, currentUser, history}) => {
                 <Button 
                     variant='contained'
                     className={classes.button}
-                    onClick={ () => handleLogin(values.email, values.password, setCurrentUser, localStorage, history)}
+                    onClick={ () => handleLogin(values.email, values.password, history)}
                 >
                     Login
                 </Button>
