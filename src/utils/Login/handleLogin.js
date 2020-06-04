@@ -10,7 +10,9 @@ const handleLogin = ( email, password, setCurrentUser, localStorage, history) =>
     .then(res => res.json())
     .then(user => {
         localStorage.setItem('token', user.jwt)
+        console.log('this is localStorage', localStorage)
         setCurrentUser(user.user)
+        // history.push('/')
     })
 }
 export default handleLogin
