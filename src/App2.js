@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef} from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
 import {StripeProvider} from 'react-stripe-elements';
+import axios from 'axios'
 
 //Imports from Components
 import "./App.css";
@@ -18,32 +19,21 @@ import SideDrawer from "./components/SideDrawer";
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 const App = (props) => {
-    const [ currentUser, setCurrentUser ] = useState()
+    const [ currentUser, setCurrentUser ] = useState(null)
     const [ shoppingCart, setShoppingCart ] = useState([])
 
-    useEffect(() => {
-        if (!currentUser && localStorage.getItem('token') !==null) {
-            fetch("http://localhost:3000/api/v1/profile", {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            .then(res => res.json())
-            .then(user => {
-                setCurrentUser(user)
-                setShoppingCart(user.items)
-            })
-        }
-    }, [])
-
-    // useEffect(() => {
-    //     const fetchData = () => {
-
-    //     }
-    //     fetchData()
-    // }, [currentUser])
-    
+    const handleLogin = (email, password, history) => {
+        axios({
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            data: { email, password},
+            url: 'http://localhost:3000/api/v1/login'
+        })
+        .then( res => setCurrentUser(res.data.user))
+    }
     console.log('this is currentUser', currentUser)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
@@ -80,7 +70,7 @@ const App = (props) => {
                 <Route path='/login' render={
                   () => {
                     return (
-                      <Login setCurrentUser={setCurrentUser} history={props.history}/>
+                      <Login handleLogin={handleLogin} history={props.history} />
                     )
                   }
                     } />
