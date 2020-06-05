@@ -17,12 +17,13 @@ import SideDrawer from "./components/SideDrawer";
 
 //Imports from MUI
 import CssBaseline from '@material-ui/core/CssBaseline'
+import handleSignup from "./utils/Login/handleSignup";
 
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
     const [ shoppingCart, setShoppingCart ] = useState([])
 
-    const handleLogin = (email, password, history) => {
+    const handleLogin = (email, password) => {
         axios({
             method: 'post',
             headers: {
@@ -34,13 +35,35 @@ const App = (props) => {
         })
         .then( res => setCurrentUser(res.data.user))
     }
+    const handleLogout = () => {
+      localStorage.removeItem('token')
+      setCurrentUser(null)
+    }
+
+    const handleSignup = (email, password, first_name, last_name) => {
+      axios({
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        data: { email, password, first_name, last_name },
+        url: 'http://localhost:3000/api/v1/users'
+      })
+        .then( res => {
+          localStorage.setItem('token', res.data.user.jwt)
+          setCurrentUser(res.data.user.user)
+          props.history.push('/')
+        })
+    }
+
     console.log('this is currentUser', currentUser)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div>
               <CssBaseline/>
-              <SideDrawer currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+              <SideDrawer currentUser={currentUser} handleLogout={handleLogout}/>
               <div className='App'>
                 {/* Route to Menu page */}
                 <Route exact path='/' render={HomePage}/>
@@ -78,7 +101,7 @@ const App = (props) => {
                 <Route path='/signup' render={
                   () => {
                     return(
-                      <SignupForm setCurrentUser={setCurrentUser} history={props.history}/>
+                      <SignupForm handleSignup={handleSignup}/>
                     )
                   }
                 } />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import handleSignup from '../utils/Login/handleSignup'
+// import handleSignup from '../utils/Login/handleSignup'
 
 import { Box, FormGroup, TextField, FormControl, Button, InputAdornment, IconButton } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const SignupForm = ({setCurrentUser, history}) => {
+const SignupForm = ({handleSignup, history}) => {
     const classes = useStyles()
     const [ values, setValues ] = useState({
         email: '',
@@ -132,7 +132,7 @@ const SignupForm = ({setCurrentUser, history}) => {
                 <Button
                     variant='contained'
                     className={classes.button}
-                    onClick={() => handleSignup(values.email, values.password, values.firstName, values.lastName, setCurrentUser, localStorage, history )}
+                    onClick={() => handleSignup(values.email, values.password, values.firstName, values.lastName)}
                 >Submit</Button>
             </FormGroup>
         </Box>
