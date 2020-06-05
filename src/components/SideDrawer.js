@@ -51,12 +51,12 @@ const SideDrawer = (props) => {
                         <ListItemText className={classes.navOptions} primary="Our Story"/>
                     </ListItem>
                     
-                    {/* { currentUser ? (
+                    { currentUser ? (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ExitToApp />
                             </ListItemIcon>
-                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={handleLogout()}/>
+                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={() => handleLogout()}/>
                         </ListItem>
                     ) : (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
@@ -81,7 +81,7 @@ const SideDrawer = (props) => {
                             </ListItemIcon>
                             <ListItemText className={classes.navOptions} primary="Sign Up"/>
                         </ListItem>
-                    )} */}
+                    )}
                 </List>
             </Drawer>
         </div>
