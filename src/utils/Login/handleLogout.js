@@ -1,4 +1,4 @@
-const handleLogout = () => {
+const handleLogout = (localStorage, setCurrentUser) => {
     localStorage.removeItem('token')
     setCurrentUser(null)
   }

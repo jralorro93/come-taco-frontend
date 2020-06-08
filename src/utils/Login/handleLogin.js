@@ -11,5 +11,6 @@ const handleLogin = ( email, password, setCurrentUser, localStorage, history) =>
         url: 'http://localhost:3000/api/v1/login'
     })
         .then(res => setCurrentUser(res.data.user))
+        history.push('/')
 }
 export default handleLogin
