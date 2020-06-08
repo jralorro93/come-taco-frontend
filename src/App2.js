@@ -35,10 +35,6 @@ const App = (props) => {
         })
         .then( res => setCurrentUser(res.data.user))
     }
-    const handleLogout = () => {
-      localStorage.removeItem('token')
-      setCurrentUser(null)
-    }
 
     const handleSignup = (email, password, first_name, last_name) => {
       axios({
@@ -63,7 +59,7 @@ const App = (props) => {
           <Switch>
             <div>
               <CssBaseline/>
-              <SideDrawer currentUser={currentUser} handleLogout={handleLogout}/>
+              <SideDrawer currentUser={currentUser} />
               <div className='App'>
                 {/* Route to Menu page */}
                 <Route exact path='/' render={HomePage}/>
