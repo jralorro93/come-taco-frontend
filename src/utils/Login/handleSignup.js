@@ -1,3 +1,4 @@
+import axios from 'axios'
 // const handleSignup = (email, password, firstName, lastName, setCurrentUser, localStorage, history) => {
 //     fetch('http://localhost:3000/api/v1/users', {
 //         method: 'POST',
@@ -19,7 +20,7 @@
 //         history.push('/')
 //     })
 // }
-const handleSignup = (email, password, first_name, last_name) => {
+const handleSignup = (email, password, first_name, last_name, setCurrentUser, localStorage, history) => {
   axios({
     method: 'post',
     headers: {
@@ -32,7 +33,7 @@ const handleSignup = (email, password, first_name, last_name) => {
     .then( res => {
       localStorage.setItem('token', res.data.user.jwt)
       setCurrentUser(res.data.user.user)
-      props.history.push('/')
+      history.push('/')
     })
 }
 

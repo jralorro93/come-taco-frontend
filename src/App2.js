@@ -23,7 +23,24 @@ const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
     const [ shoppingCart, setShoppingCart ] = useState([])
 
-    console.log('this is currentUser', currentUser)
+    useEffect(() => {
+      const fetchData = () => {
+        if (localStorage.getItem('token') && !currentUser) {
+          axios({
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            url: 'http://localhost:3000/api/v1/profile'
+          })
+            .then(res => setCurrentUser(res.data.user))
+        }
+      }
+
+      fetchData()
+    }, [])
+    
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
