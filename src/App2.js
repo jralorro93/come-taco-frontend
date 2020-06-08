@@ -23,43 +23,13 @@ const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
     const [ shoppingCart, setShoppingCart ] = useState([])
 
-    const handleLogin = (email, password) => {
-        axios({
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            data: { email, password},
-            url: 'http://localhost:3000/api/v1/login'
-        })
-        .then( res => setCurrentUser(res.data.user))
-    }
-
-    const handleSignup = (email, password, first_name, last_name) => {
-      axios({
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        data: { email, password, first_name, last_name },
-        url: 'http://localhost:3000/api/v1/users'
-      })
-        .then( res => {
-          localStorage.setItem('token', res.data.user.jwt)
-          setCurrentUser(res.data.user.user)
-          props.history.push('/')
-        })
-    }
-
     console.log('this is currentUser', currentUser)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div>
               <CssBaseline/>
-              <SideDrawer currentUser={currentUser} />
+              <SideDrawer currentUser={currentUser} setCurrentUser={setCurrentUser}/>
               <div className='App'>
                 {/* Route to Menu page */}
                 <Route exact path='/' render={HomePage}/>
@@ -89,7 +59,7 @@ const App = (props) => {
                 <Route path='/login' render={
                   () => {
                     return (
-                      <Login handleLogin={handleLogin} history={props.history} />
+                      <Login history={props.history} setCurrentUser={setCurrentUser}/>
                     )
                   }
                     } />

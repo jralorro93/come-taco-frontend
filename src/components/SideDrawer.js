@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 
 //Importing from components
 import withSideDrawerStyles from '../styles/SideDrawer.style'
+import handleLogout from '../utils/Login/handleLogout'
 
 //Importing from MUI
 import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline, CardMedia } from '@material-ui/core';
 import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, PermIdentity } from '@material-ui/icons';
 
 const SideDrawer = (props) => {
-    const {classes, currentUser, handleLogout} = props
+    const {classes, currentUser, setCurrentUser} = props
     const centeredText = { textAlign: 'center'}
     
     return (
@@ -56,7 +57,7 @@ const SideDrawer = (props) => {
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ExitToApp />
                             </ListItemIcon>
-                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={() => handleLogout()}/>
+                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={() => handleLogout(localStorage, setCurrentUser)}/>
                         </ListItem>
                     ) : (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
