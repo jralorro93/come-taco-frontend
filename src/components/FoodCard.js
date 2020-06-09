@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 
 import withFoodCardStyles from '../styles/FoodCard.style'
 import handleAddToCart from '../utils/Cart/handleAddToCart'
@@ -6,17 +6,20 @@ import handleAddToCart from '../utils/Cart/handleAddToCart'
 import { Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typography, Collapse, Divider} from '@material-ui/core'
 import { ExpandMore, AddShoppingCart } from '@material-ui/icons'
 import clsx from 'clsx';
+import { UserContext } from '../App2';
 
 
 const FoodCard = (props) => {
-    const { classes, food, currentUser } = props
+    const { classes, food } = props
 
     const [expanded, setExpanded] = useState(false)
 
     const handleExpandCard = () => {
         setExpanded(!expanded)
     }
-    console.log('this is props', props)
+    
+    const user = useContext(UserContext)
+
     return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>
@@ -30,7 +33,7 @@ const FoodCard = (props) => {
             </CardContent>
             <Divider/>
             <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton onClick={() => handleAddToCart(currentUser.user.id, food.id)}>
+                <IconButton onClick={() => handleAddToCart(user.id, food.id)}>
                     <AddShoppingCart className={classes.icon} />
                 </IconButton>
                 <IconButton 

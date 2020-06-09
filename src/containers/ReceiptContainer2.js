@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-//Coment
 const ReceiptContainer2 = (props) => {
     const classes = useStyles()
     const [newCart, setNewCart] = useState([])
