@@ -17,7 +17,9 @@ import SideDrawer from "./components/SideDrawer";
 
 //Imports from MUI
 import CssBaseline from '@material-ui/core/CssBaseline'
-import handleSignup from "./utils/Login/handleSignup";
+
+export const UserContext = React.createContext()
+
 
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
@@ -45,66 +47,68 @@ const App = (props) => {
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div>
-              <CssBaseline/>
-              <SideDrawer currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-              <div className='App'>
-                {/* Route to Menu page */}
-                <Route exact path='/' render={HomePage}/>
-                <Route exact path='/menu' render={
-                  () => {
-                    return (
-                      <div>
-                        <FoodContainer currentUser={currentUser}/>
-                      </div>
-                    )
+              <UserContext.Provider value={currentUser}>
+                <CssBaseline/>
+                <SideDrawer currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                <div className='App'>
+                  {/* Route to Menu page */}
+                  <Route exact path='/' render={HomePage}/>
+                  <Route exact path='/menu' render={
+                    () => {
+                      return (
+                        <div>
+                          <FoodContainer/>
+                        </div>
+                      )
+                    }
                   }
-                }
-                />
-                {/* Route to About page */}
-                <Route path='/about' render={About}/>
-                {/* Route to Contact page */}
-                <Route path='/contact' render={
-                  () => {
-                    return (
-                      <div>
-                        <Contact/>
-                      </div>
-                    )
-                  }
-                }/>
-                {/* Route to Login page */}
-                <Route path='/login' render={
-                  () => {
-                    return (
-                      <Login history={props.history} setCurrentUser={setCurrentUser}/>
-                    )
-                  }
-                    } />
-                {/* Route to Signup page */}
-                <Route path='/signup' render={
-                  () => {
-                    return(
-                      <SignupForm history={props.history} setCurrentUser={setCurrentUser}/>
-                    )
-                  }
-                } />
-                {/* Route to ShoppingCart page */}
-                <Route path='/shoppingcart' render={
-                  () => {
-                    return (
-                      <ShoppingCart currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart} handleDelete={this.handleDelete} history={props.history}/>
-                    )
-                  }
-                } />
-              {/* Route to Checkout page*/}
-                <Route path='/checkout' render={
-                  () => {
-                    return (
-                      <Checkout currentUser={this.state.currentUser} shoppingCart={this.state.shoppingCart}/>
-                    )
-                  }
-                }/>
-              </div>
+                  />
+                  {/* Route to About page */}
+                  <Route path='/about' render={About}/>
+                  {/* Route to Contact page */}
+                  <Route path='/contact' render={
+                    () => {
+                      return (
+                        <div>
+                          <Contact/>
+                        </div>
+                      )
+                    }
+                  }/>
+                  {/* Route to Login page */}
+                  <Route path='/login' render={
+                    () => {
+                      return (
+                        <Login history={props.history} setCurrentUser={setCurrentUser}/>
+                      )
+                    }
+                      } />
+                  {/* Route to Signup page */}
+                  <Route path='/signup' render={
+                    () => {
+                      return(
+                        <SignupForm history={props.history} setCurrentUser={setCurrentUser}/>
+                      )
+                    }
+                  } />
+                  {/* Route to ShoppingCart page */}
+                  <Route path='/shoppingcart' render={
+                    () => {
+                      return (
+                        <ShoppingCart currentUser={currentUser} shoppingCart={shoppingCart} history={props.history}/>
+                      )
+                    }
+                  } />
+                {/* Route to Checkout page*/}
+                  <Route path='/checkout' render={
+                    () => {
+                      return (
+                        <Checkout currentUser={currentUser} shoppingCart={shoppingCart}/>
+                      )
+                    }
+                  }/>
+                </div>
+              </UserContext.Provider>
             </div>
           </Switch>
         </StripeProvider>

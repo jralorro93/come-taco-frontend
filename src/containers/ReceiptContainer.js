@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 
 import ItemCard from '../components/ItemCard'
 
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { UserContext } from '../App2';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -18,20 +19,32 @@ const useStyles = makeStyles(theme => ({
 
 const ReceiptContainer = (props) => {
   const classes = useStyles()
-  const { shoppingCart, user } = props
+  const [shoppingCart, setShoppingCart] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
+  const user = useContext(UserContext)
+
+  useEffect(() => {
+    const fetchData = () => {
+      setShoppingCart(user.items)
+      setIsLoaded(true)
+    }
+    if (user) {fetchData()}
+  }, [user])
+
+  const showCart = shoppingCart.length === 0 ? <h2>Your Shopping Cart is Empty!</h2> : (
+    <Grid container className={classes.container}>
+      {shoppingCart.map(food => (
+        <Grid item>
+          <ItemCard food={food} handleDelete={props.handleDelete}/>
+        </Grid>  
+      ))}
+    </Grid>
+  )
   return (
       <div>
         <h2>Your cart</h2>
-        {shoppingCart.length === 0 ? <h2>Your Shopping Cart is Empty!</h2> : (
-          <Grid container className={classes.container}>
-            {shoppingCart.map(food => (
-              <Grid item>
-                <ItemCard food={food} user={user} handleDelete={props.handleDelete}/>
-              </Grid>  
-            ))}
-          </Grid>
-        )}
+        {isLoaded ? showCart : <h2>Loading...</h2>}
       </div>
     )
 }
