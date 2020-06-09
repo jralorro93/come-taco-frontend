@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme =>({
     }
 }))
 
-const FoodContainer = (props) => {
+const FoodContainer = ({currentUser}) => {
     const classes = useStyles()
     const [foodList, setFoodList] = useState([])
     const [categoryChoice, setCategoryChoice] = useState("all")
@@ -39,6 +39,7 @@ const FoodContainer = (props) => {
         fetchData()
     }, [])
 
+    
     return (
         <div>
             <Category handleChoice={handleChoice} categoryChoice={categoryChoice} />
@@ -46,10 +47,10 @@ const FoodContainer = (props) => {
             <Grid container className={classes.container}>
                 { categoryChoice === 'all' ? ( foodList.map(food => (
                     <Grid item>
-                        <FoodCard currentUser={props.currentUser} food={food}/>
+                        <FoodCard currentUser={currentUser} food={food}/>
                     </Grid>))) : ( foodList.filter(food => food.category.includes(categoryChoice)).map(food => (
                     <Grid item>
-                        <FoodCard currentUser={props.currentUser} food={food}/>
+                        <FoodCard currentUser={currentUser} food={food}/>
                     </Grid>
                 )))}
             </Grid>
@@ -57,5 +58,3 @@ const FoodContainer = (props) => {
     )
 }
 export default FoodContainer
-
-// {this.state.foodsList.filter(food => food.category.includes(this.props.categoryChoice)).map(food => <FoodCard currentUser={this.props.currentUser} food={food}/>)}

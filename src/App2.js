@@ -54,7 +54,7 @@ const App = (props) => {
                   () => {
                     return (
                       <div>
-                        <FoodContainer currentUser={this.state.currentUser} categoryChoice={this.state.categoryChoice}/>
+                        <FoodContainer currentUser={currentUser}/>
                       </div>
                     )
                   }
@@ -84,7 +84,7 @@ const App = (props) => {
                 <Route path='/signup' render={
                   () => {
                     return(
-                      <SignupForm handleSignup={handleSignup}/>
+                      <SignupForm history={props.history} setCurrentUser={setCurrentUser}/>
                     )
                   }
                 } />
