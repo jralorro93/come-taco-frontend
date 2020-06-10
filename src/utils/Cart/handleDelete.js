@@ -1,7 +1,25 @@
-import React, { useState, useEffect} from 'react'
+import axios from 'axios'
 
-//scope is 'this'
-const handleDelete = (id, foodObj, scope) = {
-    
+const handleDelete = (id, foodObj, localStorage, shoppingCart, setShoppingCart) => {
+    axios({
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `BEARER ${localStorage.getItem('token')}`
+        },
+        url: `http://localhost:3000/api/v1/orders/${id}`,
+        data: foodObj
+    })
+        .then(res => {
+            let newShoppingCart = [...shoppingCart]
+            let index = newShoppingCart.indexOf(foodObj)
+            newShoppingCart.splice(index, 1)
+            setShoppingCart(newShoppingCart)
+        })
+        .catch(err => console.log('Error ', err))
 }
+
 export default handleDelete
+// PROBLEM IS THAT WE ARE DELETING THE ID OF THE FOODOBJ
+// NOT THE ACTUAL ORDER ID

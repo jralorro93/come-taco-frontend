@@ -36,7 +36,7 @@ const ReceiptContainer = (props) => {
     <Grid container className={classes.container}>
       {shoppingCart.map(food => (
         <Grid item>
-          <ItemCard food={food} handleDelete={props.handleDelete}/>
+          <ItemCard food={food} key={food.id} id ={food.id} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart}/>
         </Grid>  
       ))}
     </Grid>

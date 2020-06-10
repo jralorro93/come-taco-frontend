@@ -1,19 +1,12 @@
 import React, {useState, useEffect} from 'react'
 
 import withFoodCardStyles from '../styles/FoodCard.style'
+import handleDelete from '../utils/Cart/handleDelete'
 
 import { Divider, Card, CardHeader, CardMedia, CardContent, CardActions, IconButton} from '@material-ui/core'
 import { RemoveShoppingCart } from '@material-ui/icons'
-import { UserContext } from '../App2'
 
-const ItemCard = (props) => {
-    const { food, classes} = props
-    const [foodOrderId, setFoodOrderId] = useState('')
-
-    // useEffect(() => {
-    //     let orderId = user.user.orders.find(order => order.item_id === food.id)
-    //     setFoodOrderId(orderId.id)
-    // }, [])
+const ItemCard = ({ food, classes, id, shoppingCart, setShoppingCart}) => {
 
    return (
         <Card className={classes.card}>
@@ -28,7 +21,7 @@ const ItemCard = (props) => {
             </CardContent>
             <Divider />
             <CardActions>
-                <IconButton onClick={ () => props.handleDelete(foodOrderId, food)}>
+                <IconButton onClick={ () => handleDelete(id, food, localStorage, shoppingCart, setShoppingCart)}>
                     <RemoveShoppingCart className={classes.icon}/>
                 </IconButton>
             </CardActions>
