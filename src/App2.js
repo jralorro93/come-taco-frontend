@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from "react";
+import React, { useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
 import {StripeProvider} from 'react-stripe-elements';
 import axios from 'axios'
@@ -23,7 +23,6 @@ export const UserContext = React.createContext()
 
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
-    const [ shoppingCart, setShoppingCart ] = useState([])
 
     useEffect(() => {
       const fetchData = () => {
