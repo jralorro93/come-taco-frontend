@@ -21,5 +21,3 @@ const handleDelete = (id, foodObj, localStorage, shoppingCart, setShoppingCart) 
 }
 
 export default handleDelete
-// PROBLEM IS THAT WE ARE DELETING THE ID OF THE FOODOBJ
-// NOT THE ACTUAL ORDER ID

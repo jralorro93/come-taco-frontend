@@ -15,10 +15,10 @@ const ItemCard = ({ food, classes, orders, shoppingCart, setShoppingCart}) => {
 
     useEffect(() => {
         if (orders) {
-            setOrderId(handleOrderId)
+            setOrderId(handleOrderId(food.id, orders))
         }
     }, [])
-
+    console.log('this is orderId', orderId)
    return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>
@@ -32,7 +32,7 @@ const ItemCard = ({ food, classes, orders, shoppingCart, setShoppingCart}) => {
             </CardContent>
             <Divider />
             <CardActions>
-                <IconButton >
+                <IconButton onClick={ () => handleDelete(orderId, food, localStorage, shoppingCart, setShoppingCart)}>
                     <RemoveShoppingCart className={classes.icon}/>
                 </IconButton>
             </CardActions>
