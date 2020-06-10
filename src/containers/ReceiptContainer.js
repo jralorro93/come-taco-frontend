@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 
 import ItemCard from '../components/ItemCard'
+import handleOrderId from '../utils/Cart/handleOrderId'
 
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,11 +37,13 @@ const ReceiptContainer = (props) => {
     <Grid container className={classes.container}>
       {shoppingCart.map(food => (
         <Grid item>
-          <ItemCard food={food} key={food.id} id ={food.id} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart}/>
+          <ItemCard food={food} key={food.id} orders={user.orders} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart}/>
         </Grid>  
       ))}
     </Grid>
   )
+
+  console.log('this is user', user)
   return (
       <div>
         <h2>Your cart</h2>
