@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const handleSignup = (email, password, first_name, last_name, setCurrentUser, localStorage, history) => {
+const handleSignup = (email, password, first_name, last_name, dispatch, localStorage, history) => {
   axios({
     method: 'post',
     headers: {
@@ -12,7 +12,7 @@ const handleSignup = (email, password, first_name, last_name, setCurrentUser, lo
   })
     .then( res => {
       localStorage.setItem('token', res.data.jwt)
-      setCurrentUser(res.data.user.user)
+      dispatch({type: 'LOGIN_USER', payload: res.data.user.user})
       history.push('/')
     })
 }

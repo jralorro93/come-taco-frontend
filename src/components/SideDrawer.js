@@ -13,7 +13,7 @@ import { UserContext } from '../App2';
 const SideDrawer = ({classes}) => {
     const centeredText = { textAlign: 'center'}
 
-    const currentUser = useContext(UserContext)
+    const { dispatch } = useContext(UserContext)
 
     return (
        <div className={classes.root}>
@@ -54,9 +54,9 @@ const SideDrawer = ({classes}) => {
                         <ListItemText className={classes.navOptions} primary="Our Story"/>
                     </ListItem>
                     
-                    { currentUser ? (
-                        <ListItem button divider component={Link} to='/login' className={classes.listItem}>
-                            <ListItemIcon className={classes.drawerIcon} onClick={() => console.log('its me')}>
+                    { localStorage.getItem('token') ? (
+                        <ListItem button divider component={Link} to='/login' className={classes.listItem} onClick={() => handleLogout(localStorage, dispatch)}>
+                            <ListItemIcon className={classes.drawerIcon}>
                                 <ExitToApp />
                             </ListItemIcon>
                             <ListItemText className={classes.navOptions} primary="Log Out" />
@@ -70,7 +70,7 @@ const SideDrawer = ({classes}) => {
                         </ListItem>
                     )}
                     
-                    { currentUser ? (
+                    { localStorage.getItem('token') ? (
                         <ListItem button divider component={Link} to='/shoppingcart' className={classes.listItem}>
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ShoppingCart />

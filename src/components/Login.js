@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 import handleLogin from '../utils/Login/handleLogin'
-import UserContext from '../App2'
+import { UserContext } from '../App2'
 
 import { Box, FormControl, InputAdornment, IconButton, TextField, FormGroup, Button } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
@@ -45,10 +45,7 @@ const Login = ({history, setCurrentUser}) => {
         e.preventDefault()
     }
 
-    const user = useContext(UserContext)
-
-    // console.log('this is state', state)
-    // console.log('this is dispatch', dispatch)
+    const {user, dispatch} = useContext(UserContext)
 
     return (
         <Box className={classes.container}>
@@ -90,7 +87,7 @@ const Login = ({history, setCurrentUser}) => {
                 <Button 
                     variant='contained'
                     className={classes.button}
-                    onClick={ () => handleLogin(values.email, values.password, setCurrentUser, localStorage, history)}
+                    onClick={ () => handleLogin(values.email, values.password, dispatch, localStorage, history)}
                 >
                     Login
                 </Button>

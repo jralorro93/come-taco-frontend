@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const handleLogin = ( email, password, setCurrentUser, localStorage, history) => {
+const handleLogin = ( email, password, dispatch, localStorage, history) => {
     axios({
         method: 'post',
         headers: {
@@ -12,9 +12,12 @@ const handleLogin = ( email, password, setCurrentUser, localStorage, history) =>
     })
         .then(res => {
             localStorage.setItem('token', res.data.jwt)
-            setCurrentUser(res.data.user)
+            dispatch({type: 'LOGIN_USER', payload: res.data.user})
             history.push('/')
         })
         
 }
 export default handleLogin
+
+// Look to refactor this and handleSignup
+// Same code except for URL
