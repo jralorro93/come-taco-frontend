@@ -1,5 +1,5 @@
-const handleLogout = (localStorage, setCurrentUser) => {
+const handleLogout = (localStorage, dispatch) => {
     localStorage.removeItem('token')
-    setCurrentUser(null)
+    dispatch({type: 'LOGOUT_USER'})
   }
   export default handleLogout

@@ -29,7 +29,7 @@ const initialState = {
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
 
-    const [ state, dispatch ] = useReducer(reducer, initialState)
+    const [ user, dispatch ] = useReducer(reducer, initialState)
 
     useEffect(()=> {
       if (localStorage.getItem('token')) {
@@ -49,11 +49,12 @@ const App = (props) => {
       }
     }, [])
 
+    console.log('user', user)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div>
-              <UserContext.Provider value={state}>
+              <UserContext.Provider value={{user, dispatch}}>
                 <CssBaseline/>
                 <SideDrawer />
                 <div className='App'>

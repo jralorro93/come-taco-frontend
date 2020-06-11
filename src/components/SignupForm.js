@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import handleSignup from '../utils/Login/handleSignup'
+import { UserContext } from '../App2'
 
 import { Box, FormGroup, TextField, FormControl, Button, InputAdornment, IconButton } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
@@ -25,7 +26,10 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const SignupForm = ({history, setCurrentUser}) => {
+const SignupForm = ({history}) => {
+
+    const { dispatch } = useContext(UserContext)
+
     const classes = useStyles()
     const [ values, setValues ] = useState({
         email: '',
@@ -49,6 +53,9 @@ const SignupForm = ({history, setCurrentUser}) => {
         e.preventDefault()
     }
 
+
+    // Pass confirmation needs to be fixed
+    // Needs to add conditional statement
     return (
         <Box className={classes.container}>
             <h1>Signup</h1>
@@ -132,7 +139,7 @@ const SignupForm = ({history, setCurrentUser}) => {
                 <Button
                     variant='contained'
                     className={classes.button}
-                    onClick={() => handleSignup(values.email, values.password, values.firstName, values.lastName, setCurrentUser, localStorage, history)}
+                    onClick={() => handleSignup(values.email, values.password, values.firstName, values.lastName, dispatch, localStorage, history)}
                 >Submit</Button>
             </FormGroup>
         </Box>

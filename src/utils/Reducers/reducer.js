@@ -21,3 +21,5 @@ const reducer = (state, action) => {
     }
 }
 export default reducer
+
+// LOG OUT DOESN'T REMOVE localStorage TOKEN
