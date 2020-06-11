@@ -43,7 +43,7 @@ const ReceiptContainer = (props) => {
     </Grid>
   )
 
-  console.log('this is props', props)
+  console.log('this is user', user)
   return (
       <div>
         <h2>Your cart</h2>
