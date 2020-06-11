@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useReducer} from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
 import {StripeProvider} from 'react-stripe-elements';
 import axios from 'axios'
@@ -14,33 +14,58 @@ import SignupForm from './components/SignupForm'
 import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
 import SideDrawer from "./components/SideDrawer";
+import reducer from './utils/Reducers/reducer'
 
 //Imports from MUI
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 export const UserContext = React.createContext()
 
+const initialState = {
+  currentUser: {},
+  shoppingCart: []
+}
+
 
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
 
-    useEffect(() => {
-      const fetchData = () => {
-        if (localStorage.getItem('token') && !currentUser) {
-          axios({
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            url: 'http://localhost:3000/api/v1/profile'
-          })
-            .then(res => setCurrentUser(res.data.user))
-        }
-      }
+    const [ state, dispatch ] = useReducer(reducer, initialState)
 
-      fetchData()
+    useEffect(()=> {
+      if (localStorage.getItem('token') && !currentUser) {
+        axios({
+          method: 'get',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          url: 'http://localhost:3000/api/v1/profile'
+        })
+          .then(res => {
+            dispatch({type: 'GET_USER', payload: res.data.user})
+          })
+          .catch(err => console.log('Error: ', err))
+      }
     }, [])
+
+    // useEffect(() => {
+    //   const fetchData = () => {
+        // if (localStorage.getItem('token') && !currentUser) {
+        //   axios({
+        //     method: 'get',
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //       'Authorization': `Bearer ${localStorage.getItem('token')}`
+        //     },
+        //     url: 'http://localhost:3000/api/v1/profile'
+        //   })
+        //     .then(res => setCurrentUser(res.data.user))
+        // }
+    //   }
+
+    //   fetchData()
+    // }, [])
     
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
@@ -91,20 +116,20 @@ const App = (props) => {
                     }
                   } />
                   {/* Route to ShoppingCart page */}
-                  <Route path='/shoppingcart' render={
+                  {/* <Route path='/shoppingcart' render={
                     () => {
                       return (
                         <ShoppingCart currentUser={currentUser} shoppingCart={shoppingCart} history={props.history}/>
                       )
                     }
-                  } />
+                  } /> */}
                 {/* Route to Checkout page*/}
-                  <Route path='/checkout' render={
+                  {/* <Route path='/checkout' render={
                     () => {
                       return (
                         <Checkout currentUser={currentUser} shoppingCart={shoppingCart}/>
                       )
-                    }
+                    } */}
                   }/>
                 </div>
               </UserContext.Provider>
