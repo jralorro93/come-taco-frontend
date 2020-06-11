@@ -45,28 +45,10 @@ const App = (props) => {
             dispatch({type: 'GET_USER', payload: res.data.user})
           })
           .catch(err => console.log('Error: ', err))
+
       }
     }, [])
 
-    console.log('this is state', state.user)
-    // useEffect(() => {
-    //   const fetchData = () => {
-        // if (localStorage.getItem('token') && !currentUser) {
-        //   axios({
-        //     method: 'get',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //       'Authorization': `Bearer ${localStorage.getItem('token')}`
-        //     },
-        //     url: 'http://localhost:3000/api/v1/profile'
-        //   })
-        //     .then(res => setCurrentUser(res.data.user))
-        // }
-    //   }
-
-    //   fetchData()
-    // }, [])
-    console.log('this is state', state)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
@@ -140,3 +122,21 @@ const App = (props) => {
 }
 
 export default withRouter(App)
+
+    // useEffect(() => {
+    //   const fetchData = () => {
+        // if (localStorage.getItem('token') && !currentUser) {
+        //   axios({
+        //     method: 'get',
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //       'Authorization': `Bearer ${localStorage.getItem('token')}`
+        //     },
+        //     url: 'http://localhost:3000/api/v1/profile'
+        //   })
+        //     .then(res => setCurrentUser(res.data.user))
+        // }
+    //   }
+
+    //   fetchData()
+    // }, [])

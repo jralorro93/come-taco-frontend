@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import handleLogin from '../utils/Login/handleLogin'
+import UserContext from '../App2'
 
 import { Box, FormControl, InputAdornment, IconButton, TextField, FormGroup, Button } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
@@ -43,6 +44,11 @@ const Login = ({history, setCurrentUser}) => {
     const handleMouseDownPassword = (e) => {
         e.preventDefault()
     }
+
+    const user = useContext(UserContext)
+
+    // console.log('this is state', state)
+    // console.log('this is dispatch', dispatch)
 
     return (
         <Box className={classes.container}>

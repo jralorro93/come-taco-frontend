@@ -56,7 +56,7 @@ const SideDrawer = ({classes}) => {
                     
                     { currentUser ? (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
-                            <ListItemIcon className={classes.drawerIcon}>
+                            <ListItemIcon className={classes.drawerIcon} onClick={() => console.log('its me')}>
                                 <ExitToApp />
                             </ListItemIcon>
                             <ListItemText className={classes.navOptions} primary="Log Out" />

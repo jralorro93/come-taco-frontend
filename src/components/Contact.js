@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import withContactStyles from '../styles/Contact.style'
 import { TextField, FormGroup, FormControl, Typography, Button} from '@material-ui/core'
 
@@ -16,7 +16,7 @@ const Contact = (props) => {
         setValues({...values, [name]:value})
         console.log('this is values', values)
     }
-
+    
     return (
         <div className={classes.container}>
             <Typography variant='h1' gutterBottom>Give us your feedback! We would love to hear it!</Typography>
