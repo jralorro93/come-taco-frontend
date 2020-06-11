@@ -22,8 +22,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 export const UserContext = React.createContext()
 
 const initialState = {
-  currentUser: {},
-  shoppingCart: []
+  user: {}
 }
 
 
@@ -33,7 +32,7 @@ const App = (props) => {
     const [ state, dispatch ] = useReducer(reducer, initialState)
 
     useEffect(()=> {
-      if (localStorage.getItem('token') && !currentUser) {
+      if (localStorage.getItem('token')) {
         axios({
           method: 'get',
           headers: {
@@ -49,6 +48,7 @@ const App = (props) => {
       }
     }, [])
 
+    console.log('this is state', state.user)
     // useEffect(() => {
     //   const fetchData = () => {
         // if (localStorage.getItem('token') && !currentUser) {
@@ -66,14 +66,14 @@ const App = (props) => {
 
     //   fetchData()
     // }, [])
-    
+    console.log('this is state', state)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
             <div>
-              <UserContext.Provider value={currentUser}>
+              <UserContext.Provider value={state}>
                 <CssBaseline/>
-                <SideDrawer currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                <SideDrawer />
                 <div className='App'>
                   {/* Route to Menu page */}
                   <Route exact path='/' render={HomePage}/>

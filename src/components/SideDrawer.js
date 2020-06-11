@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 
 //Importing from components
@@ -8,11 +8,13 @@ import handleLogout from '../utils/Login/handleLogout'
 //Importing from MUI
 import { Drawer, Divider, List, ListItem, ListItemText, ListItemIcon, CssBaseline, CardMedia } from '@material-ui/core';
 import { Home, Computer, Email, MenuBook, ExitToApp, PersonAdd, ShoppingCart, PermIdentity } from '@material-ui/icons';
+import { UserContext } from '../App2';
 
-const SideDrawer = (props) => {
-    const {classes, currentUser, setCurrentUser} = props
+const SideDrawer = ({classes}) => {
     const centeredText = { textAlign: 'center'}
-    
+
+    const currentUser = useContext(UserContext)
+
     return (
        <div className={classes.root}>
             <CssBaseline />
@@ -57,7 +59,7 @@ const SideDrawer = (props) => {
                             <ListItemIcon className={classes.drawerIcon}>
                                 <ExitToApp />
                             </ListItemIcon>
-                            <ListItemText className={classes.navOptions} primary="Log Out" onClick={() => handleLogout(localStorage, setCurrentUser)}/>
+                            <ListItemText className={classes.navOptions} primary="Log Out" />
                         </ListItem>
                     ) : (
                         <ListItem button divider component={Link} to='/login' className={classes.listItem}>
