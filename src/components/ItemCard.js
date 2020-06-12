@@ -11,7 +11,7 @@ import { RemoveShoppingCart } from '@material-ui/icons'
 
 const ItemCard = ({ food, classes, orders, shoppingCart, setShoppingCart}) => {
     
-    const [orderId, setOrderId ] = useState()
+    const [ orderId, setOrderId ] = useState()
 
     useEffect(() => {
         if (orders) {

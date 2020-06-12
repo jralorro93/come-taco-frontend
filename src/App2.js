@@ -44,6 +44,7 @@ const App = (props) => {
         })
           .then(res => {
             dispatch({type: 'GET_USER', payload: res.data.user})
+            dispatch({type: 'GET_ITEMS', payload: res.data.user.items})
           })
           .catch(err => console.log('Error: ', err))
 

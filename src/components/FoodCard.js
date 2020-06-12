@@ -18,7 +18,9 @@ const FoodCard = (props) => {
         setExpanded(!expanded)
     }
     
-    const user = useContext(UserContext)
+    const { user, dispatch } = useContext(UserContext)
+
+    console.log('this is dispatch', dispatch)
 
     return (
         <Card className={classes.card}>
