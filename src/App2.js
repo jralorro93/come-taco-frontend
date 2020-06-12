@@ -22,7 +22,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 export const UserContext = React.createContext()
 
 const initialState = {
-  user: {}
+  user: {},
+  shoppingCart: []
 }
 
 
@@ -49,7 +50,6 @@ const App = (props) => {
       }
     }, [])
 
-    console.log('user', user)
     return (
         <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
           <Switch>
@@ -86,7 +86,7 @@ const App = (props) => {
                   <Route path='/login' render={
                     () => {
                       return (
-                        <Login history={props.history} setCurrentUser={setCurrentUser}/>
+                        <Login history={props.history} />
                       )
                     }
                       } />
@@ -94,18 +94,18 @@ const App = (props) => {
                   <Route path='/signup' render={
                     () => {
                       return(
-                        <SignupForm history={props.history} setCurrentUser={setCurrentUser}/>
+                        <SignupForm history={props.history}/>
                       )
                     }
                   } />
                   {/* Route to ShoppingCart page */}
-                  {/* <Route path='/shoppingcart' render={
+                  <Route path='/shoppingcart' render={
                     () => {
                       return (
-                        <ShoppingCart currentUser={currentUser} shoppingCart={shoppingCart} history={props.history}/>
+                        <ShoppingCart history={props.history}/>
                       )
                     }
-                  } /> */}
+                  } />
                 {/* Route to Checkout page*/}
                   {/* <Route path='/checkout' render={
                     () => {

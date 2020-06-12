@@ -23,15 +23,25 @@ const ReceiptContainer = (props) => {
   const [shoppingCart, setShoppingCart] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
-  const user = useContext(UserContext)
+  const { user, dispatch } = useContext(UserContext)
+
+  console.log('this is user', user.user.items)
+
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     setShoppingCart(user.items)
+  //     setIsLoaded(true)
+  //   }
+  //   if (user) {fetchData()}
+  // }, [user])
 
   useEffect(() => {
     const fetchData = () => {
-      setShoppingCart(user.items)
+      dispatch({type: 'GET_ITEMS'})
       setIsLoaded(true)
     }
-    if (user) {fetchData()}
-  }, [user])
+    if (user) { fetchData()}
+  }, [])
 
   const showCart = shoppingCart.length === 0 ? <h2>Your Shopping Cart is Empty!</h2> : (
     <Grid container className={classes.container}>
