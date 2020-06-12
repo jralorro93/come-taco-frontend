@@ -20,40 +20,24 @@ const useStyles = makeStyles(theme => ({
 
 const ReceiptContainer = (props) => {
   const classes = useStyles()
-  const [shoppingCart, setShoppingCart] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
 
   const { user, dispatch } = useContext(UserContext)
 
-  console.log('this is user', user.user.items)
-
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     setShoppingCart(user.items)
-  //     setIsLoaded(true)
-  //   }
-  //   if (user) {fetchData()}
-  // }, [user])
-
   useEffect(() => {
-    const fetchData = () => {
-      dispatch({type: 'GET_ITEMS'})
-      setIsLoaded(true)
-    }
-    if (user) { fetchData()}
+    if (user) { setIsLoaded(true) }
   }, [])
 
-  const showCart = shoppingCart.length === 0 ? <h2>Your Shopping Cart is Empty!</h2> : (
+  const showCart = user.shoppingCart.length === 0 ? <h2>Your Shopping Cart is Empty!</h2> : (
     <Grid container className={classes.container}>
-      {shoppingCart.map(food => (
+      {user.shoppingCart.map(food => (
         <Grid item>
-          <ItemCard food={food} key={food.id} orders={user.orders} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart}/>
+          <ItemCard food={food} key={food.id} orders={user.user.orders}/>
         </Grid>  
       ))}
     </Grid>
   )
 
-  console.log('this is user', user)
   return (
       <div>
         <h2>Your cart</h2>

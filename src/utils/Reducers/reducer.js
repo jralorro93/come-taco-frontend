@@ -16,7 +16,8 @@ const reducer = (state, action) => {
             }
         case 'GET_ITEMS':
             return {
-
+                ...state,
+                shoppingCart: action.payload   
             }
         case 'ADD_ITEM':
             return console.log('this is state')
