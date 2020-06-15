@@ -12,7 +12,8 @@ const reducer = (state, action) => {
             }
         case 'LOGOUT_USER':
             return {
-                user: {}
+                user: {},
+                shoppingCart: []
             }
         case 'GET_ITEMS':
             return {
@@ -20,7 +21,10 @@ const reducer = (state, action) => {
                 shoppingCart: action.payload   
             }
         case 'ADD_ITEM':
-            return console.log('this is state')
+            return {
+                ...state,
+                shoppingCart: [ ...state.shoppingCart, action.payload]
+            }
         case 'CONSOLE_LOG': 
             return console.log('did this work?')
         default:

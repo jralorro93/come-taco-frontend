@@ -20,8 +20,10 @@ const FoodCard = (props) => {
     
     const { user, dispatch } = useContext(UserContext)
 
-    console.log('this is dispatch', dispatch)
-
+    // Current Issue: 
+    // When item is added to cart, user goes to Shopping Cart
+    // Shopping Cart breaks b/c new item's id is undefined??
+    
     return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>
@@ -35,7 +37,7 @@ const FoodCard = (props) => {
             </CardContent>
             <Divider/>
             <CardActions className={classes.actions} disableActionSpacing>
-                <IconButton onClick={() => handleAddToCart(user.id, food.id)}>
+                <IconButton onClick={() => handleAddToCart(user.user.id, food, dispatch)}>
                     <AddShoppingCart className={classes.icon} />
                 </IconButton>
                 <IconButton 
