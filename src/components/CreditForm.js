@@ -26,42 +26,42 @@ class CreditForm extends Component {
         })
     }
 
-    async submit(e, price, userId, cart) {
-        e.preventDefault()
+    // async submit(e, price, userId, cart) {
+    //     e.preventDefault()
 
-        //Handles payment history
-        handlePayment(price, userId, cart)
+    //     //Handles payment history
+    //     handlePayment(price, userId, cart)
 
-        //Handles payment charge via Stripe
-        let {token, error} = await this.props.stripe.createToken({name: `${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}) 
-        let charge = {
-            amount: price * 100,
-            currency: 'usd',
-            token: token.id
-        }
+    //     //Handles payment charge via Stripe
+    //     let {token, error} = await this.props.stripe.createToken({name: `${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}) 
+    //     let charge = {
+    //         amount: price * 100,
+    //         currency: 'usd',
+    //         token: token.id
+    //     }
 
-        if (token.error) {
-            return token.error
-        }
+    //     if (token.error) {
+    //         return token.error
+    //     }
 
-        let response = await fetch('http://localhost:3000/api/v1/charges', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify({charge: charge})
-        })
-    }
+    //     let response = await fetch('http://localhost:3000/api/v1/charges', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //             'Authorization': `Bearer ${localStorage.getItem('token')}`
+    //         },
+    //         body: JSON.stringify({charge: charge})
+    //     })
+    // }
     
     render() {
-        let grandTotal = handleGrandTotal(this.props.shoppingCart)
+        // let grandTotal = handleGrandTotal(this.props.shoppingCart)
         console.log('this is style',style.base)
         return (
             <div id='creditFormBox'>
                 <h3>Enter Credit Info Below:</h3>
-                <form id='ccForm' onSubmit={(e) => this.submit(e, grandTotal, this.props.currentUser.user.id , this.props.shoppingCart)}>
+                <form id='ccForm' >
                     <label>
                         Card Number
                         <CardNumberElement 
@@ -103,3 +103,4 @@ class CreditForm extends Component {
 }
 export default injectStripe(CreditForm)
 
+// onSubmit={(e) => this.submit(e, grandTotal, this.props.currentUser.user.id , this.props.shoppingCart)}

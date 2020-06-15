@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer} from "react";
 import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
-import {StripeProvider} from 'react-stripe-elements';
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 
 //Imports from Components
@@ -26,6 +27,7 @@ const initialState = {
   shoppingCart: []
 }
 
+const stripePromise = loadStripe('pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk')
 
 const App = (props) => {
     const [ currentUser, setCurrentUser ] = useState(null)
@@ -52,7 +54,7 @@ const App = (props) => {
     }, [])
 
     return (
-        <StripeProvider apiKey='pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk'>
+        <Elements stripe={stripePromise}>
           <Switch>
             <div>
               <UserContext.Provider value={{user, dispatch}}>
@@ -119,7 +121,7 @@ const App = (props) => {
               </UserContext.Provider>
             </div>
           </Switch>
-        </StripeProvider>
+        </Elements>
     )
 }
 
