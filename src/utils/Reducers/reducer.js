@@ -25,6 +25,11 @@ const reducer = (state, action) => {
                 ...state,
                 shoppingCart: [ ...state.shoppingCart, action.payload]
             }
+        case 'REMOVE_ITEM':
+            return {
+                ...state,
+                shoppingCart: action.payload
+            }
         case 'CONSOLE_LOG': 
             return console.log('did this work?')
         default:
