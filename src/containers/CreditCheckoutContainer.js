@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Elements} from 'react-stripe-elements';
-import CreditForm from '../components/CreditForm'
+import CreditForm from '../components/CreditForm2'
 
 class CreditCheckoutContainer extends Component {
     render() {
