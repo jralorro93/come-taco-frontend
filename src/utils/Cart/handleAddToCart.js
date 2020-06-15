@@ -1,4 +1,4 @@
-const handleAddToCart = (userId, foodId) => {
+const handleAddToCart = (userId, food, dispatch) => {
     fetch("http://localhost:3000/api/v1/orders", {
         method: "POST",
         headers: {
@@ -7,8 +7,11 @@ const handleAddToCart = (userId, foodId) => {
         },
         body: JSON.stringify({
             user_id: userId,
-            item_id: foodId
+            item_id: food.id
         })
     })
+        .then(res => {
+            dispatch({type: 'ADD_ITEM', payload: food})
+        })
 }
 export default handleAddToCart
