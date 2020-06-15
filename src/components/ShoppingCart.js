@@ -7,8 +7,8 @@ const ShoppingCart = (props) => {
 
     return (
       <div className='ShoppingCartPage'>
-        <ReceiptContainer shoppingCart={props.shoppingCart}  handleDelete={props.handleDelete}/>
-        {/* <CartTotal  shoppingCart={props.shoppingCart} history={props.history}/> */}
+        <ReceiptContainer />
+        <CartTotal  shoppingCart={props.shoppingCart} history={props.history}/>
       </div>
     )
 }

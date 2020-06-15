@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {CardExpiryElement, CardNumberElement, CardCvcElement, injectStripe} from 'react-stripe-elements';
+
+import { CardExpiryElement, CardNumberElement, CardCvcElement, injectStripe } from 'react-stripe-elements';
+import { Button } from '@material-ui/core'
+
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 import handlePayment from '../utils/Checkout/handlePayment'
-import {Button} from '@material-ui/core'
+import { UserConext } from '../App2'
 
 let style = {
     base: {

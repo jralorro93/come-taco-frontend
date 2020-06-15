@@ -108,12 +108,12 @@ const App = (props) => {
                     }
                   } />
                 {/* Route to Checkout page*/}
-                  {/* <Route path='/checkout' render={
+                  <Route path='/checkout' render={
                     () => {
                       return (
-                        <Checkout currentUser={currentUser} shoppingCart={shoppingCart}/>
+                        <Checkout />
                       )
-                    } */}
+                    }
                   }/>
                 </div>
               </UserContext.Provider>

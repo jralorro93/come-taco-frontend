@@ -6,7 +6,7 @@ class CreditCheckoutContainer extends Component {
     render() {
         return (
             <Elements>
-                <CreditForm shoppingCart={this.props.shoppingCart} currentUser={this.props.currentUser}/>
+                <CreditForm />
             </Elements>
         )
     }
