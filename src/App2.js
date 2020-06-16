@@ -52,9 +52,9 @@ const App = (props) => {
 
       }
     }, [])
-
+    
     return (
-        <Elements stripe={stripePromise}>
+        <div>
           <Switch>
             <div>
               <UserContext.Provider value={{user, dispatch}}>
@@ -113,7 +113,9 @@ const App = (props) => {
                   <Route path='/checkout' render={
                     () => {
                       return (
-                        <Checkout />
+                        <Elements stripe={stripePromise}>
+                          <Checkout />
+                        </Elements>
                       )
                     }
                   }/>
@@ -121,7 +123,7 @@ const App = (props) => {
               </UserContext.Provider>
             </div>
           </Switch>
-        </Elements>
+        </div>
     )
 }
 
