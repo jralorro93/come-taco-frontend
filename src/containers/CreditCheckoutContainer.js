@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import {Elements} from 'react-stripe-elements';
 import CreditForm from '../components/CreditForm2'
 
+
+// THIS NEED TO TO CHANGE
+// TAKE OUT ELEMENTS
+// PUT IN NEW STRIPE ELEMENTS INSTEAD
 class CreditCheckoutContainer extends Component {
     render() {
         return (
-            <Elements>
-                <CreditForm />
-            </Elements>
+            <div>
+                <CreditForm/>
+            </div>
         )
     }
 }
