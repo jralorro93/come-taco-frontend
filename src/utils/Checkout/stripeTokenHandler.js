@@ -13,7 +13,7 @@ const stripeTokenHandler = (token, localStorage) => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         url: 'http://localhost:3000/api/v1/charges',
-        body: JSON.stringify({charge: paymentData})
+        body: JSON.stringify(paymentData)
     })
     console.log('this is response', response)
 }
