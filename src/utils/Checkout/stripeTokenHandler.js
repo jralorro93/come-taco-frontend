@@ -1,21 +1,25 @@
 import axios from 'axios'
 
-const stripeTokenHandler = (token, localStorage) => {
+const stripeTokenHandler = async (token, localStorage) => {
     const paymentData = {token: token.id}
     console.log('token', token)
     console.log('paymentData', paymentData)
 
-    const response = axios({
-        method: 'post',
+    const response = await fetch('http://localhost:3000/api/v1/charges', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        url: 'http://localhost:3000/api/v1/charges',
-        body: JSON.stringify({charge: paymentData})
+        body: JSON.stringify(paymentData)
     })
-    console.log('this is response', response)
+    .then(res => {
+        console.log('hi from res', res)
+        res.json()
+    })
+    
+
 }
 
 export default stripeTokenHandler

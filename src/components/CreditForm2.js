@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import { Button, CardActionArea } from '@material-ui/core'
-
+import axios from 'axios'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection'
@@ -16,6 +16,27 @@ const CreditForm = () => {
     // MAYBE???
     const stripe = useStripe()
     const elements = useElements()
+
+
+    const stripeTokenHandler = (token, localStorage) => {
+        const paymentData = {
+            token: token.id
+        }
+        console.log('token', token)
+        console.log('paymentData', paymentData)
+
+        const response = axios({
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            url: 'http://localhost:3000/api/v1/charges',
+            body: JSON.stringify({charge: paymentData})
+        })
+        
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
