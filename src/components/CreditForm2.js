@@ -46,14 +46,17 @@ const CreditForm = () => {
         }
 
         const card = elements.getElement(CardElement)
-        const result = await stripe.createToken(card)
-
-        if(result.error) {
-            console.log('hi this is error')
-            console.log(result.error.message)
-        } else {
-            stripeTokenHandler(result.token, localStorage)
-        }
+        const {error, paymentMethod} = await stripe.createPaymentMethod({
+            type: 'card',
+            card
+        })
+        console.log('this is paymentMethod', paymentMethod)
+        // if(result.error) {
+        //     console.log('hi this is error')
+        //     console.log(result.error.message)
+        // } else {
+        //     stripeTokenHandler(result.token, localStorage)
+        // }
     }
 
     return (
