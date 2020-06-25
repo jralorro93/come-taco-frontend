@@ -14,49 +14,63 @@ import { UserContext } from '../App2'
 const CreditForm = () => {
     // CREATE PAYMENT THEN CHARGE CHECK FIRST TIME
     // MAYBE???
+    const [values, setValues] = useState({
+        succeeded: '',
+        error: '',
+        processing: '',
+        disabled: true,
+        clientSecret: ''
+    })
     const stripe = useStripe()
     const elements = useElements()
 
-
     const stripeTokenHandler = (token, localStorage) => {
-        const paymentData = {
-            token: token.id
-        }
+        // const paymentData = {
+        //     token: token.id
+        // }
         console.log('token', token)
-        console.log('paymentData', paymentData)
-
+        // console.log('paymentData', paymentData)
+        const body = {
+            name: 'Juan Alorro',
+            amount: 19.20
+        }
         const response = axios({
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Accept': 'application/json'
             },
             url: 'http://localhost:3000/api/v1/charges',
-            body: JSON.stringify({charge: paymentData})
+            body: JSON.stringify(body)
         })
         
     }
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+
+    //     if (!stripe || !elements) {
+    //         return;
+    //     }
+
+    //     const card = elements.getElement(CardElement)
+    //     const {error, paymentMethod} = await stripe.createPaymentMethod({
+    //         type: 'card',
+    //         card
+    //     }) 
+    //     if(error) {
+    //         console.log('hi this is error')
+    //         console.log(error.message)
+    //     } else {
+    //         stripeTokenHandler(paymentMethod, localStorage)
+    //     }
+    // }
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        if (!stripe || !elements) {
-            return;
-        }
-
-        const card = elements.getElement(CardElement)
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
-            type: 'card',
-            card
+        const result = await axios.post('http://localhost:3000/api/v1/charges', {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'    
         })
-        console.log('this is paymentMethod', paymentMethod)
-        // if(result.error) {
-        //     console.log('hi this is error')
-        //     console.log(result.error.message)
-        // } else {
-        //     stripeTokenHandler(result.token, localStorage)
-        // }
     }
 
     return (
