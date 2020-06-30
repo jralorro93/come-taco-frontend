@@ -9,6 +9,7 @@ import stripeTokenHandler from '../utils/Checkout/stripeTokenHandler'
 import handleGrandTotal from '../utils/Checkout/handleGrandTotal'
 import handlePayment from '../utils/Checkout/handlePayment'
 import { UserContext } from '../App2'
+import { regHeaders } from '../utils/headers'
 
 
 const CreditForm = () => {
@@ -65,14 +66,22 @@ const CreditForm = () => {
     //         stripeTokenHandler(paymentMethod, localStorage)
     //     }
     // }
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const result = await axios.post('http://localhost:3000/api/v1/charges', {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'    
-        })
-    }
-
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     const data = {
+    //         name: 'Juan Alorro',
+    //         amount: 19.20
+    //     }
+    //     const result = await axios({
+    //         method: 'POST',
+    //         regHeaders,
+    //         url: 'http://localhost:3000/api/v1/charges',
+    //         body: JSON.stringify(data)
+    //     })
+    //     console.log(result)
+        
+    // }
+    
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <CardSection />
