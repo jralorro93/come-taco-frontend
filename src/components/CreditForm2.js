@@ -8,7 +8,7 @@ import CardSection from './CardSection'
 import stripeTokenHandler from '../utils/Checkout/stripeTokenHandler'
 import {handleGrandTotal, handlePayment} from '../utils/Checkout/handleGrandTotal'
 import { UserContext } from '../App2'
-import { regHeaders } from '../utils/headers'
+import { regHeaders, authHeaders } from '../utils/headers'
 
 
 const info = {
@@ -30,6 +30,8 @@ const CreditForm = () => {
     })
     const stripe = useStripe()
     const elements = useElements()
+
+    const { user } = useContext(UserContext)
 
     // const stripeTokenHandler = (token, localStorage) => {
     //     // const paymentData = {
@@ -94,16 +96,15 @@ const CreditForm = () => {
     useEffect(()=> {
         const fetchData = async () => {
             const result = await fetch('http://localhost:3000/api/v1/secrets', {
-                method: 'POST',
-                regHeaders,
-                body: JSON.stringify(info)
+                method: 'GET',
+                authHeaders
             })
             console.log('this is the result', result)
         }
 
         fetchData()
     }, [])
-    
+    console.log(authHeaders)
     return (
         <form >
             <CardSection />
