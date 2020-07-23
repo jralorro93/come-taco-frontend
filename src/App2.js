@@ -16,6 +16,7 @@ import ShoppingCart from './components/ShoppingCart'
 import Checkout from './components/Checkout'
 import SideDrawer from "./components/SideDrawer";
 import reducer from './utils/Reducers/reducer'
+import {authHeaders} from './utils/headers'
 
 //Imports from MUI
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -38,15 +39,12 @@ const App = (props) => {
       if (localStorage.getItem('token')) {
         axios({
           method: 'get',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          },
+          headers: authHeaders,
           url: 'http://localhost:3000/api/v1/profile'
         })
           .then(res => {
-            dispatch({type: 'GET_USER', payload: res.data.user})
-            dispatch({type: 'GET_ITEMS', payload: res.data.user.items})
+            dispatch({type: 'GET_USER', payload: res.data})
+            dispatch({type: 'GET_ITEMS', payload: res.data.items})
           })
           .catch(err => console.log('Error: ', err))
 
