@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 
 import { Button, CardActionArea } from '@material-ui/core'
 import axios from 'axios'
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { useStripe, useElements, CardElement, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection'
 import stripeTokenHandler from '../utils/Checkout/stripeTokenHandler'
@@ -54,9 +54,6 @@ const CreditForm = () => {
 
     const stripe = useStripe()
     const elements = useElements()
-
-    const thisIsCard = elements.getElement(CardElement)
-
     const { user } = useContext(UserContext)
 
     useEffect(()=> {
@@ -81,8 +78,8 @@ const CreditForm = () => {
 
         const result = await stripe.confirmCardPayment(values.clientSecret, {
             payment_method: {
-                card: elements.getElement(CardElement),
-                billing_details: values.billingDetails
+                card: elements.getElement(CardNumberElement),
+                billing_details: billingDetails
             }    
         })
 
@@ -97,8 +94,6 @@ const CreditForm = () => {
 
     }
 
-console.log(elements)
-console.log('this is CardElement', thisIsCard)
     return (
         <form className="Form" onSubmit={(e) => handleSubmit(e)} >
             <fieldset>
@@ -121,7 +116,7 @@ console.log('this is CardElement', thisIsCard)
                     placeholder="JaneDoe@gmail.com"
                     required
                     autoComplete="email"
-                    value={billingDetails.name}
+                    value={billingDetails.email}
                     onChange={(e) => {
                         setBillingDetails({...billingDetails, email: e.target.value})
                     }}
@@ -133,16 +128,14 @@ console.log('this is CardElement', thisIsCard)
                     placeholder="555-555-5555"
                     required
                     autoComplete="tel"
-                    value={billingDetails.name}
+                    value={billingDetails.phone}
                     // Place Regex Here to remove any () or - 
                     onChange={(e) => {
                         setBillingDetails({...billingDetails, phone: e.target.value})
                     }}
                 />
-                    
-                
+                <CardSection />
             </fieldset>
-            <CardSection />
             <button disabled={!stripe}>Confirm Order</button>
         </form>
     )
