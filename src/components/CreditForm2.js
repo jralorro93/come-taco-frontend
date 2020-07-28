@@ -10,12 +10,32 @@ import {handleGrandTotal, handlePayment} from '../utils/Checkout/handleGrandTota
 import { UserContext } from '../App2'
 import { regHeaders, authHeaders } from '../utils/headers'
 
-
-const info = {
-    user_id: 1,
-    amount: 2000,
-    items: ['']
-}
+const Field = ({
+    label,
+    id,
+    type,
+    placeholder,
+    required,
+    autoComplete,
+    value,
+    onChange,
+  }) => (
+    <div className="FormRow">
+      <label htmlFor={id} className="FormRowLabel">
+        {label}
+      </label>
+      <input
+        className="FormRowInput"
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        autoComplete={autoComplete}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  );
 
 const CreditForm = () => {
     const [values, setValues] = useState({
@@ -25,8 +45,17 @@ const CreditForm = () => {
         disabled: true,
         clientSecret: ''
     })
+   
+    const [billingDetails, setBillingDetails] = useState({
+        name: '',
+        email: '',
+        phone: ''
+    })
+
     const stripe = useStripe()
     const elements = useElements()
+
+    const thisIsCard = elements.getElement(CardElement)
 
     const { user } = useContext(UserContext)
 
@@ -53,9 +82,7 @@ const CreditForm = () => {
         const result = await stripe.confirmCardPayment(values.clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement),
-                billing_details: {
-                    name: `${user.user.first_name} ${user.user.last_name}`
-                }
+                billing_details: values.billingDetails
             }    
         })
 
@@ -70,9 +97,51 @@ const CreditForm = () => {
 
     }
 
-console.log(user.user)
+console.log(elements)
+console.log('this is CardElement', thisIsCard)
     return (
-        <form onSubmit={(e) => handleSubmit(e)} >
+        <form className="Form" onSubmit={(e) => handleSubmit(e)} >
+            <fieldset>
+                <Field
+                    label="Name"
+                    id="name"
+                    type="text"
+                    placeholder="Jane Doe"
+                    required
+                    autoComplete="name"
+                    value={billingDetails.name}
+                    onChange={(e) => {
+                        setBillingDetails({...billingDetails, name: e.target.value})
+                    }}
+                />
+                <Field
+                    label="Email"
+                    id="email"
+                    type="text"
+                    placeholder="JaneDoe@gmail.com"
+                    required
+                    autoComplete="email"
+                    value={billingDetails.name}
+                    onChange={(e) => {
+                        setBillingDetails({...billingDetails, email: e.target.value})
+                    }}
+                />
+                <Field
+                    label="Mobile"
+                    id="phone"
+                    type="text"
+                    placeholder="555-555-5555"
+                    required
+                    autoComplete="tel"
+                    value={billingDetails.name}
+                    // Place Regex Here to remove any () or - 
+                    onChange={(e) => {
+                        setBillingDetails({...billingDetails, phone: e.target.value})
+                    }}
+                />
+                    
+                
+            </fieldset>
             <CardSection />
             <button disabled={!stripe}>Confirm Order</button>
         </form>
@@ -80,4 +149,3 @@ console.log(user.user)
 }
 
 export default CreditForm
-// 
