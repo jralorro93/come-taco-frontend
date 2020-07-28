@@ -1,12 +1,16 @@
 import React from 'react'
-import {CardElement} from '@stripe/react-stripe-js'
+import {CardElement, CardNumberElement, CardExpiryElement, CardCvcElement} from '@stripe/react-stripe-js'
 
  const CardSection = () => {
   return (
-    <label>
-      Card details
-      <CardElement/>
-    </label>
+    <div >
+      <label>
+          Card details
+          <CardNumberElement />
+          <CardExpiryElement />
+          <CardCvcElement />
+        </label>
+      </div>
   );
 };
 export default CardSection
