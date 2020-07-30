@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreditForm from '../components/CreditForm2'
+import CreditForm from '../components/CreditForm'
 
 class CreditCheckoutContainer extends Component {
     render() {
