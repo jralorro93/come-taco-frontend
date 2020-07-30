@@ -1,12 +1,13 @@
 import React, {useState, useContext, useEffect} from 'react';
 
-import ItemCard from '../components/ItemCard'
+import ItemCard from '../components/ItemCard2'
 import handleOrderId from '../utils/Cart/handleOrderId'
 
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../App2';
 
+// For the first one
 const useStyles = makeStyles(theme => ({
   container: {
       border: '2px solid black',
@@ -17,6 +18,12 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#754F41"
   }
 }))
+
+// const useStyles = makeStyles(theme => ({
+//   container: {
+    
+//   }  
+// }))
 
 const ReceiptContainer = (props) => {
   const classes = useStyles()
