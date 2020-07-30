@@ -20,7 +20,8 @@ const ItemCard = ({ food, classes, orders}) => {
             setOrderId(handleOrderId(food.id, orders))
         }
     }, [])
-
+    console.log('this is food', food)
+    console.log('user', user)
    return (
         <Card className={classes.card}>
             <CardHeader title={food.name} className={classes.icon}/>
