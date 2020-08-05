@@ -31,8 +31,6 @@ const initialState = {
 const stripePromise = loadStripe('pk_test_OHsp793zkjWWR6rFPeVnf7nR00uGTVDgXk')
 
 const App = (props) => {
-    const [ currentUser, setCurrentUser ] = useState(null)
-
     const [ user, dispatch ] = useReducer(reducer, initialState)
 
     useEffect(()=> {

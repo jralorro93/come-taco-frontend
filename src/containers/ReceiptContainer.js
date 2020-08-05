@@ -11,7 +11,7 @@ import { UserContext } from '../App2';
 const useStyles = makeStyles(theme => ({
   container: {
     border: '2px solid black',
-    maxWidth: '800px',
+    maxWidth: '640px',
     marginLeft: '125px',
     marginRight: '125px',
     padding: '20px', 

@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Typography, Paper, Grid, Avatar } from '@material-ui/core'
-import {RemoveShoppingCartIcon} from '@material-ui/icons/'
+import { Typography, Paper, Grid, Avatar, IconButton } from '@material-ui/core'
+import {RemoveShoppingCart} from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
+import { UserContext } from '../App2';
+import handleDelete from '../utils/Cart/handleDelete'
 
 const useStyles = makeStyles(theme => ({
     avatar: {
@@ -12,12 +14,19 @@ const useStyles = makeStyles(theme => ({
     },
     item: {
         textAlign: 'left',
+    },
+    description: {
+        overflowWrap: 'break-word',
+        maxWidth: '430px',
+        textAlign: 'left',
+        marginBottom: '5px'
     }
 }))
 
 const ItemCard = ({food, orders}) => {
     const classes = useStyles()
-    console.log('this is food', food)
+    const {user, dispatch} = useContext(UserContext)
+    console.log('this is orders', user.user.orders)
     return (
         
             <Paper>
@@ -29,7 +38,7 @@ const ItemCard = ({food, orders}) => {
                         <Typography variant='h6' className={classes.item} gutterBottom>
                             {food.name}
                         </Typography>
-                        <Typography variant='body2'>
+                        <Typography className={classes.description}>
                             {food.description} 
                         </Typography>
                         <Typography className={classes.item}>
@@ -37,10 +46,9 @@ const ItemCard = ({food, orders}) => {
                         </Typography>
                     </Grid>
                     <Grid item>
-
-                    </Grid>
-                    <Grid item>
-
+                        <IconButton>
+                            <RemoveShoppingCart color='secondary'/>
+                        </IconButton>
                     </Grid>
                 </Grid>
             </Paper>
