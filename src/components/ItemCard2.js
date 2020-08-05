@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 const ItemCard = ({food, orders}) => {
     const classes = useStyles()
     const {user, dispatch} = useContext(UserContext)
-    console.log('this is orders', user.user.orders)
+    console.log('this is orders', user)
     return (
         
             <Paper>

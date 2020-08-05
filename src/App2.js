@@ -48,6 +48,23 @@ const App = (props) => {
 
       }
     }, [])
+
+    useEffect(()=> {
+      const updateOrders = () => {
+        axios({
+          method: 'get',
+          headers: authHeaders,
+          url: 'http://localhost:3000/api/v1/profile'
+        })
+          .then(res => {
+            
+            dispatch({type: 'UPDATE_ORDERS', payload: res.data.orders})
+          })
+          .catch(err => console.log('Error: ', err))
+      }
+      
+      updateOrders()
+    }, [user.shoppingCart])
     
     return (
         <div>

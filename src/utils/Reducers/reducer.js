@@ -30,6 +30,14 @@ const reducer = (state, action) => {
                 ...state,
                 shoppingCart: action.payload
             }
+        case 'UPDATE_ORDERS':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    orders: action.payload
+                }
+            }
         case 'CONSOLE_LOG': 
             return console.log('did this work?')
         default:
