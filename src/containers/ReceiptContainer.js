@@ -23,12 +23,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// const useStyles = makeStyles(theme => ({
-//   container: {
-    
-//   }  
-// }))
-
 const ReceiptContainer = (props) => {
   const classes = useStyles()
   const [isLoaded, setIsLoaded] = useState(false)
