@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const handleDelete = (id, foodObj, localStorage, dispatch, shoppingCart) => {
+    
     axios({
         method: 'delete',
         headers: {

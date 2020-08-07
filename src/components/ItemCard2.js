@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Typography, Paper, Grid, Avatar, IconButton } from '@material-ui/core'
-import {RemoveShoppingCart} from '@material-ui/icons'
+import { RemoveShoppingCart } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../App2';
 import handleDelete from '../utils/Cart/handleDelete'
@@ -25,7 +25,14 @@ const useStyles = makeStyles(theme => ({
 
 const ItemCard = ({food, orders}) => {
     const classes = useStyles()
+    const [ orderId, setOrderId ] = useState()
     const {user, dispatch} = useContext(UserContext)
+
+    useEffect(()=> {
+        return () => {
+            console.log('cleaned up?')
+        }
+    }, [])
     console.log('this is orders', user)
     return (
         
@@ -46,7 +53,7 @@ const ItemCard = ({food, orders}) => {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <IconButton>
+                        <IconButton >
                             <RemoveShoppingCart color='secondary'/>
                         </IconButton>
                     </Grid>

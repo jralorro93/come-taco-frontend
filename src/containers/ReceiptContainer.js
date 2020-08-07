@@ -31,6 +31,9 @@ const ReceiptContainer = (props) => {
 
   useEffect(() => {
     if (user) { setIsLoaded(true) }
+    return () => {
+      console.log('cleaned up?')
+    }
   }, [])
 
   const showCart = user.shoppingCart.length === 0 ? <h2>Your Shopping Cart is Empty!</h2> : (
