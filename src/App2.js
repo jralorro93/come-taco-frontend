@@ -59,7 +59,6 @@ const App = (props) => {
           .then(res => {
             
             dispatch({type: 'UPDATE_ORDERS', payload: res.data.orders})
-            console.log('useEffect', user.user.orders)
           })
           .catch(err => console.log('Error: ', err))
       }
