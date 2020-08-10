@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 
-import { Button, CardActionArea } from '@material-ui/core'
+import { Button, CardActionArea, FormGroup } from '@material-ui/core'
 import axios from 'axios'
 import { useStripe, useElements, CardElement, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 
@@ -67,6 +67,33 @@ const CreditForm = () => {
 
         fetchData()
     }, [])
+
+    const Field = ({
+        label,  
+        id,
+        type,
+        placeholder,
+        required,
+        autoComplete,
+        value,
+        onChange,
+    }) => (
+        <div className='FormRow'>
+            <label className='FormRowLabel' htmlFor={id}>
+                {label}
+            </label>
+            <input
+                className='FormRowInput'
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                required={required}
+                autoComplete={autoComplete}
+                value={value}
+                onChange={onChange}
+            />
+        </div>
+    );
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -95,7 +122,7 @@ const CreditForm = () => {
 
     return (
         <form className="Form" onSubmit={(e) => handleSubmit(e)} >
-            <fieldset>
+            <fieldset className='FormGroup'>
                 <Field
                     label="Name"
                     id="name"
@@ -133,6 +160,8 @@ const CreditForm = () => {
                         setBillingDetails({...billingDetails, phone: e.target.value})
                     }}
                 />
+            </fieldset>
+            <fieldset className='FormGroup'>
                 <CardSection />
             </fieldset>
             <button disabled={!stripe}>Confirm Order</button>
