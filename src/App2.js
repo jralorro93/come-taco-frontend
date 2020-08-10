@@ -118,7 +118,9 @@ const App = (props) => {
                   <Route path='/shoppingcart' render={
                     () => {
                       return (
-                        <ShoppingCart history={props.history}/>
+                        <Elements stripe={stripePromise}>
+                          <ShoppingCart history={props.history}/>
+                        </Elements>
                       )
                     }
                   } />

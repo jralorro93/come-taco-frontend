@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '5px'
     },
     body: {
-        minWidth: '430px'
+        minWidth: '430px',
+        marginTop: '3px'
     }
 }))
 
@@ -47,7 +48,7 @@ const ItemCard = ({food, orders}) => {
                         <Avatar alt={food.name} src={food.imgURL} className={classes.avatar}/>
                     </Grid>
                     <Grid item className={classes.body}>
-                        <Typography variant='h6' className={classes.item} gutterBottom>
+                        <Typography variant='h6' className={classes.item} >
                             {food.name}
                         </Typography>
                         <Typography className={classes.description} gutterBottom>
