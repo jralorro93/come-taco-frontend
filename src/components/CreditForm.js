@@ -8,33 +8,33 @@ import CardSection from './CardSection'
 import {handleGrandTotal, handlePayment} from '../utils/Checkout/handleGrandTotal'
 import { UserContext } from '../App2'
 import { regHeaders, authHeaders } from '../utils/headers'
-
-const Field = ({
-    label,
-    id,
-    type,
-    placeholder,
-    required,
-    autoComplete,
-    value,
-    onChange,
-  }) => (
-    <div className="FormRow">
-      <label htmlFor={id} className="FormRowLabel">
-        {label}
-      </label>
-      <input
-        className="FormRowInput"
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        autoComplete={autoComplete}
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-  );
+import Field from '../utils/CustomHooks/useField'
+// const Field = ({
+//     label,  
+//     id,
+//     type,
+//     name,
+//     placeholder,
+//     required,
+//     value,
+//     onChange
+// }) => (
+//     <div className='FormRow'>
+//         <label className='FormRowLabel' htmlFor={id}>
+//             {label}
+//         </label>
+//         <input
+//             className='FormRowInput'
+//             id={id}
+//             type={type}
+//             name={name}
+//             placeholder={placeholder}
+//             required={required}
+//             value={value}
+//             onChange={onChange}
+//         />
+//     </div>
+// );
 
 const CreditForm = () => {
     const [values, setValues] = useState({
@@ -68,32 +68,11 @@ const CreditForm = () => {
         fetchData()
     }, [])
 
-    const Field = ({
-        label,  
-        id,
-        type,
-        placeholder,
-        required,
-        autoComplete,
-        value,
-        onChange,
-    }) => (
-        <div className='FormRow'>
-            <label className='FormRowLabel' htmlFor={id}>
-                {label}
-            </label>
-            <input
-                className='FormRowInput'
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                required={required}
-                autoComplete={autoComplete}
-                value={value}
-                onChange={onChange}
-            />
-        </div>
-    );
+    const handleChange = e => {
+        const {id, value, name} = e.target
+        setBillingDetails({...billingDetails, [id]: value})
+        console.log('this is e', billingDetails)
+    }
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -127,21 +106,19 @@ const CreditForm = () => {
                     label="Name"
                     id="name"
                     type="text"
+                    name='name'
                     placeholder="Jane Doe"
                     required
-                    autoComplete="name"
                     value={billingDetails.name}
-                    onChange={(e) => {
-                        setBillingDetails({...billingDetails, name: e.target.value})
-                    }}
+                    onChange={(e) => handleChange(e)}
                 />
                 <Field
                     label="Email"
                     id="email"
                     type="text"
+                    name='email'
                     placeholder="JaneDoe@gmail.com"
                     required
-                    autoComplete="email"
                     value={billingDetails.email}
                     onChange={(e) => {
                         setBillingDetails({...billingDetails, email: e.target.value})
@@ -151,9 +128,9 @@ const CreditForm = () => {
                     label="Mobile"
                     id="phone"
                     type="text"
+                    name='phone'
                     placeholder="555-555-5555"
                     required
-                    autoComplete="tel"
                     value={billingDetails.phone}
                     // Place Regex Here to remove any () or - 
                     onChange={(e) => {
