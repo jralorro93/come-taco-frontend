@@ -6,27 +6,6 @@
   margin-left: 280px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 body {
   background-image: url("./Images/newBG.jpg");
   background-color: #cccccc;
@@ -156,4 +135,25 @@ div#creditFormBox {
 .Form {
   animation: fade 1000ms ease-out;
   background-color: #f6f9fc;
+  max-width: 400px;
+  min-height: 270px;
+  padding: 15px;
+}
+
+.FormRow {
+  display: flex;
+  margin-left: 9px;
+  margin-bottom: 2px;
+}
+
+.FormRow:first-child {
+  border-top: none;
+}
+
+.FormRowLabel {
+  width: 15%;
+  min-width: 70px;
+  padding: 5px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
